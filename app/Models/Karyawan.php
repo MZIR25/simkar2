@@ -23,7 +23,9 @@ class Karyawan extends Model
        'Status_Pernikahan',
        'Jumlah_Anak',
        'No_Hp',
-       'Mulai_Kerja'];
+       'Mulai_Kerja',
+       'image'
+    ];
 
 
 

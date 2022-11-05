@@ -88,6 +88,7 @@ class JobdeskController extends Controller
      */
     public function edit($jobdesk_id)
     {
+
         $karyawan=Karyawan::all();
         $jobdesk = Jobdesk::find($jobdesk_id);
         // dd($jobdesk);

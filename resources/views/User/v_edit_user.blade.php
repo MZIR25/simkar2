@@ -29,7 +29,7 @@
                     <label for="name" class="col-sm-2 col-form-label">Nama User</label>
                     <div class="col-sm-10">
                         <input type="text" value="{{$users->name}}" id="name" name="name" class="form-control" placeholder="Masukkan Nama USer">
-                            <x-validate-error-message name="name"/>
+                            {{-- <x-validate-error-message name="name"/> --}}
                     </div>
                 </div>
 <!-- bagian Email -->
@@ -37,7 +37,7 @@
                     <label for="email" class="col-sm-2 col-form-label">Email User</label>
                     <div class="col-sm-10">
                         <input type="text" value="{{$users->email}}"  id="email" name="email" class="form-control" placeholder="Masukkan Alamat Email">
-                            <x-validate-error-message name="email"/>
+                            {{-- <x-validate-error-message name="email"/> --}}
                     </div>
                 </div>
 <!-- bagian level -->
@@ -45,7 +45,7 @@
                     <label for="level" class="col-sm-2 col-form-label">Level User</label>
                     <div class="col-sm-10">
                         <input type="text" value="{{$users->level}}"  id="level" name="level" class="form-control" placeholder="Masukkan Level User">
-                            <x-validate-error-message name="level"/>
+                            {{-- <x-validate-error-message name="level"/> --}}
                     </div>
                 </div>
 <!-- bagian Id Karyawan -->
@@ -59,7 +59,7 @@
 
                             @endforeach
                         </select>
-                        <x-validate-error-message name="karyawan_id"/>
+                        {{-- <x-validate-error-message name="karyawan_id"/> --}}
                         </div>
                 </div>
 <!-- bagian Siuuuuuuuuu -->

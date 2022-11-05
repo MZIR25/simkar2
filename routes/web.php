@@ -33,7 +33,7 @@ Route::middleware(['auth','ceklevel:admin'])->group(function () {
     Route::get('/edit_user/{id}', [ManajemenUserController::class, 'edit'])->name('edit_user');
     Route::put('/update_user/{id}', [ManajemenUserController::class, 'update'])->name('update_user');
     Route::delete('/delete_user/{id}', [ManajemenUserController::class, 'destroy'])->name('delete_user');
-    Route::resource('/riwayat',RiwayatController::class);
+    Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat');
     //Karyawan
     Route::get('/daftar_karyawan', [KaryawanController::class, 'index'])->name('daftar_karyawan');
     Route::get('/unggah_daftar_karyawan', [KaryawanController::class, 'create'])->name('unggah_daftar_karyawan');

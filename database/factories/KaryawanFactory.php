@@ -17,7 +17,7 @@ class KaryawanFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'Nama_Karyawan' => $this->faker->name,
         ];
     }
 }

@@ -18,20 +18,22 @@ class Iterasi1Test extends TestCase
     use RefreshDatabase;
     use WithoutMiddleware;
 
-    public function testLoginRegisterLogout()
+    public function testRegisterLoginLogout()
     {
         $user = User::factory()->create([
-            'name' => 'karyawan',
-            'email' => 'karyawan2@gmail.com',
-            'password' => bcrypt($password = 'i-love-laravel'),
+            'name' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => bcrypt($password = 'admin123'),
+            'level' => 'admin'
         ]);
         $response = $this->post('/login', [
             'email' => $user->email,
             'password' => $password,
-        ]);
-        $this->assertAuthenticatedAs($user);
-        $this->get('/logout');
 
+        ]);
+
+        $this->assertAuthenticatedAs($user)->get('/home');
+        $this->get('/logout');
     }
 
 }

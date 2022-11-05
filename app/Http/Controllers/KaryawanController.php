@@ -63,7 +63,8 @@ class KaryawanController extends Controller
             'Status_Pernikahan'=> 'required',
             'Jumlah_Anak'=> 'required',
             'No_Hp'=> 'required',
-            'Mulai_Kerja'=> 'required'
+            'Mulai_Kerja'=> 'required',
+            'image' => 'required|file|image|mimes:jpg,jpeg,bmp,png|max:2048',
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
@@ -71,6 +72,9 @@ class KaryawanController extends Controller
             'level' => Auth::user()->level,
             'aktivitas' => 'Menambah Data Karyawan  '.$request->name.''
         ]);
+
+
+
         DB::transaction(function()use ($request) {
             $pendidikan = Pendidikan::create([
                 'Tingkat_Pendidikan'=> $request->Tingkat_Pendidikan,
@@ -78,6 +82,9 @@ class KaryawanController extends Controller
                 'Nama_Sekolah'=> $request->Nama_Sekolah,
                 'No_Ijazah'=> $request->No_Ijazah
             ]);
+            $imageName = time().'.'.$request->image->extension();
+            $request->image->move(public_path('app/public/Fotos'), $imageName);
+            // $image->foto=$imageName;
             $karyawan=Karyawan::create([
                 'jabatan_id'=> $request->jabatan_id,
                 'devisi_id'=> $request->devisi_id,
@@ -91,7 +98,8 @@ class KaryawanController extends Controller
                 'Status_Pernikahan'=> $request->Status_Pernikahan,
                 'Jumlah_Anak'=> $request->Jumlah_Anak,
                 'No_Hp'=> $request->No_Hp,
-                'Mulai_Kerja'=> $request->Mulai_Kerja
+                'Mulai_Kerja'=> $request->Mulai_Kerja,
+                'image'=> $imageName['image']
             ]);
 
         });
@@ -152,7 +160,8 @@ class KaryawanController extends Controller
             'Status_Pernikahan'=> 'required',
             'Jumlah_Anak'=> 'required',
             'No_Hp'=> 'required',
-            'Mulai_Kerja'=> 'required'
+            'Mulai_Kerja'=> 'required',
+            'Foto' => 'required|file|image|mimes:jpg,jpeg,bmp,png|max:2048',
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
@@ -182,7 +191,9 @@ class KaryawanController extends Controller
                 'Status_Pernikahan'=> $request->Status_Pernikahan,
                 'Jumlah_Anak'=> $request->Jumlah_Anak,
                 'No_Hp'=> $request->No_Hp,
-                'Mulai_Kerja'=> $request->Mulai_Kerja
+                'Mulai_Kerja'=> $request->Mulai_Kerja,
+                'Foto'=> $request->Foto
+
             ]);
         });
 

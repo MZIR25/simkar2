@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('jobdesk', function (Blueprint $table) {
             $table->increments('jobdesk_id');
-            $table->integer('karyawan_id')->unsigned();
+            $table->integer('karyawan_id')->unsigned()->nullable();
             $table->foreign('karyawan_id')->references('karyawan_id')->on('karyawan')->onDelete('cascade');
             $table->time('Jam_Mulai')->nullable();
             $table->time('Jam_Selesai')->nullable();

@@ -31,6 +31,7 @@ return new class extends Migration
             $table->integer('Jumlah_Anak')->nullable();
             $table->string('No_Hp')->nullable();
             $table->date('Mulai_Kerja')->nullable();
+            $table->string('image')->nullable();
             $table->string('STATUS')->nullable();
             $table->timestamps();
         });
