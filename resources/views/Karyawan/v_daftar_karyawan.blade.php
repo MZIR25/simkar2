@@ -71,7 +71,7 @@
         </div>
     </div>
 </div>
-
+@if (auth()->user()->level == "admin")
 <script>
     $(function () {
      $("#myTable").DataTable({
@@ -114,7 +114,7 @@
          //   });
      });
  </script>
-
+@endif
 @if (auth()->user()->level == "karyawan")
 <script>
    $(function () {

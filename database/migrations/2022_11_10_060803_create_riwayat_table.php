@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('riwayat', function (Blueprint $table) {
             $table->increments('riwayat_id');
             $table->integer('id')->unsigned()->nullable();
-            $table->foreign('id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id')->references('id')->on('users')->nullOnDelete('cascade');
             $table->string('nama')->nullable();
             $table->string('level')->nullable();
             $table->string('aktivitas')->nullable();

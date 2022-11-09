@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\DB;
 
 class RiwayatController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $riwayat = DB::table('riwayat')->latest()->paginate(100);

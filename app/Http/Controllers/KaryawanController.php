@@ -23,8 +23,7 @@ class KaryawanController extends Controller
      */
     public function index()
     {
-        $karyawan = Karyawan::with(['Pendidikan'])->get();
-        // ->where('status', 'active')
+        $karyawan = Karyawan::with(['Pendidikan'])->where('STATUS', 'Active')->get();
         return view('Karyawan.v_daftar_karyawan', compact('karyawan'));
 
     }
@@ -64,7 +63,7 @@ class KaryawanController extends Controller
             'Jumlah_Anak'=> 'required',
             'No_Hp'=> 'required',
             'Mulai_Kerja'=> 'required',
-            'image' => 'required|file|image|mimes:jpg,jpeg,bmp,png|max:2048',
+            // 'image' => 'required|file|image|mimes:jpg,jpeg,bmp,png|max:2048',
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
@@ -82,8 +81,8 @@ class KaryawanController extends Controller
                 'Nama_Sekolah'=> $request->Nama_Sekolah,
                 'No_Ijazah'=> $request->No_Ijazah
             ]);
-            $imageName = time().'.'.$request->image->extension();
-            $request->image->move(public_path('app/public/Fotos'), $imageName);
+            // $imageName = time().'.'.$request->image->extension();
+            // $request->image->move(public_path('app/public/Fotos'), $imageName);
             // $image->foto=$imageName;
             $karyawan=Karyawan::create([
                 'jabatan_id'=> $request->jabatan_id,
@@ -99,7 +98,8 @@ class KaryawanController extends Controller
                 'Jumlah_Anak'=> $request->Jumlah_Anak,
                 'No_Hp'=> $request->No_Hp,
                 'Mulai_Kerja'=> $request->Mulai_Kerja,
-                'image'=> $imageName['image']
+                // 'image'=> $imageName['image'],
+                'STATUS'=> 'Active',
             ]);
 
         });
@@ -207,10 +207,13 @@ class KaryawanController extends Controller
      * @param  \App\Models\Karyawan  $karyawan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Karyawan $karyawan_id)
+    public function destroy($karyawan_id)
     {
-        $karyawan = Karyawan::with('Pendidikan')->get()->find($karyawan_id);
-        $karyawan->forceDelete();
+        $karyawan = Karyawan::find($karyawan_id);
+
+        $karyawan->update([
+        'STATUS' => 'Inactive'
+        ]);
 
         if (Auth::user()->id == '') {
             Riwayat::create([

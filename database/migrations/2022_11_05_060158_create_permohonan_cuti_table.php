@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('permohonan_cuti', function (Blueprint $table) {
             $table->increments('cuti_id');
-            $table->integer('karyawan_id')->unsigned();
-            $table->foreign('karyawan_id')->references('karyawan_id')->on('karyawan')->onDelete('cascade');
+            $table->integer('karyawan_id')->unsigned()->nullable();
+            $table->foreign('karyawan_id')->references('karyawan_id')->on('karyawan')->nullOnDelete('cascade');
             $table->string('Alasan_Cuti')->nullable();
             $table->string('Status')->nullable();
             $table->date('Tanggal_Mulai')->nullable();

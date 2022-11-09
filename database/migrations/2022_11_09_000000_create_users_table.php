@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('karyawan_id')->unsigned()->nullable();
-            $table->foreign('karyawan_id')->references('karyawan_id')->on('Karyawan')->onDelete('cascade');
+            $table->foreign('karyawan_id')->references('karyawan_id')->on('Karyawan')->nullOnDelete('cascade');
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

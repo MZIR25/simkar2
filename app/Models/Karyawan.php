@@ -24,7 +24,9 @@ class Karyawan extends Model
        'Jumlah_Anak',
        'No_Hp',
        'Mulai_Kerja',
-       'image'
+       'image',
+       'STATUS',
+
     ];
 
 

@@ -134,7 +134,7 @@ class GajiController extends Controller
      * @param  \App\Models\Gaji  $gaji
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Gaji $gaji)
+    public function destroy($gaji)
     {
         $gaji = Gaji::find($gaji);
         $gaji->delete();
@@ -142,7 +142,7 @@ class GajiController extends Controller
             'id' => Auth::user()->id,
             'nama' => Auth::user()->name,
             'level' => Auth::user()->level,
-            'aktivitas' => 'Menambah Data Karyawan  '.$gaji->name.''
+            'aktivitas' => 'Menghapus Gaji Karyawan  '.$gaji->name.''
         ]);
         return redirect('daftar_gaji');
     }

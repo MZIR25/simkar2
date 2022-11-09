@@ -12,7 +12,6 @@ class Gaji extends Model
     protected $fillable = [
        'gaji_id',
        'Gaji_Pokok',
-       'Status_Menikah',
        'Pajak_Bpjs',
        'Jumlah_Gaji'];
 

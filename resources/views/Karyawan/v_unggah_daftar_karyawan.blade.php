@@ -9,7 +9,7 @@
     <div class="container">
         <div class="card mt-2">
             <div class="card-header ">
-              <h4 style="text-align:center"><b>FORM UNGGAH JOBDESK</b></h4>
+              <h4 style="text-align:center"><b>FORM UNGGAH KARYAWAN</b></h4>
             </div>
             <div class="card-body">
 
@@ -166,10 +166,10 @@
                     </div>
                 </div>
 
-                <div class="form-group-row">
+                {{-- <div class="form-group-row">
                     <label for="image">Masukkan File</label>
                     <input type="file" name="image" class="form-control-file" id="image">
-                </div>
+                </div> --}}
 
 <!-- bagian Siuuuuuuuuu -->
                 <div class="form-group row">

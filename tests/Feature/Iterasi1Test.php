@@ -15,25 +15,30 @@ use Tests\TestCase;
 
 class Iterasi1Test extends TestCase
 {
-    use RefreshDatabase;
+    use WithFaker;
     use WithoutMiddleware;
+
 
     public function testRegisterLoginLogout()
     {
-        $user = User::factory()->create([
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt($password = 'admin123'),
-            'level' => 'admin'
-        ]);
+
         $response = $this->post('/login', [
-            'email' => $user->email,
-            'password' => $password,
+            'email' => 'admin@gmail.com',
+            'password' => '12345678',
 
         ]);
 
-        $this->assertAuthenticatedAs($user)->get('/home');
-        $this->get('/logout');
+        // dd($response);
+        $this->assertAuthenticated();
+
+
+        // $response = $this->post('/login', [
+        //         'email' => '11181049@student.itk.ac.id',
+        //         'password' => '12345678',
+        // ]);
+        // $this->assertAuthenticated();
+        // // $response->assertRedirect(route('layouts.v_home'));
+        // // $this->get('/logout');
     }
 
 }

@@ -27,7 +27,16 @@
                 <div class="form-group row">
                     <label for="Nama_Karyawan" class="col-sm-2 col-form-label">Nama Karyawan</label>
                     <div class="col-sm-10">
+                        @if (auth()->user()->level == "karyawan")
                         <input type="text" id="Alasan_Cuti" value="{{Auth::user()->Karyawan->Nama_Karyawan}}" class="form-control">
+                        @endif
+                        @if (auth()->user()->level == "admin")
+                        <select id="karyawan_id" name="karyawan_id" class="form-control">
+                            @foreach ($karyawan as $k)
+                                <option value="{{$k->karyawan_id}}">{{$k->Nama_Karyawan}}</option>
+                            @endforeach
+                        </select>
+                        @endif
                     </div>
                     {{-- <x-validate-error-message name="karyawan_id"/> --}}
                 </div>

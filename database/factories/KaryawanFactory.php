@@ -18,6 +18,21 @@ class KaryawanFactory extends Factory
     {
         return [
             'Nama_Karyawan' => $this->faker->name,
+            'jabatan_id' => 1,
+            'devisi_id' => 1,
+            'pendidikan_id' => 1,
+            'Alamat_Karyawan' => $this->faker->address,
+            'Tempat_Lahir' => 'Balikpapan',
+            'Tanggal_Lahir' => $this->faker->date,
+            'Agama' => 'islam',
+            'Golongan_Darah' => '-',
+            'Status_Pernikahan' => 'Lajang',
+            'Jumlah_Anak' => '0',
+            'No_Hp' => '1111111111',
+            'Mulai_Kerja' => $this->faker->date,
+            'STATUS' => 'Active',
+
+
         ];
     }
 }

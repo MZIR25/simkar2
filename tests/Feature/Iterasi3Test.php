@@ -15,7 +15,7 @@ use Illuminate\Auth\Events\Authenticated;
 
 // class Iterasi3Test extends TestCase
 // {
-//     use RefreshDatabase;
+
 //     use WithoutMiddleware;
 //     use WithFaker;
 
@@ -24,34 +24,50 @@ use Illuminate\Auth\Events\Authenticated;
 //      *
 //      * @return void
 //      */
-//     // public function testLihatDaftarCuti()
+//     public function testLihatDaftarCuti()
 
-//     // {
-//     //     $user = User::factory()->create();
-//     //     $user = User::where('level','admin')->first();
-//     //         $response = $this->actingAs($user)
-//     //             ->get(route('permohonan_cuti', [ 'user' => 'admin', ]));
+//     {
 
-//     //         $response->assertStatus(200);
-//     // }
-//     // public function test_tambah_user_()
-//     // {
-//     //     $user = User::factory()->create();
-//     //     $user = User::where('level','admin')->first();
-//     //         $response = $this->actingAs($user)
-//     //             ->post(route('user.store'), [
-//     //                 'Nama' => $this->faker->name(),
-//     //                 'Email' => 'admin@gmail.com',
-//     //                 'Kontak' =>  $this->faker->phoneNumber(),
-//     //                 'Alamat' => $this->faker->address(),
-//     //                 'Role' => 'Admin',
-//     //                 'Jabatan' => $this->faker->jobTitle,
-//     //                 'Password' => 'asdfghjklkjh',
+//         $user = User::where('level','admin')->first();
+//             $response = $this->actingAs($user)
+//                 ->get(route('permohonan_cuti'));
 
+//             $response->assertStatus(200);
+//     }
+//     public function testTambahPermohonanCuti()
+//     {
+//         $user = User::where('level','admin')->first();
+//             $response = $this->actingAs($user)
+//                 ->post(route('simpan_cuti' ), [
+//                     'karyawan_id' => '1',
+//                     'Alasan_Cuti' => 'pulang kampung',
+//                     'Tanggal_Mulai' =>  $this->faker->date,
+//                     'Tanggal_Selesai' => $this->faker->date,
 
-//     //             ]);
-//     //             $this->withoutExceptionHandling();
-//     //          $response->assertStatus(302);
-//     //         //$response->assertSuccessful();
-//     // }
-// // }
+//                 ]);
+//                 $this->withoutExceptionHandling();
+//             // dd($response);
+//              $response->assertStatus(302);
+//     }
+//     public function testEditPermohonanCuti()
+//     {
+//         $user = User::where('level','admin')->first();
+//         $response = $this->actingAs($user)
+//             ->put(route('update_cuti', '2'), [
+//                     'Nama_Karyawan' => 'Richard Chandra Tjiang',
+//                     'Alasan_Cuti' => 'Keluar kota',
+//                     'Tanggal_Mulai' =>  $this->faker->date,
+//                     'Tanggal_Selesai' => $this->faker->date,
+
+//                 ]);
+//                 $this->withoutExceptionHandling();
+//             // dd($response);
+//              $response->assertStatus(302);
+//     }
+//     public function test_hapus_user()
+//     {
+//         $user = User::where('level','admin')->first();
+//         $response = $this->actingAs($user)->delete(route('delete_cuti','4'));
+//         $response->assertStatus(302);
+//     }
+// }
