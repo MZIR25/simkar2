@@ -6,8 +6,11 @@
         <div class="card">
             <div class="card-body">
                 <h3><i class="fas fa-swatchbook"></i></i> DAFTAR CUTI</h3><hr>
-                @if (auth()->user()->level == "karyawan")
+                @if (auth()->user()->karyawan_id)
+                    @if (auth()->user()->level == "karyawan")
+
                     <a href="{{ route('unggah_cuti') }}" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i>Upload Permohonan</a>
+                    @endif
                 @endif
                     {{-- <a href="permohonan_cuti/export_excel" class="btn btn-success mb-3"><i class="fa fa-file-excel mr-2"></i>EXPORT EXCEL</a> --}}
                     <table id="myTable" class="table table-striped table-bordered" >

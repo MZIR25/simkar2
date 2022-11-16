@@ -9,7 +9,7 @@
     <div class="container">
         <div class="card mt-2">
             <div class="card-header ">
-              <h4 style="text-align:center"><b>FORM UNGGAH PERMOHONAN CUTI</b></h4>
+              <h4 style="text-align:center"><b>FORM EDIT PERMOHONAN CUTI</b></h4>
             </div>
             <div class="card-body">
 

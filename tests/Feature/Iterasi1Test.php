@@ -13,32 +13,32 @@ use Illuminate\Foundation\Testing\WithoutMiddleware;
 
 use Tests\TestCase;
 
-class Iterasi1Test extends TestCase
-{
-    use WithFaker;
-    use WithoutMiddleware;
+// class Iterasi1Test extends TestCase
+// {
+//     use WithFaker;
+//     use WithoutMiddleware;
 
 
-    public function testRegisterLoginLogout()
-    {
+//     public function testRegisterLoginLogout()
+//     {
 
-        $response = $this->post('/login', [
-            'email' => 'admin@gmail.com',
-            'password' => '12345678',
+//         $response = $this->post('/login', [
+//             'email' => 'admin@gmail.com',
+//             'password' => '12345678',
 
-        ]);
+//         ]);
 
-        // dd($response);
-        $this->assertAuthenticated();
+//         // dd($response);
+//         $this->assertAuthenticated();
 
 
-        // $response = $this->post('/login', [
-        //         'email' => '11181049@student.itk.ac.id',
-        //         'password' => '12345678',
-        // ]);
-        // $this->assertAuthenticated();
-        // // $response->assertRedirect(route('layouts.v_home'));
-        // // $this->get('/logout');
-    }
+//         // $response = $this->post('/login', [
+//         //         'email' => '11181049@student.itk.ac.id',
+//         //         'password' => '12345678',
+//         // ]);
+//         // $this->assertAuthenticated();
+//         // // $response->assertRedirect(route('layouts.v_home'));
+//         // // $this->get('/logout');
+//     }
 
-}
+// }
