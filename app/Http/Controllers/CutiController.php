@@ -15,11 +15,13 @@ use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Hashing\HashServiceProvider;
+use MarkWalet\LaravelHashedRoute\HashedRouteManager;
+use MarkWalet\LaravelHashedRoute\Concerns\HasHashedRouteKey;
 
 class CutiController extends Controller
 {
-    use HashServiceProvider;
+
+    use HasHashedRouteKey;
     /**
      * Display a listing of the resource.
      *
@@ -103,7 +105,7 @@ class CutiController extends Controller
         // return redirect()->to(route('edit_cuti', ['cuti' => $cuti_id]). '#hash');
         // return redirect()->to(URL::previous() . "#anchorDocuments");
         // return redirect()->to(route('user.edit',  . '#myanchorid');
-
+        return [HashedRouteServiceProvider::class];
     }
 
     /**
