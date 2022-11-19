@@ -166,10 +166,10 @@
                     </div>
                 </div>
 
-                {{-- <div class="form-group-row">
+                <div class="form-group-row">
                     <label for="image">Masukkan File</label>
                     <input type="file" name="image" class="form-control-file" id="image">
-                </div> --}}
+                </div>
 
 <!-- bagian Siuuuuuuuuu -->
                 <div class="form-group row">

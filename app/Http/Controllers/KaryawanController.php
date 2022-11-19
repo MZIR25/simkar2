@@ -13,6 +13,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class KaryawanController extends Controller
 {
@@ -63,15 +64,15 @@ class KaryawanController extends Controller
             'Jumlah_Anak'=> 'required',
             'No_Hp'=> 'required',
             'Mulai_Kerja'=> 'required',
-            // 'image' => 'required|file|image|mimes:jpg,jpeg,bmp,png|max:2048',
+            'image' => 'required|file|image|mimes:jpg,jpeg,bmp,png|max:2048',
         ]);
+
         Riwayat::create([
             'id' => Auth::user()->id,
             'nama' => Auth::user()->name,
             'level' => Auth::user()->level,
             'aktivitas' => 'Menambah Data Karyawan  '.$request->name.''
         ]);
-
 
 
         DB::transaction(function()use ($request) {
@@ -81,9 +82,9 @@ class KaryawanController extends Controller
                 'Nama_Sekolah'=> $request->Nama_Sekolah,
                 'No_Ijazah'=> $request->No_Ijazah
             ]);
-            // $imageName = time().'.'.$request->image->extension();
-            // $request->image->move(public_path('app/public/Fotos'), $imageName);
-            // $image->foto=$imageName;
+
+            $image = Storage::disk('public')->put('karyawan', $request->image);
+
             $karyawan=Karyawan::create([
                 'jabatan_id'=> $request->jabatan_id,
                 'devisi_id'=> $request->devisi_id,
@@ -98,7 +99,7 @@ class KaryawanController extends Controller
                 'Jumlah_Anak'=> $request->Jumlah_Anak,
                 'No_Hp'=> $request->No_Hp,
                 'Mulai_Kerja'=> $request->Mulai_Kerja,
-                // 'image'=> $imageName['image'],
+                'image'=> $image,
                 'STATUS'=> 'Active',
             ]);
 
@@ -106,7 +107,7 @@ class KaryawanController extends Controller
 
 
 
-        return redirect('daftar_karyawan');
+        return redirect('daftar_karyawan')->banner('Data berhasil dibuat');
 
     }
 
@@ -161,8 +162,9 @@ class KaryawanController extends Controller
             'Jumlah_Anak'=> 'required',
             'No_Hp'=> 'required',
             'Mulai_Kerja'=> 'required',
-            'Foto' => 'required|file|image|mimes:jpg,jpeg,bmp,png|max:2048',
+            'image' => 'file|image|mimes:jpg,jpeg,bmp,png|max:2048',
         ]);
+
         Riwayat::create([
             'id' => Auth::user()->id,
             'nama' => Auth::user()->name,
@@ -179,6 +181,10 @@ class KaryawanController extends Controller
                 'No_Ijazah'=> $request->No_Ijazah
             ]);
 
+            if (isset($request->image)) {
+                $karyawan->image = Storage::disk('public')->put('karyawan', $request->image);
+            }
+
             $karyawan->update([
                 'jabatan_id'=> $request->jabatan_id,
                 'devisi_id'=> $request->devisi_id,
@@ -192,12 +198,12 @@ class KaryawanController extends Controller
                 'Jumlah_Anak'=> $request->Jumlah_Anak,
                 'No_Hp'=> $request->No_Hp,
                 'Mulai_Kerja'=> $request->Mulai_Kerja,
-                'Foto'=> $request->Foto
+                'image'=> $karyawan->image
 
             ]);
         });
 
-        return redirect('daftar_karyawan');
+        return redirect('daftar_karyawan')->banner("Data berhasil diubah");
 
     }
 
@@ -230,7 +236,6 @@ class KaryawanController extends Controller
         ]);
         }
 
-        return redirect('daftar_karyawan');
-
+        return redirect('daftar_karyawan')->banner("Data berhasil dihapus");
     }
 }

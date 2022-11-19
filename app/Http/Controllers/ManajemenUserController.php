@@ -92,7 +92,7 @@ class ManajemenUserController extends Controller
         $users->karyawan_id=$request->get('karyawan_id');
 
         $users->save();
-        return redirect('manajemen_user');
+        return redirect('manajemen_user')->banner("Data berhasil diupdate");
 
     }
 
@@ -106,7 +106,7 @@ class ManajemenUserController extends Controller
     {
         $users = User::find($users);
         $users->delete();
-        return redirect('manajemen_user');
+        return redirect('manajemen_user')->banner("Data berhasil dihapus");
 
     }
 }
