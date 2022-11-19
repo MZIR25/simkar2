@@ -162,8 +162,9 @@ class KaryawanController extends Controller
             'Jumlah_Anak'=> 'required',
             'No_Hp'=> 'required',
             'Mulai_Kerja'=> 'required',
-            'Foto' => 'file|image|mimes:jpg,jpeg,bmp,png|max:2048',
+            'image' => 'file|image|mimes:jpg,jpeg,bmp,png|max:2048',
         ]);
+
         Riwayat::create([
             'id' => Auth::user()->id,
             'nama' => Auth::user()->name,
@@ -180,6 +181,10 @@ class KaryawanController extends Controller
                 'No_Ijazah'=> $request->No_Ijazah
             ]);
 
+            if (isset($request->image)) {
+                $karyawan->image = Storage::disk('public')->put('karyawan', $request->image);
+            }
+
             $karyawan->update([
                 'jabatan_id'=> $request->jabatan_id,
                 'devisi_id'=> $request->devisi_id,
@@ -193,7 +198,7 @@ class KaryawanController extends Controller
                 'Jumlah_Anak'=> $request->Jumlah_Anak,
                 'No_Hp'=> $request->No_Hp,
                 'Mulai_Kerja'=> $request->Mulai_Kerja,
-                'Foto'=> $request->Foto
+                'image'=> $karyawan->image
 
             ]);
         });
