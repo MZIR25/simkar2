@@ -67,7 +67,7 @@ class GajiController extends Controller
         $gaji->Jumlah_Gaji=$request->get('Jumlah_Gaji');
         $gaji->save();
 
-        return redirect('daftar_gaji');
+        return redirect('daftar_gaji')->banner('Data berhasil dibuat');
     }
 
     /**
@@ -125,7 +125,7 @@ class GajiController extends Controller
         $gaji->Jumlah_Gaji=$request->get('Jumlah_Gaji');
         $gaji->save();
 
-        return redirect('daftar_gaji');
+        return redirect('daftar_gaji')->banner("Data berhasil diubah");
     }
 
     /**
@@ -144,6 +144,6 @@ class GajiController extends Controller
             'level' => Auth::user()->level,
             'aktivitas' => 'Menghapus Gaji Karyawan  '.$gaji->name.''
         ]);
-        return redirect('daftar_gaji');
+        return redirect('daftar_gaji')->banner("Data berhasil dihapus");
     }
 }

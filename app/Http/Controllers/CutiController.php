@@ -69,7 +69,7 @@ class CutiController extends Controller
         $cuti->Tanggal_Selesai=$request->get('Tanggal_Selesai');
         $cuti->save();
 
-        return redirect('permohonan_cuti');
+        return redirect('permohonan_cuti')->banner('Data berhasil dibuat');
     }
 
     /**
@@ -132,7 +132,7 @@ class CutiController extends Controller
 
         $cuti->save();
 
-        return redirect('permohonan_cuti');
+        return redirect('permohonan_cuti')->banner('Data berhasil diubah');
 
     }
 
@@ -153,7 +153,7 @@ class CutiController extends Controller
             'level' => Auth::user()->level,
             'aktivitas' => 'Menghapus Permohonan Cuti  '.$cuti->name.''
         ]);
-        return redirect('permohonan_cuti');
+        return redirect('permohonan_cuti')->banner("Data berhasil dihapus");
 
     }
 }

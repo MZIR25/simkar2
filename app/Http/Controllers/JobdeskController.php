@@ -65,7 +65,7 @@ class JobdeskController extends Controller
         $jobdesk->Tugas_Karyawan=$request->get('Tugas_Karyawan');
         $jobdesk->save();
 
-        return redirect('daftar_jobdesk');
+        return redirect('daftar_jobdesk')->banner("Data berhasil dibuat");
 
     }
 
@@ -125,7 +125,7 @@ class JobdeskController extends Controller
         $jobdesk->Tugas_Karyawan=$request->get('Tugas_Karyawan');
         $jobdesk->save();
 
-        return redirect('daftar_jobdesk');
+        return redirect('daftar_jobdesk')->banner("Data berhasil diubah");
 
     }
 
@@ -145,7 +145,7 @@ class JobdeskController extends Controller
             'level' => Auth::user()->level,
             'aktivitas' => 'Menghapus Tugas Karyawan  '.$jobdesk->name.''
         ]);
-        return redirect('daftar_jobdesk');
+        return redirect('daftar_jobdesk')->banner("Data berhasil dihapus");
 
     }
 }
