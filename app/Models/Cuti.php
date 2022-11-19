@@ -4,9 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+// use MarkWalet\LaravelHashedRoute\Concerns\HasHashedRouteKey;
 
 class Cuti extends Model
 {
+    // use HasHashedRouteKey;
+
     protected $table = "permohonan_cuti";
     protected $primaryKey = "cuti_id";
     protected $fillable = [

@@ -67,7 +67,7 @@
                     </select>
                     </div>
                 </div>
-                {{-- <x-validate-error-message name="Status_Menikah"/> --}} --}}
+                {{-- <x-validate-error-message name="Status_Menikah"/> --}}
 <!-- bagian Alamat -->
                 <div class="form-group row">
                     <label for="Pajak_Bpjs" class="col-sm-2 col-form-label">Pajak Bpjs</label>
