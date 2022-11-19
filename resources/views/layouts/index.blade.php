@@ -40,6 +40,7 @@
   <link rel="stylesheet" href="{{asset('template/')}}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="{{asset('template/')}}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="{{asset('template/')}}/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="{{asset('template/plugins/toastr/toastr.min.css')}}">
     <!-- jQuery -->
     <script src="{{asset('template/')}}/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -52,6 +53,7 @@
  <!-- Site wrapper -->
 
 
+      @include("layouts.banner")
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="background-color: #3b849b;">
     <!-- Left navbar links -->
@@ -206,6 +208,8 @@
 <script src="{{asset('template/')}}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="{{asset('template/')}}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="{{asset('template/')}}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+<!-- Toast -->
+<script src="{{asset('template/plugins/toastr/toastr.min.js')}}"></script>
 
 {{-- @if (auth()->user()->level == "karyawan")
 <script>
