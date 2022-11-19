@@ -13,11 +13,7 @@ use Illuminate\Support\Facades\Auth;
 
 class JobdeskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $jobdesk = Jobdesk::all();
@@ -25,24 +21,11 @@ class JobdeskController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $karyawan=Karyawan::get();
         return view('Jobdesk.v_unggah_jobdesk', compact('karyawan'));
-
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreJobdeskRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -91,18 +74,8 @@ class JobdeskController extends Controller
 
         $karyawan=Karyawan::all();
         $jobdesk = Jobdesk::find($jobdesk_id);
-        // dd($jobdesk);
         return view('Jobdesk.v_edit_jobdesk', compact('jobdesk','karyawan'));
-
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateJobdeskRequest  $request
-     * @param  \App\Models\Jobdesk  $jobdesk
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $jobdesk_id)
     {
         $this->validate($request, [

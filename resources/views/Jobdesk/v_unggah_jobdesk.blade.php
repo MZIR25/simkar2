@@ -6,7 +6,7 @@
 <div class="col-md-12 p-5 pt-2">
 
     <!-- membuat form -->
-    <div class="container">
+    <div class="container w-75">
         <div class="card mt-2">
             <div class="card-header ">
               <h4 style="text-align:center"><b>FORM UNGGAH JOBDESK</b></h4>
@@ -51,14 +51,14 @@
 <!-- bagian Jam_Mulai -->
                 <div class="form-group row">
                     <label for="Jam_Mulai" class="col-sm-2 col-form-label">Jam Mulai</label>
-                        <div class="col-md-2">
+                        <div class="col-sm-10">
                             <input type="time" id="Jam_Mulai" name="Jam_Mulai" class="form-control" />
                             {{-- <x-validate-error-message name="Jam_Mulai"/> --}}
                         </div>
                 </div>
                 <div class="form-group row">
                     <label for="Jam_Selesai" class="col-sm-2 col-form-label">Jam Selesai</label>
-                        <div class="col-md-2">
+                        <div class="col-sm-10">
                             <input type="time" id="Jam_Selesai" name="Jam_Selesai" class="form-control"/>
                             {{-- <x-validate-error-message name="Jam_Selesai"/> --}}
                         </div>

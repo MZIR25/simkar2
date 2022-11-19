@@ -44,9 +44,13 @@
                 <div class="form-group row">
                     <label for="level" class="col-sm-2 col-form-label">Level User</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{$users->level}}"  id="level" name="level" class="form-control" placeholder="Masukkan Level User">
+
                             {{-- <x-validate-error-message name="level"/> --}}
-                    </div>
+                            <select id="level" class="form-control">
+                                    <option >admin</option>
+                                    <option >karyawan</option>
+                            </select>
+                        </div>
                 </div>
 <!-- bagian Id Karyawan -->
                 <div class="form-group row">
