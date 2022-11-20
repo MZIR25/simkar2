@@ -58,9 +58,12 @@ class CutiController extends Controller
         ]);
 
         $cuti=new Cuti;
+        if (Auth::user()->level == "karyawan") {
 
-        // $cuti->karyawan_id= Auth::user()->Karyawan->karyawan_id;
+        $cuti->karyawan_id= Auth::user()->Karyawan->karyawan_id;
+        } else {
         $cuti->karyawan_id=$request->get('karyawan_id');
+        }
         $cuti->Alasan_Cuti=$request->get('Alasan_Cuti');
         $cuti->Status=$request->get('Status');
         $cuti->Tanggal_Mulai=$request->get('Tanggal_Mulai');
