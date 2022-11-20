@@ -28,6 +28,7 @@
                         <th scope="col">Status Pernikahan</th>
                         <th scope="col">Jumlah Anak</th>
                         <th scope="col">Nomor HP</th>
+                        <th scope="col">Foto Karyawan</th>
                         <th style="width: 9%">Aksi</th>
 
                         </tr>
@@ -50,6 +51,7 @@
                             <td>{{ $k->Status_Pernikahan }}</td>
                             <td>{{ $k->Jumlah_Anak }}</td>
                             <td>{{ $k->No_Hp }}</td>
+                            <td><img style="max-width: 100%;" src="{{asset('storage/'.$k->image)}}"></img></td>
                             <td>
                                 <div>
                                     <a href="/edit_karyawan/{{$k->karyawan_id}}"><i class="fas fa-edit bg-warning p-2 text-white rounded d-inline" data-toggle="tooltip" title="Edit"></a></i>

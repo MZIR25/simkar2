@@ -48,7 +48,7 @@ Route::middleware(['auth','ceklevel:admin'])->group(function () {
     Route::get('/permohonan_cuti', [CutiController::class, 'index'])->name('permohonan_cuti');
     Route::get('/unggah_cuti', [CutiController::class, 'create'])->name('unggah_cuti');
     Route::post('/simpan_cuti', [CutiController::class, 'store'])->name('simpan_cuti');
-    Route::get('/edit_cuti/{cuti_id}', [CutiController::class, 'edit'])->name('edit_cuti');
+    Route::get('/edit_cuti/{cuti_id}#hash', [CutiController::class, 'edit'])->name('edit_cuti');
     Route::put('/update_cuti/{cuti_id}', [CutiController::class, 'update'])->name('update_cuti');
     Route::delete('/delete_cuti/{cuti_id}', [CutiController::class, 'destroy'])->name('delete_cuti');
     // Route::get('/permohonan_cuti/export_excel', [CutiController::class, 'export_excel'])->name('permohonan_cuti');

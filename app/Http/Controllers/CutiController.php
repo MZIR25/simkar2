@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cuti;
 use App\Models\Karyawan;
 use App\Models\Riwayat;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 use App\Http\Requests\StoreCutiRequest;
 use App\Http\Requests\UpdateCutiRequest;
 use App\Exports\CutiExport;
@@ -13,9 +15,13 @@ use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use MarkWalet\LaravelHashedRoute\HashedRouteManager;
+use MarkWalet\LaravelHashedRoute\Concerns\HasHashedRouteKey;
 
 class CutiController extends Controller
 {
+
+    use HasHashedRouteKey;
     /**
      * Display a listing of the resource.
      *
@@ -89,12 +95,17 @@ class CutiController extends Controller
      * @param  \App\Models\Cuti  $cuti
      * @return \Illuminate\Http\Response
      */
-    public function edit($cuti_id)
+    public function edit( $cuti_id)
     {
         $karyawan=Karyawan::all();
         $cuti = Cuti::find($cuti_id);
-        return view('Cuti.v_edit_cuti', compact('cuti','karyawan'));
 
+        return view('Cuti.v_edit_cuti', compact('cuti','karyawan'));
+        // // return redirect()->to(url()->previous() . '#hash');
+        // return redirect()->to(route('edit_cuti', ['cuti' => $cuti_id]). '#hash');
+        // return redirect()->to(URL::previous() . "#anchorDocuments");
+        // return redirect()->to(route('user.edit',  . '#myanchorid');
+        return [HashedRouteServiceProvider::class];
     }
 
     /**

@@ -35,7 +35,7 @@
                             <td>{{ $g->Jumlah_Gaji }}</td>
                             <td>
 
-                                <a href="/edit_gaji/{{$g->gaji_id}}"><i class="d-inline fas fa-edit bg-warning p-2 text-white rounded " data-toggle="tooltip" title="Edit"></a></i>
+                                <a href="/edit_gaji/{{$g->gaji_id}}#hash"><i class="d-inline fas fa-edit bg-warning p-2 text-white rounded " data-toggle="tooltip" title="Edit"></a></i>
                                 <form class="d-inline " action="{{ url('delete_gaji', $g->gaji_id) }} " method="POST">
                                     {{ csrf_field() }}
                                     @method('DELETE')
