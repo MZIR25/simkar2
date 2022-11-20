@@ -45,7 +45,7 @@ class CutiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'karyawan_id'=> 'required',
+
             'Alasan_Cuti'=> 'required',
             'Tanggal_Mulai'=> 'required',
             'Tanggal_Selesai'=> 'required'
@@ -94,7 +94,6 @@ class CutiController extends Controller
     {
         $karyawan=Karyawan::all();
         $cuti = Cuti::find($cuti_id);
-
         return view('Cuti.v_edit_cuti', compact('cuti','karyawan'));
 
 
@@ -110,7 +109,7 @@ class CutiController extends Controller
     public function update(Request $request, $cuti_id)
     {
         $this->validate($request, [
-            'karyawan_id'=> 'required',
+
             'Alasan_Cuti'=> 'required',
             'Tanggal_Mulai'=> 'required',
             'Tanggal_Selesai'=> 'required',
@@ -125,7 +124,12 @@ class CutiController extends Controller
         ]);
         $cuti = Cuti::find($cuti_id);
 
-        $cuti->karyawan_id=$request->get('karyawan_id');
+        if (Auth::user()->level == "karyawan") {
+
+            $cuti->karyawan_id= Auth::user()->Karyawan->karyawan_id;
+            } else {
+            $cuti->karyawan_id=$request->get('karyawan_id');
+            }
         $cuti->Alasan_Cuti=$request->get('Alasan_Cuti');
         $cuti->Status=$request->get('Status');
         $cuti->Tanggal_Mulai=$request->get('Tanggal_Mulai');
