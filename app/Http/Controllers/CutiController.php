@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Cuti;
 use App\Models\Karyawan;
 use App\Models\Riwayat;
-use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\URL;
 use App\Http\Requests\StoreCutiRequest;
 use App\Http\Requests\UpdateCutiRequest;
 use App\Exports\CutiExport;
@@ -15,10 +13,13 @@ use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+
+
 
 class CutiController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
