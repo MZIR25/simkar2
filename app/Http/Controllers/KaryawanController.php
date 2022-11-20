@@ -133,8 +133,7 @@ class KaryawanController extends Controller
         $jabatan=Jabatan::all();
         $pendidikan=Pendidikan::all();
         $devisi=Devisi::all();
-        $karyawan=Karyawan::with(['Pendidikan'])->get()->find($karyawan_id)->first();
-        // dd($karyawan);
+        $karyawan= $karyawan_id->load(["Pendidikan"]);
         return view('Karyawan.v_edit_daftar_karyawan', compact(['jabatan','pendidikan','devisi','karyawan']));
 
     }
