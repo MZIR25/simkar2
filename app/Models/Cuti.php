@@ -4,12 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use MarkWalet\LaravelHashedRoute\Concerns\HasHashedRouteKey;
+
 
 class Cuti extends Model
 {
     // use HasHashedRouteKey;
-    use HasHashedRouteKey;
+
 
 
     protected $table = "permohonan_cuti";
@@ -19,9 +19,7 @@ class Cuti extends Model
        'Alasan_Cuti',
        'Status',
        'Tanggal_Mulai',
-       'Tanggal_Selesai',
-       'Alamat',
-       'No_HP'];
+       'Tanggal_Selesai'];
 
        public function Karyawan()
        {

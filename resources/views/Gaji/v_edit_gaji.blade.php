@@ -6,7 +6,7 @@
 <div class="col-md-12 p-5 pt-2">
 
     <!-- membuat form -->
-    <div class="container">
+    <div class="container w-75">
         <div class="card mt-2">
             <div class="card-header ">
               <h4 style="text-align:center"><b>FORM EDIT GAJI</b></h4>

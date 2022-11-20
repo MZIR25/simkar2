@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Gaji;
 use App\Models\Riwayat;
 use App\Models\Karyawan;
-use App\Http\Requests\StoreGajiRequest;
-use App\Http\Requests\UpdateGajiRequest;
 use App\Exports\GajiExport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -107,7 +105,6 @@ class GajiController extends Controller
         $this->validate($request, [
             'karyawan_id'=> 'required',
             'Gaji_Pokok'=> 'required',
-
             'Pajak_Bpjs'=> 'required',
             'Jumlah_Gaji'=> 'required'
         ]);

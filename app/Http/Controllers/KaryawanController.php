@@ -146,7 +146,7 @@ class KaryawanController extends Controller
      * @param  \App\Models\Karyawan  $karyawan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Karyawan $karyawan_id)
+    public function update(Request $request,Karyawan $karyawan_id)
     {
         $karyawan=Karyawan::with('Pendidikan')->get()->find($karyawan_id);
         $this->validate($request, [
@@ -161,8 +161,8 @@ class KaryawanController extends Controller
             'Status_Pernikahan'=> 'required',
             'Jumlah_Anak'=> 'required',
             'No_Hp'=> 'required',
-            'Mulai_Kerja'=> 'required',
-            'image' => 'file|image|mimes:jpg,jpeg,bmp,png|max:2048',
+            'Mulai_Kerja'=> 'required'
+            // 'image' => 'file|image|mimes:jpg,jpeg,bmp,png|max:2048',
         ]);
 
         Riwayat::create([

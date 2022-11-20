@@ -5,16 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Cuti;
 use App\Models\Karyawan;
 use App\Models\Riwayat;
-use App\Http\Requests\StoreCutiRequest;
-use App\Http\Requests\UpdateCutiRequest;
-use App\Exports\CutiExport;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-
-
 
 class CutiController extends Controller
 {
@@ -52,10 +45,10 @@ class CutiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-
+            'karyawan_id'=> 'required',
             'Alasan_Cuti'=> 'required',
             'Tanggal_Mulai'=> 'required',
-            'Tanggal_Selesai'=> 'required',
+            'Tanggal_Selesai'=> 'required'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
@@ -66,7 +59,8 @@ class CutiController extends Controller
 
         $cuti=new Cuti;
 
-        $cuti->karyawan_id= Auth::user()->Karyawan->karyawan_id;
+        // $cuti->karyawan_id= Auth::user()->Karyawan->karyawan_id;
+        $cuti->karyawan_id=$request->get('karyawan_id');
         $cuti->Alasan_Cuti=$request->get('Alasan_Cuti');
         $cuti->Status=$request->get('Status');
         $cuti->Tanggal_Mulai=$request->get('Tanggal_Mulai');
@@ -93,16 +87,13 @@ class CutiController extends Controller
      * @param  \App\Models\Cuti  $cuti
      * @return \Illuminate\Http\Response
      */
-    public function edit( $cuti_id)
+    public function edit($cuti_id)
     {
         $karyawan=Karyawan::all();
         $cuti = Cuti::find($cuti_id);
 
         return view('Cuti.v_edit_cuti', compact('cuti','karyawan'));
-        // // return redirect()->to(url()->previous() . '#hash');
-        // return redirect()->to(route('edit_cuti', ['cuti' => $cuti_id]). '#hash');
-        // return redirect()->to(URL::previous() . "#anchorDocuments");
-        // return redirect()->to(route('user.edit',  . '#myanchorid');
+
 
     }
 
@@ -118,7 +109,6 @@ class CutiController extends Controller
         $this->validate($request, [
             'karyawan_id'=> 'required',
             'Alasan_Cuti'=> 'required',
-
             'Tanggal_Mulai'=> 'required',
             'Tanggal_Selesai'=> 'required',
 

@@ -109,7 +109,7 @@ class JobdeskController extends Controller
             'karyawan_id'=> 'required',
             'Jam_Mulai'=> 'required',
             'Jam_Selesai'=> 'required',
-            'Tugas_Karyawan'=> 'required',
+            'Tugas_Karyawan'=> 'required'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,

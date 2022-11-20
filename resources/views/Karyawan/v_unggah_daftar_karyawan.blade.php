@@ -6,7 +6,7 @@
 <div class="col-md-12 p-5 pt-2">
 
     <!-- membuat form -->
-    <div class="container">
+    <div class="container w-75">
         <div class="card mt-2">
             <div class="card-header ">
               <h4 style="text-align:center"><b>FORM UNGGAH KARYAWAN</b></h4>
@@ -112,7 +112,7 @@
 <!-- bagian Tanggal_Lahir -->
                 <div class="form-group row">
                     <label for="Tanggal_Lahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
-                        <div class="col-md-2">
+                        <div class="col-md-10">
                             <input type="date" id="Tanggal_Lahir" name="Tanggal_Lahir" class="form-control"/>
                             {{-- <x-validate-error-message name="Tanggal_Lahir"/> --}}
                         </div>
