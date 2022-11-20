@@ -147,7 +147,7 @@ class KaryawanController extends Controller
      */
     public function update(Request $request,Karyawan $karyawan_id)
     {
-        $karyawan=Karyawan::with('Pendidikan')->get()->find($karyawan_id);
+        $karyawan=$karyawan_id;
         $this->validate($request, [
             'jabatan_id'=> 'required',
             'devisi_id'=> 'required',
