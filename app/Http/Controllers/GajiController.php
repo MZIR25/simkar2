@@ -13,11 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class GajiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $gaji = Gaji::all();
@@ -32,17 +27,8 @@ class GajiController extends Controller
     public function create()
     {
         $karyawan=Karyawan::get();
-
         return view('Gaji.v_unggah_gaji', compact('karyawan'));
-
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreGajiRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -92,14 +78,6 @@ class GajiController extends Controller
         return view('Gaji.v_edit_gaji', compact('gaji','karyawan'));
 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateGajiRequest  $request
-     * @param  \App\Models\Gaji  $gaji
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $gaji_id)
     {
         $this->validate($request, [

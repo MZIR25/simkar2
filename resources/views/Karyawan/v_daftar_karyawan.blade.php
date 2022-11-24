@@ -28,6 +28,7 @@
                         <th scope="col">Status Pernikahan</th>
                         <th scope="col">Jumlah Anak</th>
                         <th scope="col">Nomor HP</th>
+                        <th scope="col">ID Karyawan</th>
                         <th scope="col">Foto Karyawan</th>
                         <th style="width: 9%">Aksi</th>
 
@@ -51,6 +52,7 @@
                             <td>{{ $k->Status_Pernikahan }}</td>
                             <td>{{ $k->Jumlah_Anak }}</td>
                             <td>{{ $k->No_Hp }}</td>
+                            <td>{{ $k->karyawan_id }}</td>
                             <td><img style="max-width: 100%;" src="{{asset('storage/'.$k->image)}}"></td>
                             <td>
                                 <div>
@@ -125,7 +127,7 @@
             "autoWidth": false,
             "columnDefs": [
             {
-                targets: [14],
+                targets: [14,15],
                 visible: false,
                 searchable: false,
             },]

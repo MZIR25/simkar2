@@ -17,11 +17,7 @@ use Illuminate\Support\Facades\Storage;
 
 class KaryawanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
         $karyawan = Karyawan::with(['Pendidikan'])->where('STATUS', 'Active')->get();
@@ -43,12 +39,6 @@ class KaryawanController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreKaryawanRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -137,14 +127,6 @@ class KaryawanController extends Controller
         return view('Karyawan.v_edit_daftar_karyawan', compact(['jabatan','pendidikan','devisi','karyawan']));
 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateKaryawanRequest  $request
-     * @param  \App\Models\Karyawan  $karyawan
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request,Karyawan $karyawan_id)
     {
         $karyawan=$karyawan_id;
@@ -161,7 +143,7 @@ class KaryawanController extends Controller
             'Jumlah_Anak'=> 'required',
             'No_Hp'=> 'required',
             'Mulai_Kerja'=> 'required'
-            // 'image' => 'file|image|mimes:jpg,jpeg,bmp,png|max:2048',
+
         ]);
 
         Riwayat::create([

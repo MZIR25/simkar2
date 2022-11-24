@@ -46,6 +46,20 @@
                 </a>
                 </li>
                 @endif
+                @if (auth()->user()->level == "admin")
+                <li class="nav-item">
+                <a href="/daftar_jabatan" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Daftar Jabatan</p>
+                </a>
+                </li>
+                <li class="nav-item">
+                <a href="/daftar_devisi" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Daftar Devisi</p>
+                </a>
+                </li>
+                @endif
             </ul>
             </li>
             <li class="nav-item">
@@ -55,7 +69,8 @@
                 Permohonan Cuti
                 </p>
             </a>
-
+            </li>
+            @if (auth()->user()->karyawan_id)
             <li class="nav-item">
             <a href="#" class="nav-link">
                 <i class="nav-icon far fa-calendar-alt"></i>
@@ -66,19 +81,26 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="pages/UI/general.html" class="nav-link">
+                <a href="{{route('laporan_presensi')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Laporan Presensi</p>
                 </a>
                 </li>
                 <li class="nav-item">
-                <a href="pages/UI/icons.html" class="nav-link">
+                <a href="{{route('presensi')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
-                    <p>Hasil Presensi</p>
+                    <p>Presensi</p>
                 </a>
                 </li>
-            </ul>
+                <li class="nav-item">
+                    <a href="{{route('riwayat_presensi')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Riwayat</p>
+                    </a>
+                </li>
+            </ul>
             </li>
+            @endif
             <li class="nav-item">
             <a href="/daftar_gaji" class="nav-link">
                 <i class="nav-icon fas fa-table"></i>

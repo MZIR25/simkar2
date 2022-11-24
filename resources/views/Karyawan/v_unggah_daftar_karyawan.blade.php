@@ -167,7 +167,7 @@
                 </div>
 
                 <div class="form-group-row">
-                    <label for="image">Masukkan File</label>
+                    <label for="image">Masukkan Foto</label>
                     <input type="file" name="image" class="form-control-file" id="image">
                 </div>
 

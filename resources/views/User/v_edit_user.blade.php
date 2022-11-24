@@ -55,13 +55,13 @@
                 <div class="form-group row">
                     <label for="karyawan_id" class="col-sm-2 col-form-label">ID User</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{$users->karyawan_id}}"  id="karyawan_id" name="karyawan_id" class="form-control" placeholder="Masukkan ID User">
-                        {{-- <select name="karyawan_id" id="karyawan_id" class="form-control">
+                        {{-- <input type="text" value="{{$users->karyawan_id}}"  id="karyawan_id" name="karyawan_id" class="form-control" placeholder="Masukkan ID User"> --}}
+                        <select name="karyawan_id" id="karyawan_id" class="form-control">
                             @foreach ($karyawan as $k)
 
                             <option value="{{$k->karyawan_id}}">{{$k->karyawan_id}}</option>
 
-                            @endforeach --}}
+                            @endforeach
                         </select>
                         {{-- <x-validate-error-message name="karyawan_id"/> --}}
                         </div>

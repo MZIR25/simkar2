@@ -11,19 +11,12 @@ use Illuminate\Support\Facades\Auth;
 
 class DataDiriController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $karyawan = Karyawan::with(['Pendidikan'])->where('karyawan_id', Auth::user()->karyawan_id)->first();
         $jabatan = Jabatan::where('jabatan_id', $karyawan->jabatan_id)->first();
         $devisi = Devisi::where('devisi_id', $karyawan->devisi_id)->first();
-        // dd($karyawan);
         return view('Karyawan.DataDiri.v_data_diri_karyawan', compact('karyawan', 'jabatan', 'devisi'));
-
     }
 
     /**

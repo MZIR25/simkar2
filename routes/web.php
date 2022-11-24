@@ -10,6 +10,9 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\ManajemenUserController;
 use App\Http\Controllers\DataDiriController;
 use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\JabatanController;
+use App\Http\Controllers\DevisiController;
+use App\Http\Controllers\PresensiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -70,6 +73,22 @@ Route::middleware(['auth','ceklevel:admin'])->group(function () {
     Route::put('/update_jobdesk/{jobdesk_id}', [JobdeskController::class, 'update'])->name('update_jobdesk');
     Route::delete('/delete_jobdesk/{jobdesk_id}', [JobdeskController::class, 'destroy'])->name('delete_jobdesk');
     // Route::get('/daftar_jobdesk/export_excel', [JobdeskController::class, 'export_excel'])->name('daftar_jobdesk');
+
+    //Jabatan
+    Route::get('/daftar_jabatan', [JabatanController::class, 'index'])->name('daftar_jabatan');
+    Route::get('/unggah_jabatan', [JabatanController::class, 'create'])->name('unggah_jabatan');
+    Route::post('/simpan_jabatan', [JabatanController::class, 'store'])->name('simpan_jabatan');
+    Route::get('/edit_jabatan/{jabatan_id}', [JabatanController::class, 'edit'])->name('edit_jabatan');
+    Route::put('/update_jabatan/{jabatan_id}', [JabatanController::class, 'update'])->name('update_jabatan');
+    Route::delete('/delete_jabatan/{jabatan_id}', [JabatanController::class, 'destroy'])->name('delete_jabatan');
+
+    //Devisi
+    Route::get('/daftar_devisi', [DevisiController::class, 'index'])->name('daftar_devisi');
+    Route::get('/unggah_devisi', [DevisiController::class, 'create'])->name('unggah_devisi');
+    Route::post('/simpan_devisi', [DevisiController::class, 'store'])->name('simpan_devisi');
+    Route::get('/edit_devisi/{devisi_id}', [DevisiController::class, 'edit'])->name('edit_devisi');
+    Route::put('/update_devisi/{devisi_id}', [DevisiController::class, 'update'])->name('update_devisi');
+    Route::delete('/delete_devisi/{devisi_id}', [DevisiController::class, 'destroy'])->name('delete_devisi');
 });
 
 Route::middleware(['auth','ceklevel:admin,karyawan'])->group(function () {
@@ -85,6 +104,14 @@ Route::middleware(['auth','ceklevel:admin,karyawan'])->group(function () {
     Route::get('/daftar_gaji', [GajiController::class, 'index'])->name('daftar_gaji');
     //Jobdesk
     Route::get('/daftar_jobdesk', [JobdeskController::class, 'index'])->name('daftar_jobdesk');
+
+    //presensi
+    Route::get('/laporan_presensi', [PresensiController::class, 'laporan'])->name('laporan_presensi');
+    Route::post('/laporan_presensi', [PresensiController::class, 'store_laporan'])->name('create_laporan_presensi');
+    Route::get('/presensi', [PresensiController::class, 'presensi'])->name('presensi');
+    Route::post('/presensi', [PresensiController::class, 'store_presensi'])->name('create_presensi');
+    Route::get('/riwayat_presensi', [PresensiController::class, 'riwayat_presensi'])->name('riwayat_presensi');
+    Route::get('/detail_presensi', [PresensiController::class, 'detail_presensi'])->name('detail_presensi');
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 

@@ -11,13 +11,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CutiController extends Controller
 {
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $cuti = Cuti::all();
@@ -35,13 +28,6 @@ class CutiController extends Controller
         $karyawan=Karyawan::get();
         return view('Cuti.v_unggah_cuti', compact('karyawan'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreCutiRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -98,14 +84,6 @@ class CutiController extends Controller
 
 
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateCutiRequest  $request
-     * @param  \App\Models\Cuti  $cuti
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $cuti_id)
     {
         $this->validate($request, [
@@ -113,8 +91,6 @@ class CutiController extends Controller
             'Alasan_Cuti'=> 'required',
             'Tanggal_Mulai'=> 'required',
             'Tanggal_Selesai'=> 'required',
-
-
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
@@ -134,12 +110,9 @@ class CutiController extends Controller
         $cuti->Status=$request->get('Status');
         $cuti->Tanggal_Mulai=$request->get('Tanggal_Mulai');
         $cuti->Tanggal_Selesai=$request->get('Tanggal_Selesai');
-
-
         $cuti->save();
 
         return redirect('permohonan_cuti')->banner('Data berhasil diubah');
-
     }
 
     /**
