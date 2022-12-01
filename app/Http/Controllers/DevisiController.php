@@ -74,7 +74,7 @@ class DevisiController extends Controller
     public function edit($devisi_id)
     {
         $devisi = Devisi::find($devisi_id);
-        return view('Devisi.v_edit_devisi', compact('jabatan'));
+        return view('Devisi.v_edit_devisi', compact('devisi'));
     }
 
     /**

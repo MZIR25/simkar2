@@ -10,11 +10,11 @@ class LaporanPresensi extends Model
     protected $table = "laporan_presensi";
     protected $primaryKey = "laporan_presensi_id";
     protected $fillable = [
-        'laporan_presensi_id', 'presensi_id', 'jam_mulai', 'jam_selesai', 'uraian_pekerjaan', 'output_pekerjaan'
+        'laporan_presensi_id', 'presensi_id', 'jam_mulai', 'jam_selesai', 'uraian_pekerjaan', 'output_pekerjaan', 'file'
     ];
 
-    public function LaporanPresensi()
+    public function Presensi()
     {
-        return $this->belongsTo(Presensi::class);
+        return $this->belongsTo(Presensi::class,'presensi_id');
     }
 }

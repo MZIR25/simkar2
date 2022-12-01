@@ -111,7 +111,10 @@ Route::middleware(['auth','ceklevel:admin,karyawan'])->group(function () {
     Route::get('/presensi', [PresensiController::class, 'presensi'])->name('presensi');
     Route::post('/presensi', [PresensiController::class, 'store_presensi'])->name('create_presensi');
     Route::get('/riwayat_presensi', [PresensiController::class, 'riwayat_presensi'])->name('riwayat_presensi');
-    Route::get('/detail_presensi', [PresensiController::class, 'detail_presensi'])->name('detail_presensi');
+    Route::get('/detail_presensi/{presensi}', [PresensiController::class, 'detail_presensi'])->name('detail_presensi');
+    Route::delete('/delete_laporan/{laporan}', [PresensiController::class, 'destroy_laporan'])->name('delete_laporan');
+    Route::get('/detail_laporan/{laporan}', [PresensiController::class, 'detail_laporan'])->name('detail_laporan');
+    Route::put('/update/laporan/{laporan}', [PresensiController::class, 'update_laporan'])->name('update_laporan_presensi');
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 

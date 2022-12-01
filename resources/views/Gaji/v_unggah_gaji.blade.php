@@ -51,44 +51,54 @@
                     </div>
                     {{-- <x-validate-error-message name="Jabatan"/> --}}
 
-<!-- bagian Alasan Cuti -->
-                <div class="form-group row">
+<!-- bagian Gaji Pokok -->
+                {{-- <div class="form-group row">
                     <label for="Gaji_Pokok" class="col-sm-2 col-form-label">Gaji Pokok</label>
                     <div class="col-sm-10">
-                        <input type="text"  id="Gaji_Pokok" name="Gaji_Pokok" class="form-control" placeholder="Masukkan Gaji Pokok">
-                            {{-- <x-validate-error-message name="Gaji_Pokok"/> --}}
+                        <input type="number"  id="Gaji_Pokok" name="Gaji_Pokok" class="form-control" placeholder="Masukkan Gaji Pokok">
+                            <x-validate-error-message name="Gaji_Pokok"/>
                     </div>
-                </div>
-
-
-<!-- bagian Status Nikah -->
-                {{-- <div class="form-group row">
-                    <label for="disabledSelect" class="col-sm-2 col-form-label">Status Menikah</label>
-                    <div class="col-sm-10">
-                    <select id="disabledSelect" name="Status_Menikah" class="form-control">
-                        <option>Menikah</option>
-                        <option>Belum</option>
-                        <option>Cerai</option>
-                    </select>
-                    </div>
-                </div>
-                {{-- <x-validate-error-message name="Status_Menikah"/> --}}
-<!-- bagian Alamat -->
+                </div> --}}
                 <div class="form-group row">
+                    <label for="Gaji_Pokok" class="col-sm-2 col-form-label">Gaji Pokok</label>
+                    <div class="input-group-prepend col-sm-10">
+                      <span class="input-group-text">Rp.</span>
+                    <input type="number" id="Gaji_Pokok" name="Gaji_Pokok" class="form-control" aria-label="Amount (to the nearest dollar)">
+                    </div>
+                </div>
+<!-- bagian Pajak BPJS -->
+                {{-- <div class="form-group row">
                     <label for="Pajak_Bpjs" class="col-sm-2 col-form-label">Pajak Bpjs</label>
                     <div class="col-sm-10">
-                        <input type="text" id="Pajak_Bpjs" name="Pajak_Bpjs" class="form-control" placeholder="Masukkan Pajak Bpjs">
-                            {{-- <x-validate-error-message name="Pajak_Bpjs"/> --}}
+                        <input type="number" id="Pajak_Bpjs" name="Pajak_Bpjs" class="form-control" placeholder="Masukkan Pajak Bpjs">
+                            <x-validate-error-message name="Pajak_Bpjs"/>
+                    </div>
+                </div> --}}
+                <div class="form-group row">
+                    <label for="Pajak_Bpjs" class="col-sm-2 col-form-label">Pajak BPJS</label>
+                    <div class="input-group-prepend col-sm-10">
+                      <span class="input-group-text">Rp.</span>
+                    <input type="number" id="Pajak_Bpjs" name="Pajak_Bpjs" class="form-control" aria-label="Amount (to the nearest dollar)">
                     </div>
                 </div>
-<!-- bagian Alamat -->
-                <div class="form-group row">
+<!-- bagian Jumlah gaji -->
+                {{-- <div class="form-group row">
                     <label for="Jumlah_Gaji" class="col-sm-2 col-form-label">Jumlah Gaji</label>
                     <div class="col-sm-10">
-                        <input type="text" id="Jumlah_Gaji" name="Jumlah_Gaji" class="form-control" placeholder="Masukkan Jumlah Gaji">
-                            {{-- <x-validate-error-message name="Jumlah_Gaji"/> --}}
+                        <input type="integer" id="Jumlah_Gaji" name="Jumlah_Gaji" class="form-control" placeholder="Masukkan Jumlah Gaji">
+
+                    </div>
+                </div> --}}
+                <div class="form-group row">
+                    <label for="Jumlah_Gaji" class="col-sm-2 col-form-label">Jumlah Gaji</label>
+                    <div class="input-group-prepend col-sm-10">
+                      <span class="input-group-text">Rp.</span>
+                    <input type="number" id="Jumlah_Gaji" name="Jumlah_Gaji" class="form-control" aria-label="Amount (to the nearest dollar)">
                     </div>
                 </div>
+
+
+
                 <div class="form-group row">
                     <div class="col-md-12 text-right">
                         <button type="submit" class="btn btn-success btn-lg">Submit</button>

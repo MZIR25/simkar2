@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Karyawan;
 use App\Models\Presensi;
 use App\Models\LaporanPresensi;
@@ -43,18 +44,15 @@ class PresensiController extends Controller
             'jam_selesai'=> 'required',
             'uraian_pekerjaan'=> 'required',
             'output_pekerjaan'=> 'required',
+            'file'=> 'required',
         ]);
 
-        if ($request->karyawan_id) {
-            $id = $request->karyawan_id;
-        } else {
-            $id = Auth::user()->karyawan_id;
-        }
+        $id = Auth::user()->karyawan_id;
 
         $presensi = Presensi::where("tgl_presensi", date("Y-m-d"))->where("karyawan_id", $id)->first();
         if ($presensi == null) {
             $keterangan = "tepat waktu";
-            if (Carbon::now()->addHours(8)->format("H:i") > "08:00") {
+            if (Carbon::now()->format("H:i") > "08:00") {
                 $keterangan = "terlambat";
             }
             $presensi = Presensi::create([
@@ -65,18 +63,19 @@ class PresensiController extends Controller
             ]);
         }
 
+        $nameFile = md5(date("Y-m-d-H-i-s") . $id) . "." . $request->file->getClientOriginalExtension();
+        $request->file->storeAs(
+            'public/laporan_presensi', $nameFile
+        );
+
         LaporanPresensi::create([
             'presensi_id' => $presensi->presensi_id,
             'jam_mulai' => $request->jam_mulai,
             'jam_selesai' => $request->jam_selesai,
             'output_pekerjaan' => $request->output_pekerjaan,
             'uraian_pekerjaan' => $request->uraian_pekerjaan,
+            'file' => $nameFile,
         ]);
-
-        // Presensi::create([
-        //     'karyawan_id' => $id,
-        //     'jam_selesai' => $request->jam_selesai,
-        // ]);
 
         return back();
     }
@@ -87,14 +86,13 @@ class PresensiController extends Controller
 
         if ($presensi == null) {
             $keterangan = "tepat waktu";
-            if (Carbon::now()->addHours(8)->format("H:i") > "08:00") {
+            if (Carbon::now()->format("H:i") > "08:00") {
                 $keterangan = "terlambat";
             }
             $id = Auth::user()->karyawan_id;
 
             $presensi = Presensi::create([
                 "karyawan_id" => $id,
-                "jam_masuk" => Carbon::now()->addHours(8)->format("H:i"),
                 "tgl_presensi" => date("Y-m-d"),
                 "keterangan" => $keterangan,
             ]);
@@ -102,7 +100,7 @@ class PresensiController extends Controller
 
         if ($request->status == "pulang") {
             $presensi->update([
-                "jam_keluar" => Carbon::now()->addHours(8)->format("H:i")
+                "jam_keluar" => Carbon::now()->format("H:i")
             ]);
         }
 
@@ -111,18 +109,12 @@ class PresensiController extends Controller
 
     public function riwayat_presensi()
     {
-        if (Auth::user()->level == "admin") {
-            $presensi = Presensi::all();
-        } else {
-            $presensi = Presensi::where("karyawan_id", Auth::user()->karyawan_id)->get();
-        }
+        $presensi = Presensi::where("karyawan_id", Auth::user()->karyawan_id)->get();
         return view("Presensi.v_riwayat_presensi", compact("presensi"));
     }
 
-    public function detail_presensi()
+    public function detail_presensi(Presensi $presensi)
     {
-        $presensi = Presensi::where("tgl_presensi", date("Y-m-d"))->where("karyawan_id", Auth::user()->karyawan_id)->first();
-
         $laporan = [];
         if ($presensi) {
             $laporan = LaporanPresensi::where('presensi_id', $presensi->presensi_id)->get();
@@ -136,5 +128,38 @@ class PresensiController extends Controller
         }
 
         return view("Presensi.v_detail_presensi", compact("laporan", 'presensi', 'terlambat'));
+    }
+
+    public function detail_laporan(LaporanPresensi $laporan)
+    {
+        return view("Presensi.v_detail_laporan", compact("laporan"));
+    }
+
+    public function update_laporan(LaporanPresensi $laporan, Request $request)
+    {
+        $laporan->update([
+            "jam_mulai" => $request->jam_mulai,
+            "jam_selesai" => $request->jam_selesai,
+            "uraian_pekerjaan" => $request->uraian_pekerjaan,
+            "output_pekerjaan" => $request->output_pekerjaan,
+        ]);
+
+        if ($request->file != Null) {
+            $request->file->storeAs(
+                'public/laporan_presensi', $laporan->file
+            );
+        }
+
+        return back();
+    }
+
+    public function destroy_laporan(LaporanPresensi $laporan)
+    {
+        Storage::delete("public/laporan_presensi/" . $laporan->file);
+
+        $laporan->forceDelete();
+
+
+        return back();
     }
 }

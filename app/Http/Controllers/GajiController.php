@@ -73,8 +73,9 @@ class GajiController extends Controller
      */
     public function edit($gaji_id)
     {
-        $karyawan=Karyawan::all();
-        $gaji = Gaji::find($gaji_id);
+
+        $gaji = Gaji::with('Karyawan')->where('gaji_id',$gaji_id)->first();
+        $karyawan= Karyawan::where('karyawan_id',$gaji->Karyawan->karyawan_id)->first();
         return view('Gaji.v_edit_gaji', compact('gaji','karyawan'));
 
     }

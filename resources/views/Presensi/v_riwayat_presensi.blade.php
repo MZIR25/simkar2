@@ -30,7 +30,7 @@
                             <td>{{ $p->keterangan }}</td>
                             <td>
                                 <div class="row">
-                                    <a href="{{route("detail_presensi")}}"><i class="fas fa-eye bg-success p-2 text-white rounded ml-2 mr-1" data-toggle="tooltip" title="Edit"></i></a>
+                                    <a href="{{route("detail_presensi", ["presensi"=>$p->presensi_id])}}"><i class="fas fa-eye bg-success p-2 text-white rounded ml-2 mr-1" data-toggle="tooltip" title="Edit"></i></a>
                                 </div>
                             </td>
                         </tr>

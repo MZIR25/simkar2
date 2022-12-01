@@ -32,12 +32,14 @@
                 </p>
             </a>
             <ul class="nav nav-treeview">
+                @if (auth()->user()->level == "admin")
                 <li class="nav-item">
                 <a href="/daftar_karyawan" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Daftar Karyawan</p>
                 </a>
                 </li>
+                @endif
                 @if (auth()->user()->karyawan_id)
                 <li class="nav-item">
                 <a href="/data_diri_karyawan" class="nav-link">
@@ -98,7 +100,7 @@
                         <p>Riwayat</p>
                     </a>
                 </li>
-            </ul>
+            </ul>
             </li>
             @endif
             <li class="nav-item">

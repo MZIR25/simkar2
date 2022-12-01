@@ -28,14 +28,12 @@
                 <div class="form-group row">
                     <label for="Nama_Karyawan" class="col-sm-2 col-form-label">Nama Karyawan</label>
                     <div class="col-sm-10">
-                        <select id="karyawan_id" name="karyawan_id" class="form-control">
-                            @foreach ($karyawan as $k)
-                                <option value="{{$k->karyawan_id}}">{{$k->Nama_Karyawan}}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" value="{{$karyawan->Nama_Karyawan}}" id="Nama_Karyawan" name="Nama_Karyawan" class="form-control" readonly>
+
                     </div>
                     {{-- <x-validate-error-message name="karyawan_id"/> --}}
                 </div>
+
 <!-- bagian Jabatan -->
                 {{-- <div class="form-group row">
                     <label for="Jabatan" class="col-sm-2 col-form-label">Jabatan</label>
@@ -43,16 +41,14 @@
                         <input type="text" value="{{$gaji->Jabatan}}" id="Jabatan" name="Jabatan" class="form-control" placeholder="Masukkan Jabatan">
                             {{-- <x-validate-error-message name="Jabatan"/> --}}
 
-<!-- bagian Alasan Cuti -->
+<!-- bagian Gaji Pokok -->
                 <div class="form-group row">
-                    <label for="Gaji_Pokok" class="col-sm-2 col-form-label">Alasan Cuti</label>
-                    <div class="col-sm-10">
-                        <input type="text" value="{{$gaji->Gaji_Pokok}}" id="Gaji_Pokok" name="Gaji_Pokok" class="form-control" placeholder="Masukkan Gaji Pokok">
-                            {{-- <x-validate-error-message name="Gaji_Pokok"/> --}}
+                    <label for="Gaji_Pokok" class="col-sm-2 col-form-label">Gaji Pokok</label>
+                    <div class="input-group-prepend col-sm-10">
+                      <span class="input-group-text">Rp.</span>
+                    <input type="number" value="{{$gaji->Gaji_Pokok}}" id="Gaji_Pokok" name="Gaji_Pokok" class="form-control" aria-label="Amount (to the nearest dollar)">
                     </div>
                 </div>
-
-
 <!-- bagian Status Nikah -->
                 {{-- <div class="form-group row">
                     <label for="disabledSelect" class="col-sm-2 col-form-label">Status Menikah</label>
@@ -68,22 +64,23 @@
                     </div>
                 </div>
                 {{-- <x-validate-error-message name="Status_Menikah"/> --}}
-<!-- bagian Alamat -->
+<!-- bagian Pajak Bpjs -->
                 <div class="form-group row">
-                    <label for="Pajak_Bpjs" class="col-sm-2 col-form-label">Pajak Bpjs</label>
-                    <div class="col-sm-10">
-                        <input type="text" value="{{$gaji->Pajak_Bpjs}}" id="Pajak_Bpjs" name="Pajak_Bpjs" class="form-control" placeholder="Masukkan Pajak Bpjs">
-                            {{-- <x-validate-error-message name="Pajak_Bpjs"/> --}}
+                    <label for="Pajak_Bpjs" class="col-sm-2 col-form-label">Pajak BPJS</label>
+                    <div class="input-group-prepend col-sm-10">
+                      <span class="input-group-text">Rp.</span>
+                    <input type="number" value="{{$gaji->Pajak_Bpjs}}" id="Pajak_Bpjs" name="Pajak_Bpjs" class="form-control" aria-label="Amount (to the nearest dollar)">
                     </div>
                 </div>
-<!-- bagian Alamat -->
+<!-- bagian Jumlah Gaji -->
                 <div class="form-group row">
                     <label for="Jumlah_Gaji" class="col-sm-2 col-form-label">Jumlah Gaji</label>
-                    <div class="col-sm-10">
-                        <input type="text" value="{{$gaji->Jumlah_Gaji}}" id="Jumlah_Gaji" name="Jumlah_Gaji" class="form-control" placeholder="Masukkan Jumlah Gaji">
-                            {{-- <x-validate-error-message name="Jumlah_Gaji"/> --}}
+                    <div class="input-group-prepend col-sm-10">
+                      <span class="input-group-text">Rp.</span>
+                    <input type="number" value="{{$gaji->Jumlah_Gaji}}" id="Jumlah_Gaji" name="Jumlah_Gaji" class="form-control" aria-label="Amount (to the nearest dollar)">
                     </div>
                 </div>
+
                 <div class="form-group row">
                     <div class="col-md-12 text-right">
                         <button type="submit" class="btn btn-success btn-lg">Submit</button>

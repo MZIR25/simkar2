@@ -18,7 +18,7 @@
                             </div>
                             <div class="col border mx-3 p-2">
                                 <h5>Sekarang</h5>
-                                {{Carbon\Carbon::now()->addHours(8)->format("H:i")}}
+                                {{Carbon\Carbon::now()->format("H:i")}}
                             </div>
                         </div>
                         <div class="border mt-4 mx-2">
@@ -62,8 +62,7 @@
                               <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Uraian</th>
-                                <th scope="col">Jam Mulai</th>
-                                <th scope="col">Jam Selesai</th>
+                                <th scope="col">Action</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -71,8 +70,11 @@
                                     <tr>
                                       <th scope="row">{{$loop->index + 1}}</th>
                                       <td>{{$l->uraian_pekerjaan}}</td>
-                                      <td>{{$l->jam_mulai}}</td>
-                                      <td>{{$l->jam_selesai}}</td>
+                                      <td>
+                                        <div class="">
+                                            <a href="{{url('detail_laporan', $l->laporan_presensi_id)}}"><i class="fas fa-eye bg-success p-2 text-white rounded ml-2 mr-1" data-toggle="tooltip" title="Edit"></i></a>
+                                        </div>
+                                      </td>
                                     </tr>
                                 @endforeach
                             </tbody>

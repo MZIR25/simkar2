@@ -9,8 +9,6 @@ use App\Models\User;
 use Illuminate\Auth\Events\Authenticated;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
-
-
 use Tests\TestCase;
 
 // class Iterasi1Test extends TestCase

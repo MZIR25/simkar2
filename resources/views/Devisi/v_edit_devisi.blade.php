@@ -27,7 +27,7 @@
                 @method('PUT')
 <!-- bagian Jabatan -->
                 <div class="form-group row">
-                    <label for="Nama_Devisi" class="col-sm-2 col-form-label">Jabatan</label>
+                    <label for="Nama_Devisi" class="col-sm-2 col-form-label">Nama Devisi</label>
                     <div class="col-sm-10">
                         <input type="text" value="{{$devisi->Nama_Devisi}}" id="Nama_Devisi" name="Nama_Devisi" class="form-control" placeholder="Masukkan Nama Devisi">
                             {{-- <x-validate-error-message name="Gaji_Pokok"/> --}}

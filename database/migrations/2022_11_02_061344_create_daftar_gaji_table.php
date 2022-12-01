@@ -17,9 +17,9 @@ return new class extends Migration
             $table->increments('gaji_id');
             $table->integer('karyawan_id')->unsigned()->nullable();
             $table->foreign('karyawan_id')->references('karyawan_id')->on('karyawan')->nullOnDelete('cascade');
-            $table->string('Gaji_Pokok')->nullable();
-            $table->string('Pajak_Bpjs')->nullable();
-            $table->string('Jumlah_Gaji')->nullable();
+            $table->bigInteger('Gaji_Pokok')->nullable();
+            $table->bigInteger('Pajak_Bpjs')->nullable();
+            $table->bigInteger('Jumlah_Gaji')->nullable();
             $table->timestamps();
         });
     }
