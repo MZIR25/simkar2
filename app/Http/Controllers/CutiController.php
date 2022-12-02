@@ -13,7 +13,12 @@ class CutiController extends Controller
 {
     public function index()
     {
-        $cuti = Cuti::all();
+        if (Auth::user()->level == "karyawan") {
+
+            $cuti= Cuti::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan')->get();
+            } else {
+            $cuti= Cuti::with('Karyawan')->get();
+            }
         return view('Cuti.v_permohonan_cuti', compact('cuti'));
     }
 
@@ -52,6 +57,7 @@ class CutiController extends Controller
         }
         $cuti->Alasan_Cuti=$request->get('Alasan_Cuti');
         $cuti->Status=$request->get('Status');
+        $cuti->Keterangan_Status=$request->get('Keterangan_Status');
         $cuti->Tanggal_Mulai=$request->get('Tanggal_Mulai');
         $cuti->Tanggal_Selesai=$request->get('Tanggal_Selesai');
         $cuti->save();
@@ -78,8 +84,8 @@ class CutiController extends Controller
      */
     public function edit($cuti_id)
     {
-        $karyawan=Karyawan::all();
-        $cuti = Cuti::find($cuti_id);
+        $cuti = Cuti::with('Karyawan')->where('cuti_id',$cuti_id)->first();
+        $karyawan= Karyawan::where('karyawan_id',$cuti->Karyawan->karyawan_id)->first();
         return view('Cuti.v_edit_cuti', compact('cuti','karyawan'));
 
 
@@ -100,14 +106,9 @@ class CutiController extends Controller
         ]);
         $cuti = Cuti::find($cuti_id);
 
-        if (Auth::user()->level == "karyawan") {
-
-            $cuti->karyawan_id= Auth::user()->Karyawan->karyawan_id;
-            } else {
-            $cuti->karyawan_id=$request->get('karyawan_id');
-            }
         $cuti->Alasan_Cuti=$request->get('Alasan_Cuti');
         $cuti->Status=$request->get('Status');
+        $cuti->Keterangan_Status=$request->get('Keterangan_Status');
         $cuti->Tanggal_Mulai=$request->get('Tanggal_Mulai');
         $cuti->Tanggal_Selesai=$request->get('Tanggal_Selesai');
         $cuti->save();

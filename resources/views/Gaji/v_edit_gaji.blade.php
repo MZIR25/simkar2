@@ -29,7 +29,6 @@
                     <label for="Nama_Karyawan" class="col-sm-2 col-form-label">Nama Karyawan</label>
                     <div class="col-sm-10">
                         <input type="text" value="{{$karyawan->Nama_Karyawan}}" id="Nama_Karyawan" name="Nama_Karyawan" class="form-control" readonly>
-
                     </div>
                     {{-- <x-validate-error-message name="karyawan_id"/> --}}
                 </div>

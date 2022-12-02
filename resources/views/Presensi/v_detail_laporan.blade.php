@@ -30,12 +30,12 @@
                     </div>
                     @if (Auth::user()->level == "admin")
                         <div class="mb-3">
-                            <label for="file" class="form-label">File</label>
+                            <label for="file" class="form-label">Bukti Foto Pekerjaan</label>
                             <input type="file" class="form-control" name="file" id="file" required>
                         </div>
                     @endif
                     <div class="mb-3">
-                        <label for="file" class="form-label">Preview FIle</label><br>
+                        <label for="file" class="form-label">Preview Foto</label><br>
                         <img src="{{asset("storage/laporan_presensi/" . $laporan->file)}}" width="400" alt="" accept="image/*">
                     </div>
 

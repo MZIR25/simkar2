@@ -19,6 +19,7 @@ class Cuti extends Model
        'Alasan_Cuti',
        'Status',
        'Tanggal_Mulai',
+       'Keterangan_Status',
        'Tanggal_Selesai'];
 
        public function Karyawan()

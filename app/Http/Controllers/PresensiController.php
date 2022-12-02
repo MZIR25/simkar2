@@ -57,7 +57,7 @@ class PresensiController extends Controller
             }
             $presensi = Presensi::create([
                 "karyawan_id" => $id,
-                "jam_masuk" => Carbon::now()->addHours(8)->format("H:i"),
+                "jam_masuk" => Carbon::now()->format("H:i"),
                 "tgl_presensi" => date("Y-m-d"),
                 "keterangan" => $keterangan,
             ]);
@@ -77,7 +77,7 @@ class PresensiController extends Controller
             'file' => $nameFile,
         ]);
 
-        return back();
+        return redirect('presensi')->banner("Laporan berhasil ditambah");
     }
 
     public function store_presensi(Request $request)
@@ -95,6 +95,12 @@ class PresensiController extends Controller
                 "karyawan_id" => $id,
                 "tgl_presensi" => date("Y-m-d"),
                 "keterangan" => $keterangan,
+                "jam_masuk" => Carbon::now()->format("H:i")
+            ]);
+        }
+        if ($request->status == "masuk") {
+            $presensi->update([
+                "jam_masuk" => Carbon::now()->format("H:i")
             ]);
         }
 
@@ -109,7 +115,8 @@ class PresensiController extends Controller
 
     public function riwayat_presensi()
     {
-        $presensi = Presensi::where("karyawan_id", Auth::user()->karyawan_id)->get();
+
+        $presensi = Presensi::get();
         return view("Presensi.v_riwayat_presensi", compact("presensi"));
     }
 

@@ -28,11 +28,7 @@
                 <div class="form-group row">
                     <label for="Nama_Karyawan" class="col-sm-2 col-form-label">Nama Karyawan</label>
                     <div class="col-sm-10">
-                        <select id="karyawan_id" name="karyawan_id" class="form-control">
-                            @foreach ($karyawan as $k)
-                                <option value="{{$k->karyawan_id}}">{{$k->Nama_Karyawan}}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" value="{{$karyawan->Nama_Karyawan}}" id="Nama_Karyawan" name="Nama_Karyawan" class="form-control" readonly>
                     </div>
                     {{-- <x-validate-error-message name="karyawan_id"/> --}}
                 </div>

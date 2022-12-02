@@ -17,8 +17,6 @@ return new class extends Migration
             $table->increments('jobdesk_id');
             $table->integer('karyawan_id')->unsigned()->nullable();
             $table->foreign('karyawan_id')->references('karyawan_id')->on('karyawan')->nullOnDelete('cascade');
-            $table->time('Jam_Mulai')->nullable();
-            $table->time('Jam_Selesai')->nullable();
             $table->string('Tugas_Karyawan')->nullable();
             $table->timestamps();
         });

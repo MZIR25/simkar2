@@ -55,14 +55,18 @@
                             </div>
                         </form>
                     </div>
+                    {{-- <div class="container" --}}
                     <div class="col-lg-5 col-md- col-sm-">
                         <h4 class="text-center">Laporan Pekerjaan</h4>
-                        <table class="table mt-4">
+
+                        <a href="{{route('laporan_presensi')}}" class="btn btn-primary mt-3"><i class="fas fa-plus-square mr-2"></i>Laporan Presensi</a>
+                        <table class="table mt-2">
                             <thead>
                               <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Uraian</th>
                                 <th scope="col">Action</th>
+                                {{-- <th scope="col"><a href="{{route('laporan_presensi')}}" class="btn btn-primary"><i class="fas fa-plus-square mr-2"></i>Laporan Presensi</a></th> --}}
                               </tr>
                             </thead>
                             <tbody>
@@ -80,7 +84,7 @@
                             </tbody>
                           </table>
                         {{-- <input type="text" class="form-control" placeholder="Last name" aria-label="Last name"> --}}
-                    </div>
+
                   </div>
             </div>
         </div>

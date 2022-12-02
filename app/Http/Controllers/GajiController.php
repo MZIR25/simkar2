@@ -15,7 +15,14 @@ class GajiController extends Controller
 {
     public function index()
     {
-        $gaji = Gaji::all();
+
+        if (Auth::user()->level == "karyawan") {
+
+            $gaji = Gaji::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan')->get();
+        } else {
+            $gaji = Gaji::with('Karyawan')->get();
+        }
+        // dd($gaji);
         return view('Gaji.v_daftar_gaji', compact('gaji'));
     }
 
@@ -26,30 +33,35 @@ class GajiController extends Controller
      */
     public function create()
     {
-        $karyawan=Karyawan::get();
+        $karyawan = Karyawan::get();
         return view('Gaji.v_unggah_gaji', compact('karyawan'));
     }
     public function store(Request $request)
     {
         $this->validate($request, [
-            'karyawan_id'=> 'required',
-            'Gaji_Pokok'=> 'required',
-            'Pajak_Bpjs'=> 'required',
-            'Jumlah_Gaji'=> 'required'
+            'karyawan_id' => 'required',
+            'Gaji_Pokok' => 'required',
+            'Pajak_Bpjs' => 'required',
+            'Jumlah_Gaji' => 'required'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
             'nama' => Auth::user()->name,
             'level' => Auth::user()->level,
-            'aktivitas' => 'Menambah Data Gaji Karyawan  '.$request->name.''
+            'aktivitas' => 'Menambah Data Gaji Karyawan  ' . $request->name . ''
         ]);
-        $gaji=new Gaji;
 
-        $gaji->karyawan_id=$request->get('karyawan_id');
-        $gaji->Gaji_Pokok=$request->get('Gaji_Pokok');
-        $gaji->Pajak_Bpjs=$request->get('Pajak_Bpjs');
-        $gaji->Jumlah_Gaji=$request->get('Jumlah_Gaji');
-        $gaji->save();
+        // $karyawan = Karyawan::where('karyawan_id', $request->get('karyawan_id'))->first();
+        if(Gaji::where('karyawan_id', $request->get('karyawan_id'))->first()){
+            return redirect('daftar_gaji')->banner('Gaji Karyawan Telah Ada');
+        }
+        // dd($request->all());
+        Gaji::create([
+            'karyawan_id' => $request->get('karyawan_id'),
+            'Gaji_Pokok' => $request->get('Gaji_Pokok'),
+            'Pajak_Bpjs' => $request->get('Pajak_Bpjs'),
+            'Jumlah_Gaji' => $request->get('Jumlah_Gaji'),
+        ]);
 
         return redirect('daftar_gaji')->banner('Data berhasil dibuat');
     }
@@ -74,31 +86,30 @@ class GajiController extends Controller
     public function edit($gaji_id)
     {
 
-        $gaji = Gaji::with('Karyawan')->where('gaji_id',$gaji_id)->first();
-        $karyawan= Karyawan::where('karyawan_id',$gaji->Karyawan->karyawan_id)->first();
-        return view('Gaji.v_edit_gaji', compact('gaji','karyawan'));
-
+        $gaji = Gaji::with('Karyawan')->where('gaji_id', $gaji_id)->first();
+        $karyawan = Karyawan::where('karyawan_id', $gaji->Karyawan->karyawan_id)->first();
+        return view('Gaji.v_edit_gaji', compact('gaji', 'karyawan'));
     }
     public function update(Request $request, $gaji_id)
     {
+
         $this->validate($request, [
-            'karyawan_id'=> 'required',
-            'Gaji_Pokok'=> 'required',
-            'Pajak_Bpjs'=> 'required',
-            'Jumlah_Gaji'=> 'required'
+
+            'Gaji_Pokok' => 'required',
+            'Pajak_Bpjs' => 'required',
+            'Jumlah_Gaji' => 'required'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
             'nama' => Auth::user()->name,
             'level' => Auth::user()->level,
-            'aktivitas' => 'Mengubah Data Gaji Karyawan  '.$request->name.''
+            'aktivitas' => 'Mengubah Data Gaji Karyawan  ' . $request->name . ''
         ]);
-        $gaji= Gaji::find($gaji_id);
+        $gaji = Gaji::find($gaji_id);
 
-        $gaji->karyawan_id=$request->get('karyawan_id');
-        $gaji->Gaji_Pokok=$request->get('Gaji_Pokok');
-        $gaji->Pajak_Bpjs=$request->get('Pajak_Bpjs');
-        $gaji->Jumlah_Gaji=$request->get('Jumlah_Gaji');
+        $gaji->Gaji_Pokok = $request->get('Gaji_Pokok');
+        $gaji->Pajak_Bpjs = $request->get('Pajak_Bpjs');
+        $gaji->Jumlah_Gaji = $request->get('Jumlah_Gaji');
         $gaji->save();
 
         return redirect('daftar_gaji')->banner("Data berhasil diubah");
@@ -118,7 +129,7 @@ class GajiController extends Controller
             'id' => Auth::user()->id,
             'nama' => Auth::user()->name,
             'level' => Auth::user()->level,
-            'aktivitas' => 'Menghapus Gaji Karyawan  '.$gaji->name.''
+            'aktivitas' => 'Menghapus Gaji Karyawan  ' . $gaji->name . ''
         ]);
         return redirect('daftar_gaji')->banner("Data berhasil dihapus");
     }

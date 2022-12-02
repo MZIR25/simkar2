@@ -52,8 +52,14 @@ class Karyawan extends Model
     {
         return $this->belongsTo(Riwayat::class,'karyawan_id');
     }
+
     public function User()
     {
         return $this->hasOne(User::class);
+    }
+
+    public function Gaji()
+    {
+        return $this->hasOne(Gaji::class);
     }
 }

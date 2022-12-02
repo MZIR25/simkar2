@@ -21,6 +21,7 @@
                         <th scope="col">Jabatan</th>
                         <th scope="col">Alasan Cuti</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Keterangan Status</th>
                         <th scope="col">Tangggal Mulai Cuti</th>
                         <th scope="col">Tangggal Selesai Cuti</th>
                         <th scope="col">Alamat</th>
@@ -43,6 +44,7 @@
                             @endif
                             </td>
                                 {{-- <span class="badge badge-success">{{ $c->Status }}</span></td> --}}
+                            <td>{{ $c->Keterangan_Status }}</td>
                             <td>{{ $c->Tanggal_Mulai }}</td>
                             <td>{{ $c->Tanggal_Selesai }}</td>
                             <td>{{ $c->Karyawan->Alamat_Karyawan }}</td>
@@ -92,7 +94,7 @@
                 text: '<i class="fa fa-file-excel mr-2"></i>Export Excel',
                 className: 'btn btn-default mb-3',
                 exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8]
+                    columns: [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                 }
             }
 
@@ -119,7 +121,7 @@
             "autoWidth": false,
             "columnDefs": [
             {
-                targets: [9],
+                targets: [8,9,10],
                 visible: false,
                 searchable: false,
             },]

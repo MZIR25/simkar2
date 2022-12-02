@@ -19,8 +19,10 @@ return new class extends Migration
             $table->foreign('karyawan_id')->references('karyawan_id')->on('karyawan')->nullOnDelete('cascade');
             $table->string('Alasan_Cuti')->nullable();
             $table->string('Status')->nullable();
+            $table->string('Keterangan_Status')->nullable();
             $table->date('Tanggal_Mulai')->nullable();
             $table->date('Tanggal_Selesai')->nullable();
+
 
             $table->timestamps();
         });

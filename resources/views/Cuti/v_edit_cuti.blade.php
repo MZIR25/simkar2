@@ -28,14 +28,19 @@
                 <div class="form-group row">
                     <label for="Nama_Karyawan" class="col-sm-2 col-form-label">Nama Karyawan</label>
                     <div class="col-sm-10">
-                        <select id="karyawan_id" name="karyawan_id" class="form-control">
-                            @foreach ($karyawan as $k)
-                                <option value="{{$k->karyawan_id}}">{{$k->Nama_Karyawan}}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" value="{{$karyawan->Nama_Karyawan}}" id="Nama_Karyawan" name="Nama_Karyawan" class="form-control" readonly>
                     </div>
                     {{-- <x-validate-error-message name="karyawan_id"/> --}}
                 </div>
+
+                {{-- <div class="form-group row">
+                    <label for="Nama_Karyawan" class="col-sm-2 col-form-label">Nama Karyawan</label>
+                    <div class="col-sm-10">
+                        <input type="text" value="{{$karyawan->Nama_Karyawan}}" id="karyawan_id" name="karyawan_id" class="form-control" readonly>
+
+                    </div>
+
+                </div> --}}
 <!-- bagian Jabatan -->
                 {{-- <div class="form-group row">
                     <label for="Jabatan" class="col-sm-2 col-form-label">Jabatan</label>
@@ -60,6 +65,14 @@
                             <option>Denied</option>
                         </select>
                         {{-- <x-validate-error-message name="Status"/> --}}
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="Keterangan_Status" class="col-sm-2 col-form-label">Keterangan Status</label>
+                    <div class="col-sm-10">
+                        <input type="text" value="{{$cuti->Keterangan_Status}}" id="Keterangan_Status" name="Keterangan_Status" class="form-control" placeholder="Keterangan Status">
+                            {{-- <x-validate-error-message name="Alasan_Cuti"/> --}}
                     </div>
                 </div>
 

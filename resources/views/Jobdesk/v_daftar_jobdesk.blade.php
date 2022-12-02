@@ -16,8 +16,6 @@
                         <th scope="col">No.</th>
                         <th scope="col">Nama Karyawan</th>
                         <th scope="col">Jabatan</th>
-                        <th scope="col">Jam Mulai</th>
-                        <th scope="col">Jam Selesai</th>
                         <th scope="col">Tugas Karyawan</th>
                         <th style="width: 9%">Aksi</th>
                         </tr>
@@ -29,8 +27,6 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $j->Karyawan->Nama_Karyawan }}</td>
                             <td>{{ $j->Karyawan->Jabatan->Nama_Jabatan }}</td>
-                            <td>{{ $j->Jam_Mulai }}</td>
-                            <td>{{ $j->Jam_Selesai }}</td>
                             <td>{{ $j->Tugas_Karyawan }}</td>
                             <td>
 

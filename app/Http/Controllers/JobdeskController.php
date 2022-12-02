@@ -15,7 +15,12 @@ class JobdeskController extends Controller
 {
     public function index()
     {
-        $jobdesk = Jobdesk::all();
+        if (Auth::user()->level == "karyawan") {
+
+            $jobdesk= Jobdesk::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan')->get();
+            } else {
+            $jobdesk= Jobdesk::with('Karyawan')->get();
+            }
         return view('Jobdesk.v_daftar_jobdesk', compact('jobdesk'));
 
     }
@@ -42,8 +47,6 @@ class JobdeskController extends Controller
     {
         $this->validate($request, [
             'karyawan_id'=> 'required',
-            'Jam_Mulai'=> 'required',
-            'Jam_Selesai'=> 'required',
             'Tugas_Karyawan'=> 'required'
         ]);
         Riwayat::create([
@@ -55,8 +58,6 @@ class JobdeskController extends Controller
         $jobdesk=new Jobdesk;
 
         $jobdesk->karyawan_id=$request->get('karyawan_id');
-        $jobdesk->Jam_Mulai=$request->get('Jam_Mulai');
-        $jobdesk->Jam_Selesai=$request->get('Jam_Selesai');
         $jobdesk->Tugas_Karyawan=$request->get('Tugas_Karyawan');
         $jobdesk->save();
 
@@ -84,9 +85,8 @@ class JobdeskController extends Controller
     public function edit($jobdesk_id)
     {
 
-        $karyawan=Karyawan::all();
-        $jobdesk = Jobdesk::find($jobdesk_id);
-        // dd($jobdesk);
+        $jobdesk = Jobdesk::with('Karyawan')->where('jobdesk_id',$jobdesk_id)->first();
+        $karyawan= Karyawan::where('karyawan_id',$jobdesk->Karyawan->karyawan_id)->first();
         return view('Jobdesk.v_edit_jobdesk', compact('jobdesk','karyawan'));
 
     }
@@ -101,9 +101,6 @@ class JobdeskController extends Controller
     public function update(Request $request, $jobdesk_id)
     {
         $this->validate($request, [
-            'karyawan_id'=> 'required',
-            'Jam_Mulai'=> 'required',
-            'Jam_Selesai'=> 'required',
             'Tugas_Karyawan'=> 'required'
         ]);
         Riwayat::create([
@@ -114,9 +111,6 @@ class JobdeskController extends Controller
         ]);
         $jobdesk= Jobdesk::find($jobdesk_id);
 
-        $jobdesk->karyawan_id=$request->get('karyawan_id');
-        $jobdesk->Jam_Mulai=$request->get('Jam_Mulai');
-        $jobdesk->Jam_Selesai=$request->get('Jam_Selesai');
         $jobdesk->Tugas_Karyawan=$request->get('Tugas_Karyawan');
         $jobdesk->save();
 

@@ -26,7 +26,7 @@
                         <input required type="text" class="form-control" name="output_pekerjaan" id="output_pekerjaan">
                     </div>
                     <div class="mb-3">
-                        <label for="file" class="form-label">File</label>
+                        <label for="file" class="form-label">Bukti Foto Pekerjaan</label>
                         <input required type="file" class="form-control" name="file" id="file" accept="image/*">
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>

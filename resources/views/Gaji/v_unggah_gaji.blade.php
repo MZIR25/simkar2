@@ -25,7 +25,7 @@
             <form action="/simpan_gaji" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group row">
-                    <label for="Nama_Karyawan" class="col-sm-2 col-form-label">Nama Karyawan</label>
+                    <label for="karyawan_id" class="col-sm-2 col-form-label">Nama Karyawan</label>
                     <div class="col-sm-10">
                         <select id="karyawan_id" name="karyawan_id" class="form-control">
                             @foreach ($karyawan as $k)

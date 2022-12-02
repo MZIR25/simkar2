@@ -83,12 +83,6 @@
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
-                <a href="{{route('laporan_presensi')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Laporan Presensi</p>
-                </a>
-                </li>
-                <li class="nav-item">
                 <a href="{{route('presensi')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Presensi</p>
