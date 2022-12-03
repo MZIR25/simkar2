@@ -101,7 +101,7 @@
             "autoWidth": false,
             "columnDefs": [
             {
-                targets: [6],
+                targets: [4],
                 visible: false,
                 searchable: false,
             },]

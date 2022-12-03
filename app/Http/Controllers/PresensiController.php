@@ -115,8 +115,13 @@ class PresensiController extends Controller
 
     public function riwayat_presensi()
     {
+        if (Auth::user()->level == "karyawan") {
 
-        $presensi = Presensi::get();
+            $presensi = Presensi::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan')->get();
+            } else {
+            $presensi = Presensi::with('Karyawan')->get();
+            }
+
         return view("Presensi.v_riwayat_presensi", compact("presensi"));
     }
 
