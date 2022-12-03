@@ -37,31 +37,40 @@ class PresensiController extends Controller
         return view("Presensi.v_laporan_presensi", compact("karyawan"));
     }
 
+    public function create_presensi($id)
+    {
+        $keterangan = "tepat waktu";
+        if (Carbon::now()->format("H:i:s") > "08:00:00") {
+            $keterangan = "terlambat";
+        }
+        $id = Auth::user()->karyawan_id;
+
+        return Presensi::create([
+            "karyawan_id" => $id,
+            "tgl_presensi" => date("Y-m-d"),
+            "keterangan" => $keterangan,
+            "jam_masuk" => Carbon::now()->format("H:i:s")
+        ]);
+    }
+
+    public function get_today_presensi($id)
+    {
+        return Presensi::where("tgl_presensi", date("Y-m-d"))->where("karyawan_id", $id)->first() ?? $this->create_presensi($id);
+    }
+
     public function store_laporan(Request $request)
     {
         $this->validate($request, [
-            'jam_mulai'=> 'required',
-            'jam_selesai'=> 'required',
-            'uraian_pekerjaan'=> 'required',
-            'output_pekerjaan'=> 'required',
-            'file'=> 'required',
+            'jam_mulai' => 'required|date_format:H:i:s',
+            'jam_selesai' => 'required|date_format:H:i:s',
+            'uraian_pekerjaan' => 'required|string',
+            'output_pekerjaan' => 'required|string',
+            'file' => 'required|file',
         ]);
 
         $id = Auth::user()->karyawan_id;
 
-        $presensi = Presensi::where("tgl_presensi", date("Y-m-d"))->where("karyawan_id", $id)->first();
-        if ($presensi == null) {
-            $keterangan = "tepat waktu";
-            if (Carbon::now()->format("H:i") > "08:00") {
-                $keterangan = "terlambat";
-            }
-            $presensi = Presensi::create([
-                "karyawan_id" => $id,
-                "jam_masuk" => Carbon::now()->format("H:i"),
-                "tgl_presensi" => date("Y-m-d"),
-                "keterangan" => $keterangan,
-            ]);
-        }
+        $presensi = $this->get_today_presensi($id);
 
         $nameFile = md5(date("Y-m-d-H-i-s") . $id) . "." . $request->file->getClientOriginalExtension();
         $request->file->storeAs(
@@ -82,31 +91,17 @@ class PresensiController extends Controller
 
     public function store_presensi(Request $request)
     {
-        $presensi = Presensi::where("tgl_presensi", date("Y-m-d"))->where("karyawan_id", Auth::user()->karyawan_id)->first();
+        $presensi = $this->get_today_presensi(auth()->user()->karyawan_id);
 
-        if ($presensi == null) {
-            $keterangan = "tepat waktu";
-            if (Carbon::now()->format("H:i") > "08:00") {
-                $keterangan = "terlambat";
-            }
-            $id = Auth::user()->karyawan_id;
-
-            $presensi = Presensi::create([
-                "karyawan_id" => $id,
-                "tgl_presensi" => date("Y-m-d"),
-                "keterangan" => $keterangan,
-                "jam_masuk" => Carbon::now()->format("H:i")
-            ]);
-        }
         if ($request->status == "masuk") {
             $presensi->update([
-                "jam_masuk" => Carbon::now()->format("H:i")
+                "jam_masuk" => Carbon::now()->format("H:i:s")
             ]);
         }
 
         if ($request->status == "pulang") {
             $presensi->update([
-                "jam_keluar" => Carbon::now()->format("H:i")
+                "jam_keluar" => Carbon::now()->format("H:i:s")
             ]);
         }
 
