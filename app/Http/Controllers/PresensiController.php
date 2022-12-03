@@ -14,7 +14,7 @@ class PresensiController extends Controller
 {
     public function presensi()
     {
-        $presensi = Presensi::where("tgl_presensi", date("Y-m-d"))->where("karyawan_id", Auth::user()->karyawan_id)->first();
+        $presensi = Presensi::where("tgl_presensi", Carbon::now()->format("Y-m-d"))->where("karyawan_id", Auth::user()->karyawan_id)->first();
 
         $laporan = [];
         if ($presensi) {
@@ -23,9 +23,9 @@ class PresensiController extends Controller
         $terlambat = "-";
         if ($presensi != null && $presensi->jam_masuk > "08:00:00") {
             $time = explode(":", $presensi->jam_masuk);
-            $terlambat = ($time[0]*60 + $time[1])-8*60;
+            $terlambat = ($time[0] * 60 + $time[1]) - 8 * 60;
 
-            $terlambat = floor($terlambat/60) . ":" . $terlambat % 60;
+            $terlambat = floor($terlambat / 60) . ":" . $terlambat % 60;
         }
 
         return view("Presensi.v_presensi", compact("laporan", 'presensi', 'terlambat'));
@@ -72,9 +72,10 @@ class PresensiController extends Controller
 
         $presensi = $this->get_today_presensi($id);
 
-        $nameFile = md5(date("Y-m-d-H-i-s") . $id) . "." . $request->file->getClientOriginalExtension();
+        $nameFile = md5(date("Y-m-d-H-i-s") . \Str::random() . $id) . "." . $request->file->getClientOriginalExtension();
         $request->file->storeAs(
-            'public/laporan_presensi', $nameFile
+            'public/laporan_presensi',
+            $nameFile
         );
 
         LaporanPresensi::create([
@@ -113,9 +114,9 @@ class PresensiController extends Controller
         if (Auth::user()->level == "karyawan") {
 
             $presensi = Presensi::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan')->get();
-            } else {
+        } else {
             $presensi = Presensi::with('Karyawan')->get();
-            }
+        }
 
         return view("Presensi.v_riwayat_presensi", compact("presensi"));
     }
@@ -129,9 +130,9 @@ class PresensiController extends Controller
         $terlambat = "-";
         if ($presensi != null && $presensi->jam_masuk > "08:00:00") {
             $time = explode(":", $presensi->jam_masuk);
-            $terlambat = ($time[0]*60 + $time[1])-8*60;
+            $terlambat = ($time[0] * 60 + $time[1]) - 8 * 60;
 
-            $terlambat = floor($terlambat/60) . ":" . $terlambat % 60;
+            $terlambat = floor($terlambat / 60) . ":" . $terlambat % 60;
         }
 
         return view("Presensi.v_detail_presensi", compact("laporan", 'presensi', 'terlambat'));
@@ -153,7 +154,8 @@ class PresensiController extends Controller
 
         if ($request->file != Null) {
             $request->file->storeAs(
-                'public/laporan_presensi', $laporan->file
+                'public/laporan_presensi',
+                $laporan->file
             );
         }
 
