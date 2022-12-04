@@ -48,7 +48,7 @@ class PresensiController extends Controller
 
         return Presensi::create([
             "karyawan_id" => $id,
-            "tgl_presensi" => date("Y-m-d"),
+            "tgl_presensi" => Carbon::now()->format("Y-m-d"),
             "keterangan" => $keterangan,
             "jam_masuk" => Carbon::now()->format("H:i:s")
         ]);
@@ -56,7 +56,7 @@ class PresensiController extends Controller
 
     public function get_today_presensi($id)
     {
-        return Presensi::where("tgl_presensi", date("Y-m-d"))->where("karyawan_id", $id)->first() ?? $this->create_presensi($id);
+        return Presensi::where("tgl_presensi", Carbon::now()->format("Y-m-d"))->where("karyawan_id", $id)->first() ?? $this->create_presensi($id);
     }
 
     public function store_laporan(Request $request)
@@ -74,7 +74,7 @@ class PresensiController extends Controller
 
         $presensi = $this->get_today_presensi($id);
 
-        $nameFile = md5(date("Y-m-d-H-i-s") . Str::random() . $id) . "." . $request->file->getClientOriginalExtension();
+        $nameFile = md5(Carbon::now()->format("Y-m-d-H-i-s") . Str::random() . $id) . "." . $request->file->getClientOriginalExtension();
         $request->file->storeAs(
             'public/laporan_presensi',
             $nameFile
