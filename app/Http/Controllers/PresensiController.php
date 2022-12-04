@@ -9,6 +9,7 @@ use App\Models\Karyawan;
 use App\Models\Presensi;
 use App\Models\LaporanPresensi;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
 
 class PresensiController extends Controller
 {
@@ -67,12 +68,13 @@ class PresensiController extends Controller
             'output_pekerjaan' => 'required|string',
             'file' => 'required|file',
         ]);
+        // dd($request);
 
         $id = Auth::user()->karyawan_id;
 
         $presensi = $this->get_today_presensi($id);
 
-        $nameFile = md5(date("Y-m-d-H-i-s") . \Str::random() . $id) . "." . $request->file->getClientOriginalExtension();
+        $nameFile = md5(date("Y-m-d-H-i-s") . Str::random() . $id) . "." . $request->file->getClientOriginalExtension();
         $request->file->storeAs(
             'public/laporan_presensi',
             $nameFile
@@ -86,7 +88,7 @@ class PresensiController extends Controller
             'uraian_pekerjaan' => $request->uraian_pekerjaan,
             'file' => $nameFile,
         ]);
-
+        // dd($request);
         return redirect('presensi')->banner("Laporan berhasil ditambah");
     }
 

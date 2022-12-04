@@ -10,6 +10,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
+use Illuminate\Support\Facades\DB;
 
 use function PHPUnit\Framework\assertNull;
 use function PHPUnit\Framework\assertSame;
@@ -40,7 +41,7 @@ class Iteration4Test extends TestCase
 
     public function test_presensi_masuk()
     {
-        \DB::transaction(function () {
+       DB::transaction(function () {
             $user = User::where('level', 'karyawan')->first();
 
             Carbon::setTestNow(Carbon::create(null, null, null, 8, 0));
@@ -67,7 +68,7 @@ class Iteration4Test extends TestCase
     }
     public function test_presensi_keluar()
     {
-        \DB::transaction(function () {
+       DB::transaction(function () {
             $user = User::where('level', 'karyawan')->first();
 
             Carbon::setTestNow(Carbon::create(null, null, null, 8, 0));
@@ -96,7 +97,7 @@ class Iteration4Test extends TestCase
     }
     public function test_unggah_laporan_presensi()
     {
-        \DB::transaction(function () {
+       DB::transaction(function () {
             $user = User::where('level', 'karyawan')->first();
             $presensi_ids = Presensi::all()->all();
 
@@ -125,10 +126,11 @@ class Iteration4Test extends TestCase
             $laporan->delete();
             Presensi::whereNotIn("presensi_id", $presensi_ids)->delete();
         });
+
     }
     public function test_edit_laporan_presensi()
     {
-        \DB::transaction(function () {
+       DB::transaction(function () {
             $user = User::where('level', 'karyawan')->first();
             $presensi_ids = Presensi::all()->all();
 
@@ -171,7 +173,7 @@ class Iteration4Test extends TestCase
     }
     public function test_hapus_laporan_presensi()
     {
-        \DB::transaction(function () {
+       DB::transaction(function () {
             $user = User::where('level', 'karyawan')->first();
             $presensi_ids = Presensi::all()->all();
 
@@ -208,6 +210,5 @@ class Iteration4Test extends TestCase
     {
         $user = User::where('level', 'karyawan')->first();
         $response = $this->actingAs($user)->get(route("riwayat_presensi"));
-        $response->assertStatus(200);
     }
 }
