@@ -210,5 +210,6 @@ class Iteration4Test extends TestCase
     {
         $user = User::where('level', 'karyawan')->first();
         $response = $this->actingAs($user)->get(route("riwayat_presensi"));
+        $response->assertStatus(200);
     }
 }
