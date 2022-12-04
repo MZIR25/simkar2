@@ -41,7 +41,7 @@ class Iteration4Test extends TestCase
 
     public function test_presensi_masuk()
     {
-       DB::transaction(function () {
+        DB::transaction(function () {
             $user = User::where('level', 'karyawan')->first();
 
             Carbon::setTestNow(Carbon::create(null, null, null, 8, 0));
@@ -68,11 +68,11 @@ class Iteration4Test extends TestCase
     }
     public function test_presensi_keluar()
     {
-       DB::transaction(function () {
+        DB::transaction(function () {
             $user = User::where('level', 'karyawan')->first();
 
             Carbon::setTestNow(Carbon::create(null, null, null, 8, 0));
-            $jamMasuk = Carbon::now()->format("H:i:s");
+            $jamMasuk = Carbon::now();
 
             $response = $this->actingAs($user)->post("/presensi");
 
@@ -80,15 +80,15 @@ class Iteration4Test extends TestCase
 
             $presensi = Presensi::whereNotIn("presensi_id", $ids)->first();
             $response->assertStatus(302);
-            assertSame($jamMasuk, $presensi->jam_masuk);
+            assertSame($jamMasuk->format("H:i:s"), $presensi->jam_masuk);
 
             Carbon::setTestNow(Carbon::create(null, null, null, 18, 0));
-            $jamKeluar = Carbon::now()->format("H:i:s");
+            $jamKeluar = Carbon::now();
 
             $response = $this->actingAs($user)->post("/presensi", ['status' => 'pulang']);
             $presensi = Presensi::find($presensi->presensi_id);
-            assertSame($jamMasuk, $presensi->jam_masuk);
-            assertSame($jamKeluar, $presensi->jam_keluar);
+            assertSame($jamMasuk->format("H:i:s"), $presensi->jam_masuk);
+            assertSame($jamKeluar->format("H:i:s"), $presensi->jam_keluar);
 
             $presensi->delete();
 
@@ -97,17 +97,18 @@ class Iteration4Test extends TestCase
     }
     public function test_unggah_laporan_presensi()
     {
-       DB::transaction(function () {
+        DB::transaction(function () {
             $user = User::where('level', 'karyawan')->first();
             $presensi_ids = Presensi::all()->all();
 
             $ids = LaporanPresensi::all()->all();
 
 
+            $jamMulai = Carbon::now()->second(0);
+            $jamSelesai = Carbon::now()->second(0);
             $data = [
-
-                'jam_mulai' => Carbon::now()->format("H:i:s"),
-                'jam_selesai' => Carbon::now()->format("H:i:s"),
+                'jam_mulai' => $jamMulai->format("H:i"),
+                'jam_selesai' => $jamSelesai->format("H:i"),
                 'uraian_pekerjaan' => $this->faker->words(10, true),
                 'output_pekerjaan' => $this->faker->words(10, true),
                 'file' => UploadedFile::fake()->create("test")
@@ -118,27 +119,26 @@ class Iteration4Test extends TestCase
 
             $laporan = LaporanPresensi::whereNotIn("laporan_presensi_id", $ids)->first();
 
-            assertSame($data['jam_mulai'], $laporan->jam_mulai);
-            assertSame($data['jam_selesai'], $laporan->jam_selesai);
+            assertSame($jamMulai->format("H:i:s"), $laporan->jam_mulai);
+            assertSame($jamSelesai->format("H:i:s"), $laporan->jam_selesai);
             assertSame($data['uraian_pekerjaan'], $laporan->uraian_pekerjaan);
             assertSame($data['output_pekerjaan'], $laporan->output_pekerjaan);
 
             $laporan->delete();
             Presensi::whereNotIn("presensi_id", $presensi_ids)->delete();
         });
-
     }
     public function test_edit_laporan_presensi()
     {
-       DB::transaction(function () {
+        DB::transaction(function () {
             $user = User::where('level', 'karyawan')->first();
             $presensi_ids = Presensi::all()->all();
 
             $ids = LaporanPresensi::all()->all();
 
             $oldData = [
-                'jam_mulai' => Carbon::now()->format("H:i:s"),
-                'jam_selesai' => Carbon::now()->format("H:i:s"),
+                'jam_mulai' => Carbon::now()->format("H:i"),
+                'jam_selesai' => Carbon::now()->format("H:i"),
                 'uraian_pekerjaan' => $this->faker->words(10, true),
                 'output_pekerjaan' => $this->faker->words(10, true),
                 'file' => UploadedFile::fake()->create("test")
@@ -150,9 +150,12 @@ class Iteration4Test extends TestCase
             $laporan = LaporanPresensi::whereNotIn("laporan_presensi_id", $ids)->first();
 
             Carbon::setTestNow(Carbon::now()->addMinutes(10));
+
+            $jamMulai = Carbon::now()->second(0);
+            $jamSelesai = Carbon::now()->second(0);
             $data = [
-                'jam_mulai' => Carbon::now()->format("H:i:s"),
-                'jam_selesai' => Carbon::now()->format("H:i:s"),
+                'jam_mulai' => $jamMulai->format("H:i"),
+                'jam_selesai' => $jamSelesai->format("H:i"),
                 'uraian_pekerjaan' => $this->faker->words(10, true),
                 'output_pekerjaan' => $this->faker->words(10, true),
             ];
@@ -162,8 +165,8 @@ class Iteration4Test extends TestCase
 
             $laporan = LaporanPresensi::whereNotIn("laporan_presensi_id", $ids)->first();
 
-            assertSame($data['jam_mulai'], $laporan->jam_mulai);
-            assertSame($data['jam_selesai'], $laporan->jam_selesai);
+            assertSame($jamMulai->format("H:i:s"), $laporan->jam_mulai);
+            assertSame($jamSelesai->format("H:i:s"), $laporan->jam_selesai);
             assertSame($data['uraian_pekerjaan'], $laporan->uraian_pekerjaan);
             assertSame($data['output_pekerjaan'], $laporan->output_pekerjaan);
 
@@ -173,15 +176,15 @@ class Iteration4Test extends TestCase
     }
     public function test_hapus_laporan_presensi()
     {
-       DB::transaction(function () {
+        DB::transaction(function () {
             $user = User::where('level', 'karyawan')->first();
             $presensi_ids = Presensi::all()->all();
 
             $ids = LaporanPresensi::all()->all();
 
             $oldData = [
-                'jam_mulai' => Carbon::now()->format("H:i:s"),
-                'jam_selesai' => Carbon::now()->format("H:i:s"),
+                'jam_mulai' => Carbon::now()->format("H:i"),
+                'jam_selesai' => Carbon::now()->format("H:i"),
                 'uraian_pekerjaan' => $this->faker->words(10, true),
                 'output_pekerjaan' => $this->faker->words(10, true),
                 'file' => UploadedFile::fake()->create("test")
