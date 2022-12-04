@@ -39,10 +39,17 @@ use function PHPUnit\Framework\assertSame;
 //         $response->assertStatus(200);
 //     }
 
+<<<<<<< HEAD
 //     public function test_presensi_masuk()
 //     {
 //        DB::transaction(function () {
 //             $user = User::where('level', 'karyawan')->first();
+=======
+    public function test_presensi_masuk()
+    {
+        DB::transaction(function () {
+            $user = User::where('level', 'karyawan')->first();
+>>>>>>> 2e754ab739020ca4bb0ad69c099fda99c22e4144
 
 //             Carbon::setTestNow(Carbon::create(null, null, null, 8, 0));
 
@@ -63,6 +70,7 @@ use function PHPUnit\Framework\assertSame;
 //             assertSame("terlambat", $presensi->keterangan);
 //             $presensi->delete();
 
+<<<<<<< HEAD
 //             $response->assertStatus(302);
 //         });
 //     }
@@ -73,11 +81,24 @@ use function PHPUnit\Framework\assertSame;
 
 //             Carbon::setTestNow(Carbon::create(null, null, null, 8, 0));
 //             $jamMasuk = Carbon::now()->format("H:i:s");
+=======
+            $response->assertStatus(302);
+        });
+    }
+    public function test_presensi_keluar()
+    {
+        DB::transaction(function () {
+            $user = User::where('level', 'karyawan')->first();
+
+            Carbon::setTestNow(Carbon::create(null, null, null, 8, 0));
+            $jamMasuk = Carbon::now();
+>>>>>>> 2e754ab739020ca4bb0ad69c099fda99c22e4144
 
 //             $response = $this->actingAs($user)->post("/presensi");
 
 //             $ids = Presensi::all()->all();
 
+<<<<<<< HEAD
 //             $presensi = Presensi::whereNotIn("presensi_id", $ids)->first();
 //             $response->assertStatus(302);
 //             assertSame($jamMasuk, $presensi->jam_masuk);
@@ -89,9 +110,23 @@ use function PHPUnit\Framework\assertSame;
 //             $presensi = Presensi::find($presensi->presensi_id);
 //             assertSame($jamMasuk, $presensi->jam_masuk);
 //             assertSame($jamKeluar, $presensi->jam_keluar);
+=======
+            $presensi = Presensi::whereNotIn("presensi_id", $ids)->first();
+            $response->assertStatus(302);
+            assertSame($jamMasuk->format("H:i:s"), $presensi->jam_masuk);
+
+            Carbon::setTestNow(Carbon::create(null, null, null, 18, 0));
+            $jamKeluar = Carbon::now();
+
+            $response = $this->actingAs($user)->post("/presensi", ['status' => 'pulang']);
+            $presensi = Presensi::find($presensi->presensi_id);
+            assertSame($jamMasuk->format("H:i:s"), $presensi->jam_masuk);
+            assertSame($jamKeluar->format("H:i:s"), $presensi->jam_keluar);
+>>>>>>> 2e754ab739020ca4bb0ad69c099fda99c22e4144
 
 //             $presensi->delete();
 
+<<<<<<< HEAD
 //             $response->assertStatus(302);
 //         });
 //     }
@@ -100,10 +135,21 @@ use function PHPUnit\Framework\assertSame;
 //        DB::transaction(function () {
 //             $user = User::where('level', 'karyawan')->first();
 //             $presensi_ids = Presensi::all()->all();
+=======
+            $response->assertStatus(302);
+        });
+    }
+    public function test_unggah_laporan_presensi()
+    {
+        DB::transaction(function () {
+            $user = User::where('level', 'karyawan')->first();
+            $presensi_ids = Presensi::all()->all();
+>>>>>>> 2e754ab739020ca4bb0ad69c099fda99c22e4144
 
 //             $ids = LaporanPresensi::all()->all();
 
 
+<<<<<<< HEAD
 //             $data = [
 
 //                 'jam_mulai' => Carbon::now()->format("H:i:s"),
@@ -112,12 +158,24 @@ use function PHPUnit\Framework\assertSame;
 //                 'output_pekerjaan' => $this->faker->words(10, true),
 //                 'file' => UploadedFile::fake()->create("test")
 //             ];
+=======
+            $jamMulai = Carbon::now()->second(0);
+            $jamSelesai = Carbon::now()->second(0);
+            $data = [
+                'jam_mulai' => $jamMulai->format("H:i"),
+                'jam_selesai' => $jamSelesai->format("H:i"),
+                'uraian_pekerjaan' => $this->faker->words(10, true),
+                'output_pekerjaan' => $this->faker->words(10, true),
+                'file' => UploadedFile::fake()->create("test")
+            ];
+>>>>>>> 2e754ab739020ca4bb0ad69c099fda99c22e4144
 
 //             $response = $this->actingAs($user)->post(route("create_laporan_presensi"), $data);
 //             $response->assertStatus(302);
 
 //             $laporan = LaporanPresensi::whereNotIn("laporan_presensi_id", $ids)->first();
 
+<<<<<<< HEAD
 //             assertSame($data['jam_mulai'], $laporan->jam_mulai);
 //             assertSame($data['jam_selesai'], $laporan->jam_selesai);
 //             assertSame($data['uraian_pekerjaan'], $laporan->uraian_pekerjaan);
@@ -133,9 +191,26 @@ use function PHPUnit\Framework\assertSame;
 //        DB::transaction(function () {
 //             $user = User::where('level', 'karyawan')->first();
 //             $presensi_ids = Presensi::all()->all();
+=======
+            assertSame($jamMulai->format("H:i:s"), $laporan->jam_mulai);
+            assertSame($jamSelesai->format("H:i:s"), $laporan->jam_selesai);
+            assertSame($data['uraian_pekerjaan'], $laporan->uraian_pekerjaan);
+            assertSame($data['output_pekerjaan'], $laporan->output_pekerjaan);
+
+            $laporan->delete();
+            Presensi::whereNotIn("presensi_id", $presensi_ids)->delete();
+        });
+    }
+    public function test_edit_laporan_presensi()
+    {
+        DB::transaction(function () {
+            $user = User::where('level', 'karyawan')->first();
+            $presensi_ids = Presensi::all()->all();
+>>>>>>> 2e754ab739020ca4bb0ad69c099fda99c22e4144
 
 //             $ids = LaporanPresensi::all()->all();
 
+<<<<<<< HEAD
 //             $oldData = [
 //                 'jam_mulai' => Carbon::now()->format("H:i:s"),
 //                 'jam_selesai' => Carbon::now()->format("H:i:s"),
@@ -143,12 +218,22 @@ use function PHPUnit\Framework\assertSame;
 //                 'output_pekerjaan' => $this->faker->words(10, true),
 //                 'file' => UploadedFile::fake()->create("test")
 //             ];
+=======
+            $oldData = [
+                'jam_mulai' => Carbon::now()->format("H:i"),
+                'jam_selesai' => Carbon::now()->format("H:i"),
+                'uraian_pekerjaan' => $this->faker->words(10, true),
+                'output_pekerjaan' => $this->faker->words(10, true),
+                'file' => UploadedFile::fake()->create("test")
+            ];
+>>>>>>> 2e754ab739020ca4bb0ad69c099fda99c22e4144
 
 //             $response = $this->actingAs($user)->post(route("create_laporan_presensi"), $oldData);
 //             $response->assertstatus(302);
 
 //             $laporan = LaporanPresensi::whereNotIn("laporan_presensi_id", $ids)->first();
 
+<<<<<<< HEAD
 //             Carbon::setTestNow(Carbon::now()->addMinutes(10));
 //             $data = [
 //                 'jam_mulai' => Carbon::now()->format("H:i:s"),
@@ -159,9 +244,25 @@ use function PHPUnit\Framework\assertSame;
 //             $laporan = LaporanPresensi::whereNotIn("laporan_presensi_id", $ids)->first();
 //             $response = $this->actingAs($user)->put(route("update_laporan_presensi", $laporan->laporan_presensi_id), $data);
 //             $response->assertStatus(302);
+=======
+            Carbon::setTestNow(Carbon::now()->addMinutes(10));
+
+            $jamMulai = Carbon::now()->second(0);
+            $jamSelesai = Carbon::now()->second(0);
+            $data = [
+                'jam_mulai' => $jamMulai->format("H:i"),
+                'jam_selesai' => $jamSelesai->format("H:i"),
+                'uraian_pekerjaan' => $this->faker->words(10, true),
+                'output_pekerjaan' => $this->faker->words(10, true),
+            ];
+            $laporan = LaporanPresensi::whereNotIn("laporan_presensi_id", $ids)->first();
+            $response = $this->actingAs($user)->put(route("update_laporan_presensi", $laporan->laporan_presensi_id), $data);
+            $response->assertStatus(302);
+>>>>>>> 2e754ab739020ca4bb0ad69c099fda99c22e4144
 
 //             $laporan = LaporanPresensi::whereNotIn("laporan_presensi_id", $ids)->first();
 
+<<<<<<< HEAD
 //             assertSame($data['jam_mulai'], $laporan->jam_mulai);
 //             assertSame($data['jam_selesai'], $laporan->jam_selesai);
 //             assertSame($data['uraian_pekerjaan'], $laporan->uraian_pekerjaan);
@@ -176,9 +277,26 @@ use function PHPUnit\Framework\assertSame;
 //        DB::transaction(function () {
 //             $user = User::where('level', 'karyawan')->first();
 //             $presensi_ids = Presensi::all()->all();
+=======
+            assertSame($jamMulai->format("H:i:s"), $laporan->jam_mulai);
+            assertSame($jamSelesai->format("H:i:s"), $laporan->jam_selesai);
+            assertSame($data['uraian_pekerjaan'], $laporan->uraian_pekerjaan);
+            assertSame($data['output_pekerjaan'], $laporan->output_pekerjaan);
+
+            $laporan->delete();
+            Presensi::whereNotIn("presensi_id", $presensi_ids)->delete();
+        });
+    }
+    public function test_hapus_laporan_presensi()
+    {
+        DB::transaction(function () {
+            $user = User::where('level', 'karyawan')->first();
+            $presensi_ids = Presensi::all()->all();
+>>>>>>> 2e754ab739020ca4bb0ad69c099fda99c22e4144
 
 //             $ids = LaporanPresensi::all()->all();
 
+<<<<<<< HEAD
 //             $oldData = [
 //                 'jam_mulai' => Carbon::now()->format("H:i:s"),
 //                 'jam_selesai' => Carbon::now()->format("H:i:s"),
@@ -186,6 +304,15 @@ use function PHPUnit\Framework\assertSame;
 //                 'output_pekerjaan' => $this->faker->words(10, true),
 //                 'file' => UploadedFile::fake()->create("test")
 //             ];
+=======
+            $oldData = [
+                'jam_mulai' => Carbon::now()->format("H:i"),
+                'jam_selesai' => Carbon::now()->format("H:i"),
+                'uraian_pekerjaan' => $this->faker->words(10, true),
+                'output_pekerjaan' => $this->faker->words(10, true),
+                'file' => UploadedFile::fake()->create("test")
+            ];
+>>>>>>> 2e754ab739020ca4bb0ad69c099fda99c22e4144
 
 //             $response = $this->actingAs($user)->post(route("create_laporan_presensi"), $oldData);
 //             $response->assertstatus(302);

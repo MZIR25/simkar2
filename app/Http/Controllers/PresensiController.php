@@ -9,6 +9,7 @@ use App\Models\Karyawan;
 use App\Models\Presensi;
 use App\Models\LaporanPresensi;
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Support\Str;
 
 class PresensiController extends Controller
@@ -41,7 +42,7 @@ class PresensiController extends Controller
     public function create_presensi($id)
     {
         $keterangan = "tepat waktu";
-        if (Carbon::now()->format("H:i:s") > "08:00:00") {
+        if (Carbon::now()->format("H:i") > "08:00:00") {
             $keterangan = "terlambat";
         }
         $id = Auth::user()->karyawan_id;
@@ -50,7 +51,7 @@ class PresensiController extends Controller
             "karyawan_id" => $id,
             "tgl_presensi" => Carbon::now()->format("Y-m-d"),
             "keterangan" => $keterangan,
-            "jam_masuk" => Carbon::now()->format("H:i:s")
+            "jam_masuk" => Carbon::now()->format("H:i")
         ]);
     }
 
@@ -62,13 +63,12 @@ class PresensiController extends Controller
     public function store_laporan(Request $request)
     {
         $this->validate($request, [
-            'jam_mulai' => 'required|date_format:H:i:s',
-            'jam_selesai' => 'required|date_format:H:i:s',
+            'jam_mulai' => 'required|date_format:H:i',
+            'jam_selesai' => 'required|date_format:H:i',
             'uraian_pekerjaan' => 'required|string',
             'output_pekerjaan' => 'required|string',
             'file' => 'required|file',
         ]);
-        // dd($request);
 
         $id = Auth::user()->karyawan_id;
 
@@ -98,13 +98,13 @@ class PresensiController extends Controller
 
         if ($request->status == "masuk") {
             $presensi->update([
-                "jam_masuk" => Carbon::now()->format("H:i:s")
+                "jam_masuk" => Carbon::now()->format("H:i")
             ]);
         }
 
         if ($request->status == "pulang") {
             $presensi->update([
-                "jam_keluar" => Carbon::now()->format("H:i:s")
+                "jam_keluar" => Carbon::now()->format("H:i")
             ]);
         }
 
