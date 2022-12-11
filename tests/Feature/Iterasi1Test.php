@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use Illuminate\Foundation\Testing\WithFaker;
 use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
+use Illuminate\Auth\Middleware\Authenticate;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Tests\TestCase;
 
 class Iterasi1Test extends TestCase
@@ -12,19 +14,6 @@ class Iterasi1Test extends TestCase
     use WithFaker;
     use WithoutMiddleware;
 
-
-    public function testLogin()
-    {
-        $user = UserFactory::new()->createOne();
-
-        $response = $this->post('/login', [
-            'email' => $user->email,
-            'password' => '12345678',
-
-        ]);
-
-        $this->assertAuthenticated();
-    }
 
     public function testRegister()
     {
@@ -35,6 +24,18 @@ class Iterasi1Test extends TestCase
                 'email' => $user->email,
                 'password' => '12345678',
                 'password_confirmation' => '12345678'
+        ]);
+
+        $this->assertAuthenticated();
+    }
+    public function testLogin()
+    {
+        $user = UserFactory::new()->createOne();
+
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => '12345678',
+
         ]);
 
         $this->assertAuthenticated();
