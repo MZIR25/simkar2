@@ -2,41 +2,53 @@
 
 namespace Tests\Feature;
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
-use App\Providers\RouteServiceProvider;
-use App\Models\User;
-use Illuminate\Auth\Events\Authenticated;
-use Illuminate\Support\Facades\Auth;
+use Database\Factories\UserFactory;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use Tests\TestCase;
 
-// class Iterasi1Test extends TestCase
-// {
-//     use WithFaker;
-//     use WithoutMiddleware;
+class Iterasi1Test extends TestCase
+{
+    use WithFaker;
+    use WithoutMiddleware;
 
 
-//     public function testRegisterLoginLogout()
-//     {
+    public function testLogin()
+    {
+        $user = UserFactory::new()->createOne();
 
-//         $response = $this->post('/login', [
-//             'email' => 'admin@gmail.com',
-//             'password' => '12345678',
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => '12345678',
 
-//         ]);
+        ]);
 
-//         // dd($response);
-//         $this->assertAuthenticated();
+        $this->assertAuthenticated();
+    }
 
+    public function testRegister()
+    {
+        $user = UserFactory::new()->makeOne();
 
-//         // $response = $this->post('/login', [
-//         //         'email' => '11181049@student.itk.ac.id',
-//         //         'password' => '12345678',
-//         // ]);
-//         // $this->assertAuthenticated();
-//         // // $response->assertRedirect(route('layouts.v_home'));
-//         // // $this->get('/logout');
-//     }
+        $response = $this->post('/register', [
+                'name' => $user->name,
+                'email' => $user->email,
+                'password' => '12345678',
+                'password_confirmation' => '12345678'
+        ]);
 
-// }
+        $this->assertAuthenticated();
+    }
+
+    public function testLogout()
+    {
+        $user = UserFactory::new()->createOne();
+        $this->actingAs($user);
+        $this->assertAuthenticated();
+
+        $response = $this->post('/logout');
+
+        $this->assertGuest();
+    }
+
+}
