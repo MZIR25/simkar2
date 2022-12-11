@@ -33,8 +33,8 @@ class Iterasi2Test extends TestCase
         $user = User::where('level','admin')->first();
             $response = $this->actingAs($user)
                 ->post(route('simpan_karyawan' ), [
-                    'jabatan_id' => null,
-                    'devisi_id' => null,
+                    'jabatan_id' => 2,
+                    'devisi_id' => 2,
                     'Tingkat_Pendidikan' => 'S3',
                     'Nama_Karyawan' => $this->faker->name,
                     'Tahun_Lulus' => $this->faker->year,
