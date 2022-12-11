@@ -10,13 +10,13 @@ class Jobdesk extends Model
     protected $table = "jobdesk";
     protected $primaryKey = "jobdesk_id";
     protected $fillable = [
-       'jobdesk_id',
-       'Tugas_Karyawan'];
+        'jobdesk_id',
+        'Tugas_Karyawan'
+    ];
 
 
-       public function Karyawan()
-       {
-           return $this->belongsTo(Karyawan::class,'karyawan_id');
-       }
-
+    public function Karyawan()
+    {
+        return $this->belongsTo(Karyawan::class, 'karyawan_id');
+    }
 }
