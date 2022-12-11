@@ -15,14 +15,14 @@ class GajiController extends Controller
 {
     public function index()
     {
-
         if (Auth::user()->level == "karyawan") {
-
-            $gaji = Gaji::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan')->get();
+            $gaji = Gaji::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan');
         } else {
-            $gaji = Gaji::with('Karyawan')->get();
+            $gaji = Gaji::with('Karyawan');
         }
-        // dd($gaji);
+
+        $gaji = $gaji->whereHas("Karyawan.Jabatan")->get();
+
         return view('Gaji.v_daftar_gaji', compact('gaji'));
     }
 
@@ -51,7 +51,7 @@ class GajiController extends Controller
         ]);
 
         // $karyawan = Karyawan::where('karyawan_id', $request->get('karyawan_id'))->first();
-        if(Gaji::where('karyawan_id', $request->get('karyawan_id'))->first()){
+        if (Gaji::where('karyawan_id', $request->get('karyawan_id'))->first()) {
             return redirect('daftar_gaji')->banner('Gaji Karyawan Telah Ada');
         }
         // dd($request->all());

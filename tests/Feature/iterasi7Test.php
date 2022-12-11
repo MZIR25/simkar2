@@ -47,10 +47,10 @@ class iterasi7Test extends TestCase
 
         $response = $this->actingAs($admin)
             ->put(route('update_user', $user->id), [
-                'name' => 'Admin',
-                'email' => 'admin@gmail.com',
+                'name' => $this->faker->name,
+                'email' => $this->faker->email,
                 'level' => 'admin',
-                'karyawan_id' => '2',
+                'karyawan_id' => 2,
 
             ]);
 

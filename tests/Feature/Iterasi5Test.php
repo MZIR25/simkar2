@@ -35,6 +35,7 @@ class Iterasi5Test extends TestCase
 
         $response->assertStatus(200);
     }
+
     public function testTambahGaji()
     {
         $user = User::where('level', 'admin')->first();
@@ -48,10 +49,9 @@ class Iterasi5Test extends TestCase
 
         $this->withoutExceptionHandling();
         $response->assertStatus(302);
-        //$response->assertSuccessful();
     }
-    public function testEditGaji()
 
+    public function testEditGaji()
     {
         $user = User::where('level', 'admin')->first();
         $gaji = GajiFactory::new()->createOne();
@@ -67,6 +67,7 @@ class Iterasi5Test extends TestCase
         $this->withoutExceptionHandling();
         $response->assertStatus(302);
     }
+
     public function testHapusGaji()
     {
         $user = User::where('level', 'admin')->first();
