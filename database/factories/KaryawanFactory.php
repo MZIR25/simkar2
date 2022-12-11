@@ -18,9 +18,9 @@ class KaryawanFactory extends Factory
     {
         return [
             'Nama_Karyawan' => $this->faker->name,
-            'jabatan_id' => 1,
-            'devisi_id' => 1,
-            'pendidikan_id' => 1,
+            'jabatan_id' => JabatanFactory::new(),
+            'devisi_id' => DevisiFactory::new(),
+            'pendidikan_id' => PendidikanFactory::new(),
             'Alamat_Karyawan' => $this->faker->address,
             'Tempat_Lahir' => 'Balikpapan',
             'Tanggal_Lahir' => $this->faker->date,
