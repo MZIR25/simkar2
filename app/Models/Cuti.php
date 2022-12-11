@@ -15,15 +15,17 @@ class Cuti extends Model
     protected $table = "permohonan_cuti";
     protected $primaryKey = "cuti_id";
     protected $fillable = [
-       'cuti_id',
-       'Alasan_Cuti',
-       'Status',
-       'Tanggal_Mulai',
-       'Keterangan_Status',
-       'Tanggal_Selesai'];
+        'cuti_id',
+        // 'karyawan_id',
+        'Alasan_Cuti',
+        'Status',
+        'Tanggal_Mulai',
+        'Keterangan_Status',
+        'Tanggal_Selesai'
+    ];
 
-       public function Karyawan()
-       {
-           return $this->belongsTo(Karyawan::class,'karyawan_id');
-       }
+    public function Karyawan()
+    {
+        return $this->belongsTo(Karyawan::class, 'karyawan_id');
+    }
 }

@@ -17,7 +17,12 @@ class CutiFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'karyawan_id' => KaryawanFactory::new(),
+            'Alasan_Cuti' => $this->faker->words(5, true),
+            'Status' => $this->faker->words(1, true),
+            'Tanggal_Mulai' => $this->faker->date,
+            'Keterangan_Status' => $this->faker->words(5, true),
+            'Tanggal_Selesai' => $this->faker->date
         ];
     }
 }
