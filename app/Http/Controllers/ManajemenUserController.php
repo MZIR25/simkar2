@@ -18,7 +18,6 @@ class ManajemenUserController extends Controller
     {
         $users = User::all();
         return view('User.v_manajemen_user', compact('users'));
-
     }
 
     /**
@@ -61,11 +60,10 @@ class ManajemenUserController extends Controller
      */
     public function edit($id)
     {
-        $karyawan=Karyawan::all();
+        $karyawan = Karyawan::all();
         $users = User::find($id);
         // dd($users);
-        return view('User.v_edit_user', compact('users','karyawan'));
-
+        return view('User.v_edit_user', compact('users', 'karyawan'));
     }
 
     /**
@@ -84,16 +82,15 @@ class ManajemenUserController extends Controller
 
         ]);
 
-        $users=User::find($id);
+        $users = User::findOrFail($id);
 
-        $users->name=$request->get('name');
-        $users->email=$request->get('email');
-        $users->level=$request->get('level');
-        $users->karyawan_id=$request->get('karyawan_id');
+        $users->name = $request->get('name');
+        $users->email = $request->get('email');
+        $users->level = $request->get('level');
+        $users->karyawan_id = $request->get('karyawan_id');
 
         $users->save();
         return redirect('manajemen_user')->banner("Data berhasil diupdate");
-
     }
 
     /**
@@ -107,6 +104,5 @@ class ManajemenUserController extends Controller
         $users = User::find($users);
         $users->delete();
         return redirect('manajemen_user')->banner("Data berhasil dihapus");
-
     }
 }
