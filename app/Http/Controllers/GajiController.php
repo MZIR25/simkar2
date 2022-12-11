@@ -39,7 +39,6 @@ class GajiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-
             'Gaji_Pokok' => 'required',
             'Pajak_Bpjs' => 'required',
             'Jumlah_Gaji' => 'required'
@@ -58,9 +57,9 @@ class GajiController extends Controller
         // dd($request->all());
         Gaji::create([
             'karyawan_id' => $request->get('karyawan_id'),
-            'Gaji_Pokok' => $request->get('Gaji_Pokok'),
-            'Pajak_Bpjs' => $request->get('Pajak_Bpjs'),
-            'Jumlah_Gaji' => $request->get('Jumlah_Gaji'),
+            'Gaji_Pokok' => str_replace("_", "", $request->get('Gaji_Pokok')),
+            'Pajak_Bpjs' => str_replace("_", "", $request->get('Pajak_Bpjs')),
+            'Jumlah_Gaji' => str_replace("_", "", $request->get('Jumlah_Gaji')),
         ]);
 
         return redirect('daftar_gaji')->banner('Data berhasil dibuat');
@@ -107,9 +106,9 @@ class GajiController extends Controller
         ]);
         $gaji = Gaji::find($gaji_id);
 
-        $gaji->Gaji_Pokok = $request->get('Gaji_Pokok');
-        $gaji->Pajak_Bpjs = $request->get('Pajak_Bpjs');
-        $gaji->Jumlah_Gaji = $request->get('Jumlah_Gaji');
+        $gaji->Gaji_Pokok = str_replace("_", "", $request->get('Gaji_Pokok'));
+        $gaji->Pajak_Bpjs = str_replace("_", "", $request->get('Pajak_Bpjs'));
+        $gaji->Jumlah_Gaji = str_replace("_", "", $request->get('Jumlah_Gaji'));
         $gaji->save();
 
         return redirect('daftar_gaji')->banner("Data berhasil diubah");
