@@ -14,7 +14,6 @@ class CutiController extends Controller
     public function index()
     {
         if (Auth::user()->level == "karyawan") {
-
             $cuti= Cuti::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan')->get();
             } else {
             $cuti= Cuti::with('Karyawan')->get();

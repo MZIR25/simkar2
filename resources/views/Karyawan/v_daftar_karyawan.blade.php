@@ -40,9 +40,21 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $k->Nama_Karyawan }}</td>
-                            <td>{{ $k->Jabatan->Nama_Jabatan }}</td>
+                            <td>
+                                @if ($k->Jabatan === null )
+                                <span >Tidak Ada Jabatan</span>
+                                @else
+                                <span>{{ $k->Jabatan->Nama_Jabatan }}</span>
+                                @endif
+                                </td>
                             <td>{{ $k->Pendidikan->Tingkat_Pendidikan }}</td>
-                            <td>{{ $k->Devisi->Nama_Devisi }}</td>
+                            <td>
+                                @if ($k->Devisi === null )
+                                <span >Tidak Ada Devisi</span>
+                                @else
+                                <span>{{ $k->Devisi->Nama_Devisi }}</span>
+                                @endif
+                                </td>
                             <td>{{ $k->Alamat_Karyawan }}</td>
                             <td>{{ $k->Tempat_Lahir }}</td>
                             <td>{{ $k->Tanggal_Lahir }}</td>

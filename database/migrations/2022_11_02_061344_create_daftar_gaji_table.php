@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('daftar_gaji', function (Blueprint $table) {
             $table->increments('gaji_id');
             $table->integer('karyawan_id')->unsigned()->nullable();
-            $table->foreign('karyawan_id')->references('karyawan_id')->on('karyawan')->nullOnDelete('cascade');
+            $table->foreign('karyawan_id')->references('karyawan_id')->on('karyawan')->cascadeOnDelete('cascade');
             $table->bigInteger('Gaji_Pokok')->nullable();
             $table->bigInteger('Pajak_Bpjs')->nullable();
             $table->bigInteger('Jumlah_Gaji')->nullable();

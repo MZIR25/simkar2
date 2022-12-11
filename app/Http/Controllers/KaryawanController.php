@@ -212,7 +212,9 @@ class KaryawanController extends Controller
 
         } else {
             Riwayat::create([
-
+                'id' => Auth::user()->id,
+                'nama' => Auth::user()->name,
+                'level' => Auth::user()->level,
                 'aktivitas' => 'Menghapus Data Karyawan  '.$karyawan->name.''
         ]);
         }

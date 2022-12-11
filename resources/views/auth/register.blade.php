@@ -25,49 +25,59 @@
         <img src="{{asset('template/')}}/dist/img/logo_valtech.png" alt="Valtech Logo" class="img-fluid" style="opacity: .8">
       <p class="login-box-msg pt-2">Register to start your session</p>
 
-      <form method="POST" action="{{ route('register') }}">
+
+
+      @if($errors->any())
+      <ul>
+          @foreach($errors->all() as $error)
+          <li class="text-danger">Data yang dimasukkan tidak sesuai</li>
+
+          @endforeach
+      </ul>
+      @endif
+      <form id="quickForm1" method="POST" action="{{ route('register') }}">
             @csrf
 
         <div class="input-group mb-3">
-          <input name="name" class="form-control" placeholder="Name">
+          <input name="name" class="form-control " placeholder="Name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
-                @error('name')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
             </div>
-          </div>
+        </div>
+        @error('name')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
         </div>
 
         <div class="input-group mb-3">
-          <input name="email" class="form-control" placeholder="Email">
+          <input name="email" class="form-control @error('email') is-invalid @enderror" placeholder="Email">
           <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
-                @error('email')
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                @enderror
+              <div class="input-group-text">
+                  <span class="fas fa-envelope"></span>
+                </div>
             </div>
-          </div>
+            @error('email')
+                <span class="invalid-feedback" role="alert">
+                    <strong>Email Telah Terdaftar</strong>
+                </span>
+            @enderror
         </div>
 
         <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password">
+          <input type="password" name="password" class="form-control " placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
-                @error('password')
-                <span class="invalid-feedback" role="alert">
-                    <strong>{{ $message }}</strong>
-                </span>
-                @enderror
             </div>
-          </div>
+        </div>
+        @error('password')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
         </div>
 
         <div class="input-group mb-3">
@@ -77,6 +87,11 @@
               <span class="fas fa-lock"></span>
             </div>
           </div>
+        @error('password_confirmation')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
         </div>
 
         <div class="row">
@@ -101,8 +116,71 @@
 
 <!-- jQuery -->
 <script src="{{asset('template/')}}/plugins/jquery/jquery.min.js"></script>
+<!-- jquery-validation -->
+<script src="{{asset('template/')}}/plugins/jquery-validation/jquery.validate.min.js"></script>
+<script src="{{asset('template/')}}/plugins/jquery-validation/additional-methods.min.js"></script>
+
 <!-- Bootstrap 4 -->
 <script src="{{asset('template/')}}/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="{{asset('template/')}}/dist/js/adminlte.min.js"></script>
+<script>
+    $(function () {
+    $.validator.setDefaults({
+
+    });
+    $('#quickForm1').validate({
+        rules: {
+          email: {
+            required: true,
+            email: true,
+          },
+          name: {
+            required: true,
+          },
+          password: {
+            required: true,
+            minlength: 8
+          },
+          password_confirmation: {
+            required: true,
+            minlength: 8
+          },
+          terms: {
+            required: true
+          },
+        },
+        messages: {
+          email: {
+            required: "Please enter a email address",
+            email: "Please enter a valid email address"
+          },
+          name: {
+            required: "Please enter a name"
+
+          },
+          password: {
+            required: "Please provide a password",
+            minlength: "Your password must be at least 8 characters long"
+          },
+          password_confirmation: {
+            required: "Please provide a same password",
+            minlength: "Your password must be at least 8 characters long"
+          },
+          terms: "Please accept our terms"
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+          error.addClass('invalid-feedback');
+          element.closest('.input-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+          $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+          $(element).removeClass('is-invalid');
+        }
+      });
+    });
+    </script>
 </body>

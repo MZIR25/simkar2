@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('laporan_presensi', function (Blueprint $table) {
             $table->increments('laporan_presensi_id');
             $table->integer('presensi_id')->unsigned()->nullable();
-            $table->foreign('presensi_id')->references('presensi_id')->on('presensi')->onDelete('cascade');
+            $table->foreign('presensi_id')->references('presensi_id')->on('presensi')->cascadeOnDelete('cascade');
             $table->time("jam_mulai");
             $table->time("jam_selesai");
             $table->string("uraian_pekerjaan");

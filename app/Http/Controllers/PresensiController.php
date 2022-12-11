@@ -9,6 +9,7 @@ use App\Models\Karyawan;
 use App\Models\Presensi;
 use App\Models\LaporanPresensi;
 use Carbon\Carbon;
+use App\Models\Riwayat;
 use Exception;
 use Illuminate\Support\Str;
 
@@ -108,7 +109,7 @@ class PresensiController extends Controller
             ]);
         }
 
-        return back();
+        return back()->banner("Presensi berhasil dilakukan");
     }
 
     public function riwayat_presensi()
@@ -161,7 +162,7 @@ class PresensiController extends Controller
             );
         }
 
-        return back();
+        return back()->banner("Laporan berhasil diubah");
     }
 
     public function destroy_laporan(LaporanPresensi $laporan)
@@ -169,7 +170,12 @@ class PresensiController extends Controller
         Storage::delete("public/laporan_presensi/" . $laporan->file);
 
         $laporan->forceDelete();
-
+        Riwayat::create([
+            'id' => Auth::user()->id,
+            'nama' => Auth::user()->name,
+            'level' => Auth::user()->level,
+            'aktivitas' => 'Menghapus Laporan Karyawan  ' . $laporan->name . ''
+        ]);
 
         return back();
     }

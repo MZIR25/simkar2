@@ -5,7 +5,7 @@
     <div class="col-md-12 p-5 pt-2">
         <div class="card">
             <div class="card-body">
-                <h3><i class="fas fa-swatchbook"></i></i> DAFTAR CUTI</h3><hr>
+                <h3><i class="fas fa-swatchbook"></i></i> Riwayat Presensi</h3><hr>
                     {{-- <a href="permohonan_cuti/export_excel" class="btn btn-success mb-3"><i class="fa fa-file-excel mr-2"></i>EXPORT EXCEL</a> --}}
                     <table id="myTable" class="table table-striped table-bordered" >
                     <thead>

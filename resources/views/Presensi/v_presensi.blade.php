@@ -47,7 +47,7 @@
                             @csrf
                             <div class="row g-3 mt-4">
                                 <div class="col mx-3">
-                                    <button class="w-100" @if($presensi == null) type="submit" name="status" value="masuk" @else type="button" @endif>Submit</button>
+                                    <button class="w-100" @if($presensi == null) type="submit" name="status" value="masuk" @else type="button" @endif>Presensi Masuk</button>
                                 </div>
                                 <div class="col mx-3">
                                     <button class="w-100" type="submit" name="status" value="pulang">Presensi Pulang</button>

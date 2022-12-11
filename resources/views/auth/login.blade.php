@@ -45,14 +45,14 @@
             </div>
             </div>
         @error('email')
-        <div class="invalid-feedback">
-            <h6><span class="feedback" role="alert">
-                <strong>Invalid Login or password.</strong>
-            </span></h6></div>
-        @enderror
+
+        <span class="invalid-feedback" role="alert">
+            <strong>Invalid Login or password</strong>
+        </span>
+          @enderror
         </div>
         <div class="input-group mb-3">
-          <input type="password" name="password" class="form-control" placeholder="Password">
+          <input type="password" name="password" class="form-control " placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>

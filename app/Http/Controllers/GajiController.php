@@ -39,7 +39,7 @@ class GajiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'karyawan_id' => 'required',
+
             'Gaji_Pokok' => 'required',
             'Pajak_Bpjs' => 'required',
             'Jumlah_Gaji' => 'required'
@@ -129,7 +129,7 @@ class GajiController extends Controller
             'id' => Auth::user()->id,
             'nama' => Auth::user()->name,
             'level' => Auth::user()->level,
-            'aktivitas' => 'Menghapus Gaji Karyawan  ' . $gaji->name . ''
+            'aktivitas' => 'Menghapus Gaji Karyawan  ' . $gaji->Nama_karyawan . ''
         ]);
         return redirect('daftar_gaji')->banner("Data berhasil dihapus");
     }
