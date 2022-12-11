@@ -16,13 +16,14 @@ class JobdeskController extends Controller
     public function index()
     {
         if (Auth::user()->level == "karyawan") {
+            $jobdesk = Jobdesk::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan');
+        } else {
+            $jobdesk = Jobdesk::with('Karyawan');
+        }
 
-            $jobdesk= Jobdesk::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan')->get();
-            } else {
-            $jobdesk= Jobdesk::with('Karyawan')->get();
-            }
+        $jobdesk = $jobdesk->whereHas("Karyawan.Jabatan")->get();
+
         return view('Jobdesk.v_daftar_jobdesk', compact('jobdesk'));
-
     }
 
     /**
@@ -32,9 +33,8 @@ class JobdeskController extends Controller
      */
     public function create()
     {
-        $karyawan=Karyawan::get();
+        $karyawan = Karyawan::get();
         return view('Jobdesk.v_unggah_jobdesk', compact('karyawan'));
-
     }
 
     /**
@@ -46,23 +46,22 @@ class JobdeskController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'karyawan_id'=> 'required',
-            'Tugas_Karyawan'=> 'required'
+            'karyawan_id' => 'required',
+            'Tugas_Karyawan' => 'required'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
             'nama' => Auth::user()->name,
             'level' => Auth::user()->level,
-            'aktivitas' => 'Mengunggah Tugas Karyawan  '.$request->name.''
+            'aktivitas' => 'Mengunggah Tugas Karyawan  ' . $request->name . ''
         ]);
-        $jobdesk=new Jobdesk;
+        $jobdesk = new Jobdesk;
 
-        $jobdesk->karyawan_id=$request->get('karyawan_id');
-        $jobdesk->Tugas_Karyawan=$request->get('Tugas_Karyawan');
+        $jobdesk->karyawan_id = $request->get('karyawan_id');
+        $jobdesk->Tugas_Karyawan = $request->get('Tugas_Karyawan');
         $jobdesk->save();
 
         return redirect('daftar_jobdesk')->banner("Data berhasil dibuat");
-
     }
 
     /**
@@ -85,10 +84,9 @@ class JobdeskController extends Controller
     public function edit($jobdesk_id)
     {
 
-        $jobdesk = Jobdesk::with('Karyawan')->where('jobdesk_id',$jobdesk_id)->first();
-        $karyawan= Karyawan::where('karyawan_id',$jobdesk->Karyawan->karyawan_id)->first();
-        return view('Jobdesk.v_edit_jobdesk', compact('jobdesk','karyawan'));
-
+        $jobdesk = Jobdesk::with('Karyawan')->where('jobdesk_id', $jobdesk_id)->first();
+        $karyawan = Karyawan::where('karyawan_id', $jobdesk->Karyawan->karyawan_id)->first();
+        return view('Jobdesk.v_edit_jobdesk', compact('jobdesk', 'karyawan'));
     }
 
     /**
@@ -101,21 +99,20 @@ class JobdeskController extends Controller
     public function update(Request $request, $jobdesk_id)
     {
         $this->validate($request, [
-            'Tugas_Karyawan'=> 'required'
+            'Tugas_Karyawan' => 'required'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
             'nama' => Auth::user()->name,
             'level' => Auth::user()->level,
-            'aktivitas' => 'Mengubah Tugas Karyawan  '.$request->name.''
+            'aktivitas' => 'Mengubah Tugas Karyawan  ' . $request->name . ''
         ]);
-        $jobdesk= Jobdesk::find($jobdesk_id);
+        $jobdesk = Jobdesk::find($jobdesk_id);
 
-        $jobdesk->Tugas_Karyawan=$request->get('Tugas_Karyawan');
+        $jobdesk->Tugas_Karyawan = $request->get('Tugas_Karyawan');
         $jobdesk->save();
 
         return redirect('daftar_jobdesk')->banner("Data berhasil diubah");
-
     }
 
     /**
@@ -132,9 +129,8 @@ class JobdeskController extends Controller
             'id' => Auth::user()->id,
             'nama' => Auth::user()->name,
             'level' => Auth::user()->level,
-            'aktivitas' => 'Menghapus Tugas Karyawan  '.$jobdesk->name.''
+            'aktivitas' => 'Menghapus Tugas Karyawan  ' . $jobdesk->name . ''
         ]);
         return redirect('daftar_jobdesk')->banner("Data berhasil dihapus");
-
     }
 }
