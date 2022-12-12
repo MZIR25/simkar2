@@ -45,12 +45,12 @@ use Illuminate\Auth\Events\Authenticated;
 
 //         $user = UserFactory::new()->createOne();
 
-//         $response = $this->actingAs($admin)
-//             ->put(route('update_user', $user->id), [
-//                 'name' => 'Admin',
-//                 'email' => 'admin@gmail.com',
-//                 'level' => 'admin',
-//                 'karyawan_id' => '2',
+        $response = $this->actingAs($admin)
+            ->put(route('update_user', $user->id), [
+                'name' => $this->faker->name,
+                'email' => $this->faker->email,
+                'level' => 'admin',
+                'karyawan_id' => 2,
 
 //             ]);
 
