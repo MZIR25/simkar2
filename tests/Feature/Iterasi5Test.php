@@ -58,7 +58,7 @@ class Iterasi5Test extends TestCase
 
         $response = $this->actingAs($user)
             ->put(route('update_gaji', $gaji->gaji_id), [
-                'karyawan_id' => '1',
+                'karyawan_id' => $gaji->karyawan_id,
                 'Gaji_Pokok' => '11_000_000',
                 'Pajak_Bpjs' =>  '100_000',
                 'Jumlah_Gaji' => '10_000_000',
