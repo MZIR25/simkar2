@@ -12,48 +12,48 @@ use App\Models\User;
 use Database\Factories\UserFactory;
 use Illuminate\Auth\Events\Authenticated;
 
-class iterasi7Test extends TestCase
-{
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+// class iterasi7Test extends TestCase
+// {
+//     /**
+//      * A basic feature test example.
+//      *
+//      * @return void
+//      */
 
 
-    use WithoutMiddleware;
-    use WithFaker;
-    public function testLihatDaftarRiwayat()
-    {
-        $user = User::where('level', 'admin')->first();
-        $response = $this->actingAs($user)
-            ->get(route('riwayat'));
+//     use WithoutMiddleware;
+//     use WithFaker;
+//     public function testLihatDaftarRiwayat()
+//     {
+//         $user = User::where('level', 'admin')->first();
+//         $response = $this->actingAs($user)
+//             ->get(route('riwayat'));
 
-        $response->assertStatus(200);
-    }
-    public function testLihatDaftarUser()
-    {
-        $user = User::where('level', 'admin')->first();
-        $response = $this->actingAs($user)
-            ->get(route('manajemen_user'));
+//         $response->assertStatus(200);
+//     }
+//     public function testLihatDaftarUser()
+//     {
+//         $user = User::where('level', 'admin')->first();
+//         $response = $this->actingAs($user)
+//             ->get(route('manajemen_user'));
 
-        $response->assertStatus(200);
-    }
-    public function testEditUser()
-    {
-        $admin = User::where('level', 'admin')->first();
+//         $response->assertStatus(200);
+//     }
+//     public function testEditUser()
+//     {
+//         $admin = User::where('level', 'admin')->first();
 
-        $user = UserFactory::new()->createOne();
+//         $user = UserFactory::new()->createOne();
 
-        $response = $this->actingAs($admin)
-            ->put(route('update_user', $user->id), [
-                'name' => 'Admin',
-                'email' => 'admin@gmail.com',
-                'level' => 'admin',
-                'karyawan_id' => '2',
+//         $response = $this->actingAs($admin)
+//             ->put(route('update_user', $user->id), [
+//                 'name' => 'Admin',
+//                 'email' => 'admin@gmail.com',
+//                 'level' => 'admin',
+//                 'karyawan_id' => '2',
 
-            ]);
+//             ]);
 
-        $response->assertStatus(302);
-    }
-}
+//         $response->assertStatus(302);
+//     }
+// }

@@ -12,6 +12,7 @@ use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Foundation\Testing\WithoutMiddleware;
 use App\Models\User;
 use Database\Factories\GajiFactory;
+use Database\Factories\KaryawanFactory;
 use Illuminate\Auth\Events\Authenticated;
 
 
@@ -49,6 +50,7 @@ class Iterasi5Test extends TestCase
         $this->withoutExceptionHandling();
         $response->assertStatus(302);
         //$response->assertSuccessful();
+
     }
     public function testEditGaji()
 

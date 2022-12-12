@@ -26,7 +26,13 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $j->Karyawan->Nama_Karyawan }}</td>
-                            <td>{{ $j->Karyawan->Jabatan->Nama_Jabatan }}</td>
+                            <td>
+                                @if ($j->Jabatan === null )
+                                <span >Tidak Ada Jabatan</span>
+                                @else
+                                <span>{{ $j->Jabatan->Nama_Jabatan }}</span>
+                                @endif
+                            </td>
                             <td>{{ $j->Tugas_Karyawan }}</td>
                             <td>
 

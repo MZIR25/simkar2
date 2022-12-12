@@ -34,7 +34,13 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $c->Karyawan->Nama_Karyawan }}</td>
-                            <td>{{ $c->Karyawan->Jabatan->Nama_Jabatan }}</td>
+                            <td>
+                                @if ($c->Jabatan === null )
+                                <span >Tidak Ada Jabatan</span>
+                                @else
+                                <span>{{ $c->Jabatan->Nama_Jabatan }}</span>
+                                @endif
+                            </td>
                             <td>{{ $c->Alasan_Cuti }}</td>
                             <td>
                                 @if ($c->Status === 'Accept' )

@@ -45,7 +45,7 @@ class Iterasi1Test extends TestCase
     {
         $user = UserFactory::new()->createOne();
         $this->actingAs($user);
-        $this->assertAuthenticated();
+        $this->assertAuthenticatedAs($user);
 
         $response = $this->post('/logout');
 
