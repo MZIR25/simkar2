@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SIMKAN ValTech</title>
+  <title>Draft PDF Rekap Presensi</title>
 
   <script src="{{ mix('js/app.js') }}"></script>
   <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -42,7 +42,7 @@
     <div class="col-md-12 p-5 pt-2">
         <div class="card">
             <div class="card-body">
-                <h3><i class="fas fa-swatchbook"></i></i>Daftar Rekap Presensi</h3><hr>
+                <h3>Nama</h3><hr>
                     {{-- <a href="" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i>Rekap Presensi</a> --}}
                     <table class="table table-striped table-bordered" >
                         <thead>
@@ -66,6 +66,14 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="text-left">
+                    <ul class="list-unstyled">
+                        <li>Masuk =</li>
+                        <li>Terlambat =</li>
+                        <li>Terlambat =</li>
+                    </ul>
+
+                    </div>
             </div>
         </div>
     </div>
