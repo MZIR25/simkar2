@@ -42,7 +42,15 @@
     <div class="col-md-12 p-5 pt-2">
         <div class="card">
             <div class="card-body">
-                <h3>Nama</h3><hr>
+                <div class="row justify-content-between">
+                    <div class="col-4">
+                        <h3>Nama</h3>
+                    </div>
+                    <div class="col-4">
+                        <h3>Bulan</h3>
+                    </div>
+                  </div>
+
                     {{-- <a href="" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i>Rekap Presensi</a> --}}
                     <table class="table table-striped table-bordered" >
                         <thead>
