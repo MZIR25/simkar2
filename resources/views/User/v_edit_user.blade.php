@@ -47,7 +47,7 @@
                         <select name="level" id="level" class="form-control">
                             <option >admin</option>
                             <option >karyawan</option>
-                            <option >inactive</option>
+
                     </select>
                 </div>
 
@@ -60,7 +60,7 @@
                         <select name="karyawan_id" id="karyawan_id" class="form-control">
                             @foreach ($karyawan as $k)
 
-                            <option value="{{$k->karyawan_id}}">{{$k->karyawan_id}}</option>
+                            <option value="{{$k->karyawan_id}}">{{$k->karyawan_id}}.{{$k->Nama_Karyawan}}</option>
 
                             @endforeach
                         </select>

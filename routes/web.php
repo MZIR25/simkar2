@@ -89,6 +89,9 @@ Route::middleware(['auth','ceklevel:admin'])->group(function () {
     Route::get('/edit_devisi/{devisi_id}', [DevisiController::class, 'edit'])->name('edit_devisi');
     Route::put('/update_devisi/{devisi_id}', [DevisiController::class, 'update'])->name('update_devisi');
     Route::delete('/delete_devisi/{devisi_id}', [DevisiController::class, 'destroy'])->name('delete_devisi');
+
+
+
 });
 
 Route::middleware(['auth','ceklevel:admin,karyawan'])->group(function () {
@@ -115,6 +118,7 @@ Route::middleware(['auth','ceklevel:admin,karyawan'])->group(function () {
     Route::delete('/delete_laporan/{laporan}', [PresensiController::class, 'destroy_laporan'])->name('delete_laporan');
     Route::get('/detail_laporan/{laporan}', [PresensiController::class, 'detail_laporan'])->name('detail_laporan');
     Route::put('/update/laporan/{laporan}', [PresensiController::class, 'update_laporan'])->name('update_laporan_presensi');
+    Route::get('/rekap_presensi', [PresensiController::class, 'Rekap_Presensi'])->name('rekap_presensi');
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 

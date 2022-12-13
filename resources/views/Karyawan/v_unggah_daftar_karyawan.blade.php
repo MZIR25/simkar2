@@ -137,8 +137,16 @@
                 <div class="form-group row">
                     <label for="Status_Pernikahan" class="col-sm-2 col-form-label">Status Pernikahan</label>
                     <div class="col-sm-10">
-                        <input type="text" id="Status_Pernikahan" name="Status_Pernikahan" class="form-control" placeholder="Masukkan Status Pernikahan">
-                            {{-- <x-validate-error-message name="Status_Pernikahan"/> --}}
+                        <select name="Status_Pernikahan" id="Status_Pernikahan" class="form-control">
+                            <option >Belum Menikah</option>
+                            <option >Menikah</option>
+                            <option >Cerai Hidup</option>
+                            <option >Cerai Mati</option>
+                    </select>
+
+
+
+                        {{-- <x-validate-error-message name="Status_Pernikahan"/> --}}
                     </div>
                 </div>
 <!-- bagian Jumlah_Anak -->

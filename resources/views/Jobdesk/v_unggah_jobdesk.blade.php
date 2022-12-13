@@ -49,20 +49,20 @@
                     {{-- <x-validate-error-message name="Jabatan"/> --}}
 
 <!-- bagian Jam_Mulai -->
-                <div class="form-group row">
+                {{-- <div class="form-group row">
                     <label for="Jam_Mulai" class="col-sm-2 col-form-label">Jam Mulai</label>
                         <div class="col-md-10">
                             <input type="time" id="Jam_Mulai" name="Jam_Mulai" class="form-control" />
-                            {{-- <x-validate-error-message name="Jam_Mulai"/> --}}
+                            <x-validate-error-message name="Jam_Mulai"/>
                         </div>
                 </div>
                 <div class="form-group row">
                     <label for="Jam_Selesai" class="col-sm-2 col-form-label">Jam Selesai</label>
                         <div class="col-md-10">
                             <input type="time" id="Jam_Selesai" name="Jam_Selesai" class="form-control"/>
-                            {{-- <x-validate-error-message name="Jam_Selesai"/> --}}
+                            <x-validate-error-message name="Jam_Selesai"/>
                         </div>
-                </div>
+                </div> --}}
 <!-- bagian Tugas_Karyawan -->
                 <div class="form-group row">
                     <label for="Tugas_Karyawan" class="col-sm-2 col-form-label">Tugas Karyawan</label>

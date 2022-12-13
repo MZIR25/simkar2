@@ -179,4 +179,8 @@ class PresensiController extends Controller
 
         return back();
     }
+    public function Rekap_Presensi()
+    {
+        return view('Presensi.v_rekap_presensi');
+    }
 }

@@ -39,13 +39,26 @@
 
                         <select name="jabatan_id" id="jabatan_id" class="form-control">
                             @foreach ($jabatan as $j)
-                            <option value="{{$j->jabatan_id}}"> {{$j->Nama_Jabatan}}</option>
 
+                            <option value="{{$j->jabatan_id}}"> {{$j->Nama_Jabatan}}</option>
                             @endforeach
                         </select>
 
 
                         {{-- <x-validate-error-message name="Nama_Jabatan"/> --}}
+                    </div>
+                </div>
+<!-- bagian Devisi -->
+                <div class="form-group row">
+                    <label for="devisi_id" class="col-sm-2 col-form-label">Nama Devisi</label>
+                    <div class="col-sm-10">
+                        <select name="devisi_id" id="devisi_id" class="form-control">
+                            @foreach ($devisi as $d)
+                                <option value="{{$d->devisi_id}}">{{$d->Nama_Devisi}}</option>
+
+                            @endforeach
+                        </select>
+                        {{-- <x-validate-error-message name="devisi_id"/> --}}
                     </div>
                 </div>
 
@@ -81,19 +94,7 @@
                             {{-- <x-validate-error-message name="No_Ijazah"/> --}}
                     </div>
                 </div>
-<!-- bagian Devisi -->
-                <div class="form-group row">
-                    <label for="devisi_id" class="col-sm-2 col-form-label">Nama Devisi</label>
-                    <div class="col-sm-10">
-                        <select name="devisi_id" id="devisi_id" class="form-control">
-                            @foreach ($devisi as $d)
-                                <option value="{{$d->devisi_id}}">{{$d->Nama_Devisi}}</option>
 
-                            @endforeach
-                        </select>
-                        {{-- <x-validate-error-message name="devisi_id"/> --}}
-                    </div>
-                </div>
 <!-- bagian Alamat_Karyawan -->
                 <div class="form-group row">
                     <label for="Alamat_Karyawan" class="col-sm-2 col-form-label">Alamat Karyawan</label>
@@ -138,8 +139,14 @@
                 <div class="form-group row">
                     <label for="Status_Pernikahan" class="col-sm-2 col-form-label">Status Pernikahan</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{$karyawan->Status_Pernikahan}}"  id="Status_Pernikahan" name="Status_Pernikahan" class="form-control" placeholder="Masukkan Status Pernikahan">
-                            {{-- <x-validate-error-message name="Status_Pernikahan"/> --}}
+                        {{-- <input type="text" value="{{$karyawan->Status_Pernikahan}}"  id="Status_Pernikahan" name="Status_Pernikahan" class="form-control" placeholder="Masukkan Status Pernikahan"> --}}
+                        <select name="Status_Pernikahan" id="Status_Pernikahan" class="form-control">
+                            <option  >{{$karyawan->Status_Pernikahan}}</option>
+                            <option >Belum Menikah</option>
+                            <option >Menikah</option>
+                            <option >Cerai Hidup</option>
+                            <option >Cerai Mati</option>
+                    </select>
                     </div>
                 </div>
 <!-- bagian Jumlah_Anak -->
