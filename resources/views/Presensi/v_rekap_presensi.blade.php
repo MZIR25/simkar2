@@ -78,7 +78,7 @@
                     <ul class="list-unstyled">
                         <li>Masuk =</li>
                         <li>Terlambat =</li>
-                        <li>Terlambat =</li>
+                        <li>Tidak Masuk =</li>
                     </ul>
 
                     </div>
