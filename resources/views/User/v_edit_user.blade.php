@@ -47,6 +47,7 @@
                         <select name="level" id="level" class="form-control">
                             <option >admin</option>
                             <option >karyawan</option>
+                            <option >inactive</option>
                     </select>
                 </div>
 

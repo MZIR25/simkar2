@@ -32,6 +32,11 @@
                     <div>{{Session::get('alert-success')}}</div>
                 </div>
             @endif --}}
+                @if (session('error'))
+      <div class="alert alert-danger">
+            {{ session('error') }}
+      </div>
+    @endif
     <form id="quickForm" method="POST" action="{{ route('login') }}">
             @csrf
         <div class="input-group mb-3">

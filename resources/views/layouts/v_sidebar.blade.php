@@ -43,14 +43,14 @@
                 {{-- @endif --}}
                 @endif
                 @if (auth()->user()->karyawan_id)
-                @if (auth()->user()->Karyawan->Status == 'Active')
+
                 <li class="nav-item">
                 <a href="/data_diri_karyawan" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Data Diri</p>
                 </a>
                 </li>
-                @endif
+
                 @endif
                 @if (auth()->user()->level == "admin")
                 <li class="nav-item">
