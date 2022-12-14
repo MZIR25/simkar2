@@ -13,22 +13,11 @@ use Illuminate\Support\Facades\Auth;
 
 class JabatanController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $jabatan = Jabatan::all();
         return view('Jabatan.v_daftar_jabatan', compact('jabatan'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
 

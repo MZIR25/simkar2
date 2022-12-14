@@ -10,11 +10,6 @@ use App\Models\Devisi;
 use Illuminate\Support\Facades\Auth;
 class DevisiController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $devisi = Devisi::all();
