@@ -16,8 +16,8 @@ class CheckBanned
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-{
-    if(auth()->check() && (auth()->user()->karyawan->STATUS == 'Inactive')){
+    {
+        if (auth()->check() && (optional(auth()->user()->karyawan)->STATUS == 'Inactive')) {
             Auth::logout();
 
             $request->session()->invalidate();
@@ -25,9 +25,8 @@ class CheckBanned
             $request->session()->regenerateToken();
 
             return redirect()->route('login')->with('error', 'Your Account is suspended, please contact Admin.');
+        }
 
+        return $next($request);
     }
-
-    return $next($request);
-}
 }
