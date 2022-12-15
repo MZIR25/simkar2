@@ -40,7 +40,7 @@
                         <tr>
                             <th scope="col">No.</th>
                             <th scope="col">Tanggal</th>
-                            <th scope="col">Bulan</th>
+
                             <th scope="col">Status</th>
                         </tr>
                     </thead>
@@ -49,7 +49,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $presensi->tgl_presensi }}</td>
-                            <td>{}</td>
+
                             <td>{{ $presensi->keterangan }}</td>
                         </tr>
                         @endforeach

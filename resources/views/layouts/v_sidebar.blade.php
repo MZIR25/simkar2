@@ -104,6 +104,12 @@
                         <p>Rekap Presensi</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{route('form_rekap')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Form Rekap</p>
+                    </a>
+                </li>
             </ul>
             </li>
             @endif

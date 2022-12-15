@@ -223,4 +223,8 @@ class PresensiController extends Controller
         $pdf = new Dompdf();
         $html = view('Presensi.v_laporan_presensi_table')->render();
     }
+    public function form_rekap()
+    {
+        return view("Presensi.v_form_rekap");
+    }
 }
