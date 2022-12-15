@@ -62,4 +62,9 @@ class Karyawan extends Model
     {
         return $this->hasOne(Gaji::class);
     }
+
+    public function presensi()
+    {
+        return $this->hasMany(Presensi::class, 'karyawan_id');
+    }
 }

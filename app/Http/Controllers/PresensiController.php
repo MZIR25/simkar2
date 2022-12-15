@@ -10,6 +10,7 @@ use App\Models\Presensi;
 use App\Models\LaporanPresensi;
 use Carbon\Carbon;
 use App\Models\Riwayat;
+use Dompdf\Dompdf;
 use Exception;
 use Illuminate\Support\Str;
 
@@ -179,8 +180,47 @@ class PresensiController extends Controller
 
         return back();
     }
-    public function Rekap_Presensi()
+
+    public function rekap_presensi(Request $request)
     {
-        return view('Presensi.v_rekap_presensi');
+        try {
+
+            $data = $request->validate([
+                'start_date' => 'nullable|date|before:today',
+                'end_date' => 'nullable|date|after:start_date|before_or_equal:today'
+            ]);
+        } catch (Exception $e) {
+            dd($e);
+        }
+
+        $start = Carbon::createFromFormat('d-m-Y', $data['start_date'] ?? Carbon::now()->subMonth()->format("d-m-Y"));
+        $end = Carbon::createFromFormat('d-m-Y', $data['end_date'] ?? Carbon::now()->format("d-m-Y"));
+
+        $karyawan = Karyawan::with([
+            'presensi' => fn ($query) => $query->whereBetween('tgl_presensi', [$start->format("Y-m-d"), $end->format("Y-m-d")])
+        ])->has("presensi")->get();
+
+        $html = view('Presensi.v_rekap_presensi', [
+            'karyawan' => $karyawan,
+            'date' => [
+                'start' => $start,
+                'end' => $end,
+            ]
+        ])->render();
+
+        $pdf = new Dompdf();
+        $pdf->setBasePath(public_path(""));
+        $pdf->loadHtml($html);
+        $pdf->render();
+        // dd(public_path('template/dist/css/adminlte.min.css'), public_path());
+
+        return $pdf->stream();
+    }
+
+    public function download_laporan(Request $request)
+    {
+
+        $pdf = new Dompdf();
+        $html = view('Presensi.v_laporan_presensi_table')->render();
     }
 }
