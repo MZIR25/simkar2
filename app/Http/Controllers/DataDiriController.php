@@ -14,8 +14,8 @@ class DataDiriController extends Controller
     public function index()
     {
         $karyawan = Karyawan::with(['Pendidikan'])->where('karyawan_id', Auth::user()->karyawan_id)->firstOrFail();
-        $jabatan = Jabatan::where('jabatan_id', $karyawan->jabatan_id)->firstOrFail();
-        $devisi = Devisi::where('devisi_id', $karyawan->devisi_id)->firstOrFail();
+        $jabatan = Jabatan::where('jabatan_id', $karyawan->jabatan_id)->first();
+        $devisi = Devisi::where('devisi_id', $karyawan->devisi_id)->first();
         return view('Karyawan.DataDiri.v_data_diri_karyawan', compact('karyawan', 'jabatan', 'devisi'));
     }
 

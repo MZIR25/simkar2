@@ -35,7 +35,13 @@
                             <tr>
                                 <td class="textt">Nama Jabatan</td>
                                   <td>:</td>
-                                  <td>{{$jabatan->Nama_Jabatan}}</td>
+                                  <td> @if ($karyawan->Jabatan === null )
+                                    <span >Tidak Ada Jabatan</span>
+                                    @else
+                                    <span>{{ $karyawan->Jabatan->Nama_Jabatan }}</span>
+                                    @endif
+                                    </td>
+
                               </tr>
                             <tr>
                                 <td class="textt">Tingkat Pendidikan</td>
@@ -60,7 +66,13 @@
                               <tr>
                                 <td valign="top" class="textt">Nama Devisi</td>
                                   <td valign="top">:</td>
-                                  <td>{{$devisi->Nama_Devisi}}</td>
+
+                                  <td>@if ($karyawan->Devisi === null )
+                                    <span >Tidak Ada Devisi</span>
+                                    @else
+                                    <span>{{ $karyawan->Devisi->Nama_Devisi }}</span>
+                                    @endif
+                                    </td></td>
                               </tr>
                               <tr>
                                 <td valign="top" class="textt">Alamat Karyawan</td>
