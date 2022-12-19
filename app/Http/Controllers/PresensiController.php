@@ -104,13 +104,13 @@ class PresensiController extends Controller
     {
         $presensi = $this->get_today_presensi(auth()->user()->karyawan_id);
 
-        if ($request->status == "masuk") {
+        if ($request->status == "masuk" && $presensi->jam_masuk == null) {
             $presensi->update([
                 "jam_masuk" => Carbon::now()->format("H:i")
             ]);
         }
 
-        if ($request->status == "pulang") {
+        if ($request->status == "pulang" && $presensi->jam_keluar == null) {
             $presensi->update([
                 "jam_keluar" => Carbon::now()->format("H:i")
             ]);
