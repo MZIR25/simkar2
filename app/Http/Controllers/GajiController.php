@@ -33,7 +33,7 @@ class GajiController extends Controller
      */
     public function create()
     {
-        $karyawan = Karyawan::get();
+        $karyawan = Karyawan::orderBy("Nama_Karyawan")->get();
         return view('Gaji.v_unggah_gaji', compact('karyawan'));
     }
     public function store(Request $request)

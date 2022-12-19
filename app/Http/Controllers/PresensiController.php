@@ -37,7 +37,7 @@ class PresensiController extends Controller
 
     public function laporan()
     {
-        $karyawan = Karyawan::all();
+        $karyawan = Karyawan::orderBy("Nama_Karyawan")->get();
         return view("Presensi.v_laporan_presensi", compact("karyawan"));
     }
 

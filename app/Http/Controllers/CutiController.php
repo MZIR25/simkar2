@@ -29,7 +29,7 @@ class CutiController extends Controller
      */
     public function create()
     {
-        $karyawan = Karyawan::get();
+        $karyawan = Karyawan::orderBy("Nama_Karyawan")->get();
         return view('Cuti.v_unggah_cuti', compact('karyawan'));
     }
     public function store(Request $request)
