@@ -80,14 +80,14 @@
                 <div class="form-group row">
                     <label for="Tanggal_Mulai" class="col-sm-2 col-form-label">Tanggal Mulai</label>
                         <div class="col-sm-10">
-                            <input type="date" value="{{$cuti->Tanggal_Mulai}}" id="Tanggal_Mulai" name="Tanggal_Mulai" class="form-control"/>
+                            <input type="date" value="{{$cuti->Tanggal_Mulai->format("Y-m-d"))}}" id="Tanggal_Mulai" name="Tanggal_Mulai" class="form-control"/>
                             {{-- <x-validate-error-message name="Tanggal_Mulai"/> --}}
                         </div>
                 </div>
                 <div class="form-group row">
                     <label for="Tanggal_Selesai" class="col-sm-2 col-form-label">Tanggal Selesai</label>
                         <div class="col-sm-10">
-                            <input type="date" value="{{$cuti->Tanggal_Selesai}}" id="Tanggal_Selesai" name="Tanggal_Selesai" class="form-control"/>
+                            <input type="date" value="{{$cuti->Tanggal_Selesai->format("Y-m-d"))}}" id="Tanggal_Selesai" name="Tanggal_Selesai" class="form-control"/>
                             {{-- <x-validate-error-message name="Tanggal_Selesai"/> --}}
                         </div>
                 </div>
