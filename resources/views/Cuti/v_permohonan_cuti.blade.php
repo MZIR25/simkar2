@@ -24,6 +24,7 @@
                         <th scope="col">Keterangan Status</th>
                         <th scope="col">Tangggal Mulai Cuti</th>
                         <th scope="col">Tangggal Selesai Cuti</th>
+                        <th scope="col">Jumlah Hari</th>
                         <th scope="col">Alamat</th>
                         <th scope="col">Nomor HP</th>
                         <th style="width: 8%">Aksi</th>
@@ -53,6 +54,7 @@
                             <td>{{ $c->Keterangan_Status }}</td>
                             <td>{{ $c->Tanggal_Mulai }}</td>
                             <td>{{ $c->Tanggal_Selesai }}</td>
+                            <td>{{ $c->jumlah_hari }}</td>
                             <td>{{ $c->Karyawan->Alamat_Karyawan }}</td>
                             <td>{{ $c->Karyawan->No_Hp }}</td>
                             <td>
