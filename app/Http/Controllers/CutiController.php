@@ -89,10 +89,9 @@ class CutiController extends Controller
     public function update(Request $request, $cuti_id)
     {
         $this->validate($request, [
-
             'Alasan_Cuti' => 'required',
-            'Tanggal_Mulai' => 'required',
-            'Tanggal_Selesai' => 'required',
+            'Tanggal_Mulai' => 'nullable',
+            'Tanggal_Selesai' => 'nullable',
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
@@ -105,8 +104,8 @@ class CutiController extends Controller
         $cuti->Alasan_Cuti = $request->get('Alasan_Cuti');
         $cuti->Status = $request->get('Status');
         $cuti->Keterangan_Status = $request->get('Keterangan_Status');
-        $cuti->Tanggal_Mulai = $request->get('Tanggal_Mulai');
-        $cuti->Tanggal_Selesai = $request->get('Tanggal_Selesai');
+        $cuti->Tanggal_Mulai = $request->get('Tanggal_Mulai') ?? $cuti->Tanggal_Mulai;
+        $cuti->Tanggal_Selesai = $request->get('Tanggal_Selesai') ?? $cuti->Tanggal_Selesai;
         $cuti->save();
 
         return redirect('permohonan_cuti')->banner('Data berhasil diubah');
