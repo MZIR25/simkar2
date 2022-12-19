@@ -74,7 +74,7 @@ class Karyawan extends Model
         {
             return asset('storage/'. $this->image);
         } else {
-            return asset("karyawan.png");
+            return asset("image/karyawan.png");
         }
     }
 }
