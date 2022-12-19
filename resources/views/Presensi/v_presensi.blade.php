@@ -47,10 +47,30 @@
                             @csrf
                             <div class="row g-3 mt-4">
                                 <div class="col mx-3">
-                                    <button class="w-100" @if($presensi == null) type="submit" name="status" value="masuk" @else type="button" @endif>Presensi Masuk</button>
+                                    <button
+                                        class="w-100"
+                                        @if($presensi == null)
+                                            type="submit" name="status" value="masuk"
+                                        @else
+                                            type="button"
+                                        @endif
+
+                                        @if($presensi && $presensi->jam_masuk == null)
+                                            disable
+                                        @endif
+                                    >
+                                        Presensi Masuk
+                                    </button>
                                 </div>
                                 <div class="col mx-3">
-                                    <button class="w-100" type="submit" name="status" value="pulang">Presensi Pulang</button>
+                                    <button
+                                        class="w-100" type="submit" name="status" value="pulang"
+                                        @if($presensi && $presensi->jam_keluar != null)
+                                            disable
+                                        @endif
+                                    >
+                                        Presensi Pulang
+                                    </button>
                                 </div>
                             </div>
                         </form>
