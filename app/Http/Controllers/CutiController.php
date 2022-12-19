@@ -88,6 +88,7 @@ class CutiController extends Controller
     }
     public function update(Request $request, $cuti_id)
     {
+        // dd($request->all());
         $this->validate($request, [
             'Alasan_Cuti' => 'required',
             'Tanggal_Mulai' => 'nullable',
