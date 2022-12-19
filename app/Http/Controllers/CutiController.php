@@ -8,16 +8,19 @@ use App\Models\Riwayat;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class CutiController extends Controller
 {
     public function index()
     {
+        DB::enableQueryLog();
         if (Auth::user()->level == "karyawan") {
             $cuti = Cuti::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan')->get();
         } else {
-            $cuti = Cuti::with('Karyawan')->get();
+            $cuti = Cuti::whereHas("Karyawan", fn ($q) => $q->where("STATUS","Active"))->get();
         }
+        dd(DB::getQueryLog());
         return view('Cuti.v_permohonan_cuti', compact('cuti'));
     }
 

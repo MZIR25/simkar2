@@ -80,7 +80,7 @@
                 text: '<i class="fa fa-file-excel mr-2"></i>Export Excel',
                 className: 'btn btn-default mb-3',
                 exportOptions: {
-                    columns: [ 0, 1, 2, 3, 4, 5, 6]
+                    columns: [ 0, 1, 2, 3]
                 }
             }
 
