@@ -33,7 +33,7 @@ class JobdeskController extends Controller
      */
     public function create()
     {
-        $karyawan = Karyawan::doesntHave("Karyawan")->orderBy("Nama_Karyawan")->get();
+        $karyawan = Karyawan::doesntHave("Jobdesk")->orderBy("Nama_Karyawan")->get();
         return view('Jobdesk.v_unggah_jobdesk', compact('karyawan'));
     }
 
