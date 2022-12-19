@@ -21,7 +21,6 @@ class GajiController extends Controller
         if (Auth::user()->level == "karyawan") {
             $gaji = Gaji::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan');
         } else {
-
             $gaji = Gaji::with(['Karyawan'])->whereRelation("Karyawan", "STATUS","Active")->get();
         }
 

@@ -15,7 +15,7 @@
                         <tr>
                         <th scope="col">No.</th>
                         <th scope="col">Nama Jabatan</th>
-                        <th style="width: 15%">Aksi</th>
+                        <th style="width: 20%">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
