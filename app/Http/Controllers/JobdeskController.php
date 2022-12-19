@@ -58,10 +58,8 @@ class JobdeskController extends Controller
             'aktivitas' => 'Mengunggah Tugas Karyawan  ' . $request->name . ''
         ]);
 
-        $jobdesk = Jobdesk::updateOrCreate([
+        $jobdesk = Jobdesk::create([
             'karyawan_id' => $request->karyawan_id,
-
-        ], [
             'Tugas_Karyawan' => $request->Tugas_Karyawan
         ]);
         return redirect('daftar_jobdesk')->banner("Data berhasil dibuat");
