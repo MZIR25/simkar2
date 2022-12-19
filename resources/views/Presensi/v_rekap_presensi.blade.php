@@ -14,9 +14,6 @@
             page-break-after: always;
         }
 
-    {{--     .wrapper-page:last-child { --}}
-    {{--         page-break-after: avoid; --}}
-    {{--     } --}}
     </style>
 </head>
 
@@ -30,7 +27,7 @@
                         <h3>{{ $item->Nama_Karyawan }}</h3>
                     </div>
                     <div class="col-4">
-                        <h3>{{ $date['start']->format('d-m-Y') }} - {{ $date['end']->format('d-m-Y') }}</h3>
+                        <h3>{{ $date['start']->format('d-m-Y') }} sampai {{ $date['end']->format('d-m-Y') }}</h3>
                     </div>
                 </div>
 
@@ -40,7 +37,8 @@
                         <tr>
                             <th scope="col">No.</th>
                             <th scope="col">Tanggal</th>
-
+                            <th scope="col">Jam Masuk</th>
+                            <th scope="col">Jam Keluar</th>
                             <th scope="col">Status</th>
                         </tr>
                     </thead>
@@ -49,7 +47,8 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $presensi->tgl_presensi }}</td>
-
+                            <td>{{ $presensi->jam_masuk }}</td>
+                            <td>{{ $presensi->jam_keluar }}</td>
                             <td>{{ $presensi->keterangan }}</td>
                         </tr>
                         @endforeach
