@@ -55,7 +55,7 @@ class Karyawan extends Model
 
     public function User()
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class, "karyawan_id");
     }
 
     public function Gaji()
