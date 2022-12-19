@@ -18,10 +18,10 @@ class GajiController extends Controller
         if (Auth::user()->level == "karyawan") {
             $gaji = Gaji::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan');
         } else {
-            $gaji = Gaji::with('Karyawan');
+            $gaji = Gaji::all();
         }
 
-        $gaji = $gaji->whereHas("Karyawan.Jabatan")->get();
+        // $gaji = $gaji->whereHas("Karyawan.Jabatan")->get();
 
         return view('Gaji.v_daftar_gaji', compact('gaji'));
     }
