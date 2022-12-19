@@ -61,7 +61,7 @@ class ManajemenUserController extends Controller
      */
     public function edit($id)
     {
-        $karyawan = Karyawan::all();
+        $karyawan = Karyawan::doesntHave("User")->orderBy("Nama_Karyawan")->get();
         $users = User::find($id);
         // dd($users);
         return view('User.v_edit_user', compact('users', 'karyawan'));

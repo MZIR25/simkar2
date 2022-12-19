@@ -17,7 +17,7 @@
                       <div class="row">
                         <div class="col-md-4">
                         <div class="img">
-                          <img class="img-thumbnail" style="max-width: 100%;" src="{{asset('storage/'.$karyawan->image)}}">
+                          <img class="img-thumbnail" style="max-width: 100%;" src="{{$karyawan->imageLink()}}">
                         </div>
                         </div>
                         <div class="col-md-8">

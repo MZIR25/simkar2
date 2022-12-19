@@ -37,7 +37,7 @@ class PresensiController extends Controller
 
     public function laporan()
     {
-        $karyawan = Karyawan::all();
+        $karyawan = Karyawan::orderBy("Nama_Karyawan")->get();
         return view("Presensi.v_laporan_presensi", compact("karyawan"));
     }
 
@@ -65,8 +65,8 @@ class PresensiController extends Controller
     public function store_laporan(Request $request)
     {
         $this->validate($request, [
-            'jam_mulai' => 'required|date_format:H:i',
-            'jam_selesai' => 'required|date_format:H:i',
+            'jam_mulai' => 'required|date_format:H:i|before:jam_selesai',
+            'jam_selesai' => 'required|date_format:H:i|after:jam_mulai',
             'uraian_pekerjaan' => 'required|string',
             'output_pekerjaan' => 'required|string',
             'file' => 'required|file',
@@ -183,15 +183,10 @@ class PresensiController extends Controller
 
     public function rekap_presensi(Request $request)
     {
-        try {
-
-            $data = $request->validate([
-                'start_date' => 'nullable|date|before:today',
-                'end_date' => 'nullable|date|after:start_date|before_or_equal:today'
-            ]);
-        } catch (Exception $e) {
-            dd($e);
-        }
+        $data = $request->validate([
+            'start_date' => 'nullable|date|before:today',
+            'end_date' => 'nullable|date|after:start_date|before_or_equal:today'
+        ]);
 
         $start = Carbon::createFromFormat('d-m-Y', $data['start_date'] ?? Carbon::now()->subMonth()->format("d-m-Y"));
         $end = Carbon::createFromFormat('d-m-Y', $data['end_date'] ?? Carbon::now()->format("d-m-Y"));
