@@ -55,7 +55,7 @@
                                             type="button"
                                         @endif
 
-                                        @if($presensi && $presensi->jam_masuk == null)
+                                        @if($presensi && $presensi->jam_masuk != null)
                                             disabled
                                         @endif
                                     >
