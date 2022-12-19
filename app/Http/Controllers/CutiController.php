@@ -18,7 +18,7 @@ class CutiController extends Controller
         if (Auth::user()->level == "karyawan") {
             $cuti = Cuti::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan')->get();
         } else {
-            $cuti = Cuti::whereHas("Karyawan", fn ($q) => $q->where("STATUS","Active"))->get();
+            $cuti = Cuti::with(["Karyawan" => fn ($q) => $q->where("STATUS","Active")])->get();
         }
         dd(DB::getQueryLog());
         return view('Cuti.v_permohonan_cuti', compact('cuti'));
