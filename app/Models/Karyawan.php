@@ -67,4 +67,14 @@ class Karyawan extends Model
     {
         return $this->hasMany(Presensi::class, 'karyawan_id');
     }
+
+    public function imageLink()
+    {
+        if ($this->image != null)
+        {
+            return asset('storage/'. $this->image);
+        } else {
+            return asset("karyawan.png");
+        }
+    }
 }

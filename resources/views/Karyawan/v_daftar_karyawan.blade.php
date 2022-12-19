@@ -65,7 +65,7 @@
                             <td>{{ $k->Jumlah_Anak }}</td>
                             <td>{{ $k->No_Hp }}</td>
                             <td>{{ $k->karyawan_id }}</td>
-                            <td><img style="max-width: 100%;" src="{{asset('storage/'.$k->image)}}"></td>
+                            <td><img style="max-width: 100%;" src="{{$k->imageLink()}}"></td>
                             <td>
                                 <div>
                                     <a href="/edit_karyawan/{{$k->karyawan_id}}"><i class="fas fa-edit bg-warning p-2 text-white rounded d-inline" data-toggle="tooltip" title="Edit"></a></i>
