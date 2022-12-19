@@ -18,7 +18,7 @@
                         <tr>
                         <th scope="col">No.</th>
                         <th scope="col">Nama Karyawan</th>
-                        <th scope="col">Jabatan</th>
+                        {{-- <th scope="col">Jabatan</th> --}}
                         <th scope="col">Alasan Cuti</th>
                         <th scope="col">Status</th>
                         <th scope="col">Keterangan Status</th>
@@ -35,13 +35,13 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $c->Karyawan->Nama_Karyawan }}</td>
-                            <td>
+                            {{-- <td>
                                 @if ($c->Jabatan === null )
                                 <span >Tidak Ada Jabatan</span>
                                 @else
                                 <span>{{ $c->Jabatan->Nama_Jabatan }}</span>
                                 @endif
-                            </td>
+                            </td> --}}
                             <td>{{ $c->Alasan_Cuti }}</td>
                             <td>
                                 @if ($c->Status === 'Accept' )
