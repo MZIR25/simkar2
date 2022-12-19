@@ -9,6 +9,9 @@
         <h1 class="display-4"><span class="font-weight-bold"> Sistem Informasi Manajemen Karyawan</span></h1>
         <hr class="my-4">
         <p class="font-weight-light h2">SIMKAR</p>
+        @if (auth()->user() && auth()->user()->level == null)
+            <div>Akun belum di acc, silahkan menunggu admin</div>
+        @endif
         </div>
     </div>
 </div>
