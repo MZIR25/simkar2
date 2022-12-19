@@ -18,10 +18,10 @@ class JobdeskController extends Controller
         if (Auth::user()->level == "karyawan") {
             $jobdesk = Jobdesk::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan');
         } else {
-            $jobdesk = Jobdesk::with('Karyawan');
+            $jobdesk = Jobdesk::all();
         }
 
-        $jobdesk = $jobdesk->whereHas("Karyawan.Jabatan")->get();
+        // $jobdesk = $jobdesk->whereHas("Karyawan.Jabatan")->get();
 
         return view('Jobdesk.v_daftar_jobdesk', compact('jobdesk'));
     }
