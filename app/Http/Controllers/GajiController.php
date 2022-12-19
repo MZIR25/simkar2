@@ -10,15 +10,19 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class GajiController extends Controller
 {
     public function index()
     {
+        DB::enableQueryLog();
         if (Auth::user()->level == "karyawan") {
             $gaji = Gaji::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan');
         } else {
-            $gaji = Gaji::all();
+
+            $gaji = Gaji::with(['Karyawan'])->whereRelation("Karyawan", "STATUS","Active")->get();
         }
 
         // $gaji = $gaji->whereHas("Karyawan.Jabatan")->get();

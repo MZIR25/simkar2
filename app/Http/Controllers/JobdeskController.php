@@ -10,15 +10,17 @@ use App\Http\Requests\UpdateJobdeskRequest;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class JobdeskController extends Controller
 {
     public function index()
     {
+        DB::enableQueryLog();
         if (Auth::user()->level == "karyawan") {
             $jobdesk = Jobdesk::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan');
         } else {
-            $jobdesk = Jobdesk::all();
+            $jobdesk = Jobdesk::with(['Karyawan'])->whereRelation("Karyawan", "STATUS","Active")->get();
         }
 
         // $jobdesk = $jobdesk->whereHas("Karyawan.Jabatan")->get();

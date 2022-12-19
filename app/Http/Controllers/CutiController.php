@@ -20,7 +20,8 @@ class CutiController extends Controller
         } else {
             $cuti = Cuti::with(['Karyawan'])->whereRelation("Karyawan", "STATUS","Active")->get();
         }
-        dd(DB::getQueryLog());
+        // dd(DB::getQueryLog(),$cuti);
+        // dd(DB::getQueryLog());
         return view('Cuti.v_permohonan_cuti', compact('cuti'));
     }
 
