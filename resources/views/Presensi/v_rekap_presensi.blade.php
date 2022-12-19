@@ -14,6 +14,9 @@
             page-break-after: always;
         }
 
+        * {
+            font-size: 11px;
+        }
     </style>
 </head>
 
