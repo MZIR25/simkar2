@@ -33,7 +33,7 @@ class Karyawan extends Model
 
     public function Jobdesk()
     {
-        return $this->hasMany(Jobdesk::class);
+        return $this->hasMany(Jobdesk::class, "karyawan_id");
     }
     public function Jabatan()
     {
