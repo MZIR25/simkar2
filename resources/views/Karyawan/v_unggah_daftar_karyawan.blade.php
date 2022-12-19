@@ -121,8 +121,16 @@
                 <div class="form-group row">
                     <label for="Agama" class="col-sm-2 col-form-label">Agama</label>
                     <div class="col-sm-10">
-                        <input type="text" id="Agama" name="Agama" class="form-control" placeholder="Masukkan Agama">
-                            {{-- <x-validate-error-message name="Agama"/> --}}
+                        {{-- <input type="text" id="Agama" name="Agama" class="form-control" placeholder="Masukkan Agama"> --}}
+                        <select name="Agama" id="Agama" class="form-control">
+                            <option >Islam</option>
+                            <option >Kristen</option>
+                            <option >Katolik</option>
+                            <option >Hindu</option>
+                            <option >Buddha</option>
+                            <option >Kong Hu Chu</option>
+                    </select>
+                        {{-- <x-validate-error-message name="Agama"/> --}}
                     </div>
                 </div>
 <!-- bagian Golongan_Darah -->
