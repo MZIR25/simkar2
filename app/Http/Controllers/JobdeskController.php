@@ -33,7 +33,7 @@ class JobdeskController extends Controller
      */
     public function create()
     {
-        $karyawan = Karyawan::orderBy("Nama_Karyawan")->get();
+        $karyawan = Karyawan::doesntHave("Karyawan")->orderBy("Nama_Karyawan")->get();
         return view('Jobdesk.v_unggah_jobdesk', compact('karyawan'));
     }
 
@@ -55,12 +55,13 @@ class JobdeskController extends Controller
             'level' => Auth::user()->level,
             'aktivitas' => 'Mengunggah Tugas Karyawan  ' . $request->name . ''
         ]);
-        $jobdesk = new Jobdesk;
 
-        $jobdesk->karyawan_id = $request->get('karyawan_id');
-        $jobdesk->Tugas_Karyawan = $request->get('Tugas_Karyawan');
-        $jobdesk->save();
+        $jobdesk = Jobdesk::updateOrCreate([
+            'karyawan_id' => $request->karyawan_id,
 
+        ], [
+            'Tugas_Karyawan' => $request->Tugas_Karyawan
+        ]);
         return redirect('daftar_jobdesk')->banner("Data berhasil dibuat");
     }
 
