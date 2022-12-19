@@ -56,7 +56,7 @@
                                         @endif
 
                                         @if($presensi && $presensi->jam_masuk == null)
-                                            disable
+                                            disabled
                                         @endif
                                     >
                                         Presensi Masuk
@@ -66,7 +66,7 @@
                                     <button
                                         class="w-100" type="submit" name="status" value="pulang"
                                         @if($presensi && $presensi->jam_keluar != null)
-                                            disable
+                                            disabled
                                         @endif
                                     >
                                         Presensi Pulang
