@@ -36,8 +36,8 @@ class CutiController extends Controller
     {
         $this->validate($request, [
             'Alasan_Cuti' => 'required',
-            'Tanggal_Mulai' => 'required',
-            'Tanggal_Selesai' => 'required'
+            'Tanggal_Mulai' => 'required|date|before:Tanggal_Selesai',
+            'Tanggal_Selesai' => 'required|date|after:Tanggal_Mulai'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
