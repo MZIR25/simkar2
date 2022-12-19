@@ -18,12 +18,13 @@ class PresensiController extends Controller
 {
     public function presensi()
     {
-        $presensi = Presensi::where("tgl_presensi", Carbon::now()->format("Y-m-d"))->where("karyawan_id", Auth::user()->karyawan_id)->first();
+        $presensi = $this->get_today_presensi_or_null(auth()->user()->karyawan_id);
 
         $laporan = [];
         if ($presensi) {
             $laporan = LaporanPresensi::where('presensi_id', $presensi->presensi_id)->get();
         }
+
         $terlambat = "-";
         if ($presensi != null && $presensi->jam_masuk > "08:00:00") {
             $time = explode(":", $presensi->jam_masuk);
@@ -59,7 +60,12 @@ class PresensiController extends Controller
 
     public function get_today_presensi($id)
     {
-        return Presensi::where("tgl_presensi", Carbon::now()->format("Y-m-d"))->where("karyawan_id", $id)->first() ?? $this->create_presensi($id);
+        return $this->get_today_presensi_or_null($id) ?? $this->create_presensi($id);
+    }
+
+    public function get_today_presensi_or_null($id)
+    {
+        return Presensi::where("tgl_presensi", Carbon::now()->format("Y-m-d"))->where("karyawan_id", $id)->first();
     }
 
     public function store_laporan(Request $request)
