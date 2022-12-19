@@ -194,8 +194,8 @@ class PresensiController extends Controller
             'end_date' => 'nullable|date|after:start_date|before_or_equal:today'
         ]);
 
-        $start = Carbon::createFromFormat('d-m-Y', $data['start_date'] ?? Carbon::now()->subMonth()->format("d-m-Y"));
-        $end = Carbon::createFromFormat('d-m-Y', $data['end_date'] ?? Carbon::now()->format("d-m-Y"));
+        $start = Carbon::createFromFormat('Y-m-d', $data['start_date'] ?? Carbon::now()->subMonth()->format("Y-m-d"));
+        $end = Carbon::createFromFormat('Y-m-d', $data['end_date'] ?? Carbon::now()->format("Y-m-d"));
 
         $karyawan = Karyawan::with([
             'presensi' => fn ($query) => $query->whereBetween('tgl_presensi', [$start->format("Y-m-d"), $end->format("Y-m-d")])
