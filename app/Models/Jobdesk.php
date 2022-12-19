@@ -10,6 +10,7 @@ class Jobdesk extends Model
     protected $table = "jobdesk";
     protected $primaryKey = "jobdesk_id";
     protected $fillable = [
+        'karyawan_id',
         'jobdesk_id',
         'Tugas_Karyawan'
     ];
