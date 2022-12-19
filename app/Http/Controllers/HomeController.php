@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Riwayat;
+use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
 
@@ -23,6 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('layouts.v_home');
+        $riwayat = DB::table('riwayat')->latest()->paginate(100);
+        return view('layouts.v_home',compact('riwayat'));
     }
 }

@@ -52,7 +52,12 @@
                             <td>{{ $presensi->tgl_presensi }}</td>
                             <td>{{ $presensi->jam_masuk }}</td>
                             <td>{{ $presensi->jam_keluar }}</td>
-                            <td>{{ $presensi->keterangan }}</td>
+                            <td>
+                                @if ($presensi->keterangan === 'terlambat')
+                                <span class="badge badge-danger">{{ $presensi->keterangan }}</span>
+                                @else
+                                <span class="badge badge-success">{{ $presensi->keterangan }}</span>
+                            @endif</td>
                         </tr>
                         @endforeach
                     </tbody>

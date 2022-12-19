@@ -17,7 +17,7 @@
                       <div class="row">
                         <div class="col-md-4">
                         <div class="img">
-                          <img class="img-thumbnail" style="max-width: 100%;" src="{{$karyawan->imageLink()}}">
+                          <img class="img-thumbnail h-50" style="max-width: 100; max-height: 25%;" src="{{$karyawan->imageLink()}}">
                         </div>
                         </div>
                         <div class="col-md-8">

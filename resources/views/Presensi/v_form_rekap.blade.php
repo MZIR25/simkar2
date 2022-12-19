@@ -22,19 +22,19 @@
                 @endforeach
             </ul>
             @endif
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{route("rekap_presensi")}}" method="get" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label">Tanggal Mulai</label>
                         <div class="col-sm-10">
-                            <input type="date" id="" name="" class="form-control"/>
+                            <input type="date" id="star_date" name="star_date" class="form-control"/>
                             {{-- <x-validate-error-message name="Tanggal_Mulai"/> --}}
                         </div>
                 </div>
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label">Tanggal Selesai</label>
                         <div class="col-sm-10">
-                            <input type="date" id="" name="" class="form-control"/>
+                            <input type="date" id="end_date" name="end_date" class="form-control"/>
                             {{-- <x-validate-error-message name="Tanggal_Selesai"/> --}}
                         </div>
                 </div>
