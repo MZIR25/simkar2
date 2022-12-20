@@ -11,12 +11,15 @@ use App\Http\Controllers\Controller;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Devisi;
+use App\Models\Jabatan;
 
 
 class GajiController extends Controller
 {
     public function index()
     {
+
         DB::enableQueryLog();
         if (Auth::user()->level == "karyawan") {
             $gaji = Gaji::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan');
