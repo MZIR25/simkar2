@@ -45,6 +45,8 @@
     <script src="{{asset('template/')}}/plugins/jquery/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{asset('template/')}}/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Sweetalert2 -->
+    <script src="{{asset('vendor/sweetalert2/sweetalert2.all.min.js')}}"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
