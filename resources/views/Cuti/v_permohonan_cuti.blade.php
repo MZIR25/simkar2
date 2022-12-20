@@ -42,32 +42,6 @@
                                 @else
                                 <span>{{ $c->Jabatan->Nama_Jabatan }}</span>
                             @endif
-<<<<<<< HEAD
-                            </td>
-                                {{-- <span class="badge badge-success">{{ $c->Status }}</span></td> --}}
-                            <td>{{ $c->Keterangan_Status }}</td>
-                            <td>{{ $c->Tanggal_Mulai }}</td>
-                            <td>{{ $c->Tanggal_Selesai }}</td>
-                            <td>{{ $c->jumlah_hari }}</td>
-                            <td>{{ $c->Karyawan->Alamat_Karyawan }}</td>
-                            <td>{{ $c->Karyawan->No_Hp }}</td>
-                            <td>
-                                <div class="row">
-                                    <a href="/edit_cuti/{{$c->cuti_id}}"><i class="fas fa-edit bg-warning p-2 text-white rounded ml-2 mr-1" data-toggle="tooltip" title="Edit"></i></a>
-                                    <form id="myform" action="{{ url('delete_cuti', $c->cuti_id) }} " method="POST">
-                                        {{ csrf_field() }}
-                                        @method('DELETE')
-                                        <button class="btn btn-danger btn-sm mr-1" type="submit">
-                                            <i class="fas fa-trash-alt text-white rounded" data-toggle="tooltip" title="Hapus"></i></a>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-=======
                             </td> --}}
                                     <td>{{ $c->Alasan_Cuti }}</td>
                                     <td>
@@ -105,7 +79,6 @@
                         </tbody>
                     </table>
                 </div>
->>>>>>> 5e4dbcc6c7c7d37f48cf741a5c42d73ae1c58050
             </div>
         </div>
     </div>

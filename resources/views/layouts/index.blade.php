@@ -240,5 +240,32 @@
     });
 </script>
 @endif --}}
+<script>
+    document.querySelectorAll(".delete-button").forEach(function(item) {
+        item.addEventListener('click', function(event) {
+            event.preventDefault();
+            let form = item.closest("form");
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    form.submit();
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                }
+            });
+        })
+    })
+</script>
 </body>
 </html>

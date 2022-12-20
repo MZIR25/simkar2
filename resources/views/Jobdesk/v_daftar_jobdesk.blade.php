@@ -36,13 +36,15 @@
                             <td>{{ $j->Tugas_Karyawan }}</td>
                             <td>
 
-                            <div>
-                                <a href="/edit_jobdesk/{{$j->jobdesk_id}}"><i class="fas fa-edit bg-warning p-2 text-white rounded d-inline-block" data-toggle="tooltip" title="Edit"></a></i>
-                                <form class="d-inline-block " action="{{ url('delete_jobdesk', $j->jobdesk_id) }} " method="POST">
+                            <div class="row">
+                                <a href="/edit_jobdesk/{{$j->jobdesk_id}}"><i class="fas fa-edit bg-warning p-2 text-white rounded d-inline-block"
+                                    data-toggle="tooltip" title="Edit"></i></a>
+                                <form id="myForm" action="{{ url('delete_jobdesk', $j->jobdesk_id) }} "
+                                    method="POST">
                                     {{ csrf_field() }}
                                     @method('DELETE')
-                                    <button class="border-0 shadow-none p-0 d-inline" type="submit">
-                                        <i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Hapus"></i>
+                                    <button class="btn btn-danger btn-sm mr-1 delete-button" type="submit">
+                                        <i class="fas fa-trash-alt text-white rounded" data-toggle="tooltip" title="Hapus"></i>
                                     </button>
                                 </form>
                             </div>
@@ -125,4 +127,31 @@
     });
 </script>
 @endif
+<script>
+    document.querySelectorAll(".delete-button").forEach(function(item) {
+        item.addEventListener('click', function(event) {
+            event.preventDefault();
+            let form = item.closest("form");
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then(function(result) {
+                if (result.isConfirmed) {
+                    form.submit();
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                }
+            });
+        })
+    })
+</script>
 @endsection

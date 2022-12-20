@@ -27,7 +27,7 @@ class GajiController extends Controller
             $gaji = Gaji::with(['Karyawan'])->whereRelation("Karyawan", "STATUS","Active")->get();
         }
 
-        $gaji = $gaji->whereHas("Karyawan.Jabatan")->get();
+        // $gaji = $gaji->whereHas("Karyawan.Jabatan")->get();
 
 
         return view('Gaji.v_daftar_gaji', compact('gaji'));

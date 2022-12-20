@@ -24,12 +24,13 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $j->Nama_Jabatan}}</td>
                             <td>
-                                <a href="/edit_jabatan/{{$j->jabatan_id}}"><i class="d-inline fas fa-edit bg-warning p-2 text-white rounded " data-toggle="tooltip" title="Edit"></a></i>
+                                <div class="row">
+                                <a href="/edit_jabatan/{{$j->jabatan_id}}"><i class="fas fa-edit bg-warning p-2 text-white rounded ml-2 mr-1" data-toggle="tooltip" title="Edit"></a></i>
                                 <form class="d-inline " action="{{ url('delete_jabatan', $j->jabatan_id) }} " method="POST">
                                     {{ csrf_field() }}
                                     @method('DELETE')
-                                    <button class="border-0 shadow-none p-0 d-inline" type="submit">
-                                        <i class="fas fa-trash-alt bg-danger p-2 text-white rounded" data-toggle="tooltip" title="Hapus"></i>
+                                    <button class="btn btn-danger btn-sm mr-1 delete-button" type="submit">
+                                        <i class="fas fa-trash-alt text-white rounded" data-toggle="tooltip" title="Hapus"></i>
                                     </button>
                                 </form>
                             </td>
