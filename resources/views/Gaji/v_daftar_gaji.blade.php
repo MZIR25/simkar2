@@ -29,10 +29,10 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $g->Karyawan->Nama_Karyawan }}</td>
                             <td>
-                                @if ($g->Jabatan === null )
+                                @if ($g->Karyawan->Jabatan === null )
                                 <span >Tidak Ada Jabatan</span>
                                 @else
-                                <span>{{ $g->Jabatan->Nama_Jabatan }}</span>
+                                    <span>{{ $g->Karyawan->Jabatan->Nama_Jabatan }}</span>
                                 @endif
                             </td>
                             <td>{{ $g->Gaji_Pokok }}</td>
