@@ -60,7 +60,7 @@
                             <td>
                                 <div class="row">
                                     <a href="/edit_cuti/{{$c->cuti_id}}"><i class="fas fa-edit bg-warning p-2 text-white rounded ml-2 mr-1" data-toggle="tooltip" title="Edit"></i></a>
-                                    <form action="{{ url('delete_cuti', $c->cuti_id) }} " method="POST">
+                                    <form id="myForm" action="{{ url('delete_cuti', $c->cuti_id) }} " method="POST">
                                         {{ csrf_field() }}
                                         @method('DELETE')
                                         <button class="btn btn-danger btn-sm mr-1" type="submit">
@@ -147,4 +147,25 @@
     });
 </script>
 @endif
+<script>
+Swal.fire({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {(
+    if (result.isConfirmed) {
+      Swal.fire(
+        'Deleted!',
+        'Your file has been deleted.',
+        'success'
+      )
+    })$('#myForm').submit();
+  });
+
+
+</script>
 @endsection
