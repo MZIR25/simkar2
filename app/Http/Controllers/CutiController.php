@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use App\Models\Jabatan;
+use App\Models\Devisi;
 
 class CutiController extends Controller
 {
@@ -20,6 +22,8 @@ class CutiController extends Controller
         } else {
             $cuti = Cuti::with(['Karyawan'])->whereRelation("Karyawan", "STATUS","Active")->get();
         }
+        $jabatan = Jabatan::where('jabatan_id')->first();
+        $devisi = Devisi::where('devisi_id')->first();
         // dd(DB::getQueryLog(),$cuti);
         // dd(DB::getQueryLog());
         return view('Cuti.v_permohonan_cuti', compact('cuti'));
