@@ -100,6 +100,8 @@ Route::middleware(['auth','ceklevel:admin,karyawan'])->group(function () {
     Route::get('/unggah_cuti', [CutiController::class, 'create'])->name('unggah_cuti');
     Route::post('/simpan_cuti', [CutiController::class, 'store'])->name('simpan_cuti');
     Route::get('/edit_cuti/{cuti_id}', [CutiController::class, 'edit'])->name('edit_cuti');
+    Route::get('/rekap_cuti', [CutiController::class, 'rekap_cuti'])->name('rekap_cuti');
+
     //karyawan
     Route::get('/daftar_karyawan', [KaryawanController::class, 'index'])->name('daftar_karyawan');
     Route::get('/data_diri_karyawan', [DataDiriController::class, 'index'])->name('data_diri_karyawan');

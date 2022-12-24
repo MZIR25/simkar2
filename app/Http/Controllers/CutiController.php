@@ -139,4 +139,8 @@ class CutiController extends Controller
         ]);
         return redirect('permohonan_cuti')->banner("Data berhasil dihapus");
     }
+    public function rekap_cuti(Request $request)
+    {
+        return view('Cuti.v_rekap_cuti');
+    }
 }
