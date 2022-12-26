@@ -27,14 +27,14 @@
             <div class="card-body">
                 <div class="row justify-content-between">
                     <div class="col-4">
-                        {{-- <h3>{{ $item->Nama_Karyawan }}</h3> --}}
+                        <h3>{{ $item->Nama_Karyawan }}</h3>
                     </div>
                     <div class="col-4">
                         {{-- <h3>{{ $date['start']->format('d-m-Y') }} sampai dengan {{ $date['end']->format('d-m-Y') }}</h3> --}}
                     </div>
                 </div>
 
-                {{-- <a href="" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i>Rekap Presensi</a> --}}
+                <a href="" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i>Rekap Presensi</a>
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
@@ -63,7 +63,8 @@
                 <div class="text-left">
                     <ul class="list-unstyled">
                         <li>Jumlah Jatah Cuti = 12</li>
-                        <li>Jumlah Juti = {{ $item->cuti->count() }}</li>
+                        <li>Jumlah Cuti = {{ $item->cuti->count() }}</li>
+                        <li>Sisa Cuti </li>
                     </ul>
                 </div>
             </div>

@@ -69,12 +69,27 @@
             </ul>
             </li>
             <li class="nav-item">
-            <a href="/permohonan_cuti" class="nav-link">
+            <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-edit"></i>
                 <p>
-                Permohonan Cuti
+                Cuti
                 </p>
             </a>
+            <ul class="nav nav-treeview">
+                <li class="nav-item">
+                <a href="/permohonan_cuti" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Permohonan Cuti</p>
+                </a>
+                </li>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                    <a href="{{route('rekap_cuti')}}" class="nav-link">
+                        <i class="far fa-circle nav-icon"></i>
+                        <p>Rekap Cuti</p>
+                    </a>
+                    </li>
+            </ul>
             </li>
             @if (auth()->user()->karyawan_id)
             <li class="nav-item">
