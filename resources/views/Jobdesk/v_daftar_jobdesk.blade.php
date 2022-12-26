@@ -37,9 +37,9 @@
                             <td>
 
                             <div class="row">
-                                <a href="/edit_jobdesk/{{$j->jobdesk_id}}"><i class="fas fa-edit bg-warning p-2 text-white rounded d-inline-block"
-                                    data-toggle="tooltip" title="Edit"></i></a>
-                                <form id="myForm" action="{{ url('delete_jobdesk', $j->jobdesk_id) }} "
+                                <a href="/edit_jobdesk/{{$j->jobdesk_id}}"><i class="fas fa-edit bg-warning p-2 text-white rounded ml-2 mr-1"
+                                    data-toggle="tooltip" title="Edit"></a></i>
+                                <form class="d-inline " id="myForm" action="{{ url('delete_jobdesk', $j->jobdesk_id) }} "
                                     method="POST">
                                     {{ csrf_field() }}
                                     @method('DELETE')

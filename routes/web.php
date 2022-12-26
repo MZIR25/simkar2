@@ -126,6 +126,7 @@ Route::middleware(['auth','ceklevel:admin,karyawan'])->group(function () {
 
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
+
     Route::get('/index', [HomeController::class, 'index'])->name('index');
 
 

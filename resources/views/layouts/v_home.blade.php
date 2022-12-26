@@ -13,8 +13,66 @@
         </div>
     </div>
 </div>
-
 <div class="row">
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-info">
+              <div class="inner">
+                <h3>{{ $karyawan->where("STATUS", "Active")->count() }}</h3>
+                <p>Jumlah Karyawan</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person"></i>
+              </div>
+              <a href="/daftar_karyawan" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{$cuti->count()}}</h3>
+
+                <p>Permohonan Cuti</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+              </div>
+              <a href="/permohonan_cuti" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+                <h3>{{$gaji->count()}}</h3>
+
+                <p>Dafta Gaji</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-document"></i>
+              </div>
+              <a href="/daftar_gaji" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-danger">
+              <div class="inner">
+                <h3>{{$jobdesk->count()}}</h3>
+
+                <p>Daftar Jobdesk</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-pie-graph"></i>
+              </div>
+              <a href="/daftar_jobdesk" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+{{-- <div class="row">
     <div class="col-md-12 p-5 pt-2">
         <div class="card">
             <div class="card-body">
@@ -78,6 +136,6 @@
             //   });
         });
 </script>
-@endif
+@endif --}}
 
 @endsection

@@ -1,7 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Models\Cuti;
 use App\Models\Riwayat;
+use App\Models\Pendidikan;
+use App\Models\Devisi;
+use App\Models\Gaji;
+use App\Models\Jabatan;
+use App\Models\Jobdesk;
+use App\Models\Karyawan;
 use Illuminate\Support\Facades\DB;
 
 use Illuminate\Http\Request;
@@ -25,7 +33,18 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $riwayat = DB::table('riwayat')->latest()->paginate(100);
-        return view('layouts.v_home',compact('riwayat'));
+        $karyawan = Karyawan::with(['Pendidikan'])->where('STATUS', 'Active')->get();
+        $cuti = Cuti::with(["Karyawan"])
+                ->whereRelation("Karyawan", "STATUS", "Active")
+                ->get();
+        $gaji = Gaji::with(["Karyawan"])
+        ->whereRelation("Karyawan", "STATUS", "Active")
+        ->get();
+        $jobdesk = Jobdesk::with(["Karyawan"])
+        ->whereRelation("Karyawan", "STATUS", "Active")
+        ->get();
+        return view('layouts.v_home',compact('karyawan','cuti','gaji','jobdesk'));
+
     }
+
 }
