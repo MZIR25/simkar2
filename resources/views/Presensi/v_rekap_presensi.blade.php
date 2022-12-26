@@ -37,12 +37,12 @@
         <div class="card">
             <div class="card-body">
 
-                <div class="row justify-content-between">
-                    <div class="col-3">
-                        <h3>{{ $item->Nama_Karyawan }}</h3>
+                <div class="row">
+                    <div class="col-auto mr-auto">
+                        <h5>{{ $item->Nama_Karyawan }}</h5>
                     </div>
-                    <div class="col-3">
-                        <h3>{{ $date['start']->format('d-m-Y') }} sampai dengan {{ $date['end']->format('d-m-Y') }}</h3>
+                    <div class="col-auto">
+                        <h5>{{ $date['start']->format('d-m-Y') }} sampai dengan {{ $date['end']->format('d-m-Y') }}</h5>
                     </div>
                 </div>
 
