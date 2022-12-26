@@ -52,6 +52,21 @@ class CutiController extends Controller
             "Tanggal_Mulai" => "required|date|before:Tanggal_Selesai",
             "Tanggal_Selesai" => "required|date|after:Tanggal_Mulai",
         ]);
+
+        $mulai = Carbon::createFromFormat("Y-m-d", $request->Tanggal_Mulai);
+        $cuti =
+            Cuti::where('karyawan_id', auth()->user()->karyawan_id)->whereYear('Tanggal_Mulai', $mulai->format("Y"))->where("Status", "Accept")->get();
+
+        if ($cuti) {
+            $cuti = $cuti->map(fn ($c) => $c->jumlahHari)->sum();
+
+            if ($cuti > 12) {
+                return redirect()->back()->withErrors([
+                    'Tanggal_Mulai' => 'Jatah cuti sudah habis'
+                ]);
+            }
+        }
+
         Riwayat::create([
             "id" => Auth::user()->id,
             "nama" => Auth::user()->name,
