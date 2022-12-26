@@ -56,8 +56,9 @@ class CutiController extends Controller
         $mulai = Carbon::createFromFormat("Y-m-d", $request->Tanggal_Mulai);
         $cuti =
             Cuti::where('karyawan_id', auth()->user()->karyawan_id)->whereYear('Tanggal_Mulai', $mulai->format("Y"))->where("Status", "Accept")->get();
+
         if ($cuti) {
-            $cuti = $cuti->map(fn ($c) => $c->Tanggal_Mulai->diffInDays($c->Tanggal_Selesai))->sum();
+            $cuti = $cuti->map(fn ($c) => $c->jumlahHari)->sum();
 
             if ($cuti > 12) {
                 return redirect()->back()->withErrors([

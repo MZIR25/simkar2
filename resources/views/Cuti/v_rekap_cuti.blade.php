@@ -54,7 +54,7 @@
                             <td>{{ $cuti->Status }}</td>
                             <td>{{ $cuti->Tanggal_Mulai }}</td>
                             <td>{{ $cuti->Tanggal_Selesai }}</td>
-                            <td>{{ $cuti->Tanggal_Mulai->diffInDays($cuti->Tanggal_Selesai) }}</td>
+                            <td>{{ $cuti->jumlahHari }}</td>
 
                         </tr>
                         @endforeach
@@ -63,7 +63,7 @@
                 <div class="text-left">
                     <ul class="list-unstyled">
                         <li>Jumlah Jatah Cuti = 12</li>
-                        <li>Jumlah Cuti = {{ $item->cuti->count() }}</li>
+                        <li>Jumlah Cuti = {{ $item->cuti->map(fn ($c) => $c->jumlahHari)->sum() }}</li>
                         <li>Sisa Cuti </li>
                     </ul>
                 </div>
