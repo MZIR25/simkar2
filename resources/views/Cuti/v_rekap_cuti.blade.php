@@ -64,7 +64,7 @@
                     <ul class="list-unstyled">
                         <li>Jumlah Jatah Cuti = 12</li>
                         <li>Jumlah Cuti = {{ $item->cuti->count() }}</li>
-                        <li>Sisa Cuti </li>
+                        <li>Sisa Cuti {{ $cuti->jumlah_hari }}</li>
                     </ul>
                 </div>
             </div>
