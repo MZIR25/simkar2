@@ -19,7 +19,16 @@
         }
     </style>
 </head>
-
+<table width="100%">
+    <tr>
+    <td width="25" align="center"><img src="{{asset('template/')}}/dist/img/logo_valtech1.png" width="60%"></td>
+    <td width="50" align="center">
+        <h1>CV. VAL TECH</h1><br>
+        <small>Perumahan Palm Hills Cluster Turquise, Kelurahan Sepinggan, Balikpapan Selatan</small></td>
+    <td width="25" align="center"><img src="" width="100%"></td>
+    </tr>
+    </table>
+    <hr>
 @foreach ($karyawan as $item)
 <div>
     <div>

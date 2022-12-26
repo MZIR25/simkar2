@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-light-info elevation-4">
     <!-- Brand Logo -->
-    <img src="{{asset('template/')}}/dist/img/logo_valtech.png" alt="Valtech Logo" class="img-fluid" style="opacity: .8">
+    <img src="{{asset('template/')}}/dist/img/logo_valtech1.png" alt="Valtech Logo" class="img-fluid" style="opacity: .8">
     <hr class="my-2">
     <!-- Sidebar -->
     <div class="sidebar">

@@ -22,10 +22,11 @@
 
     <table width="100%">
     <tr>
-    <td width="25" align="center"><img src="{{asset('template/')}}/dist/img/logo_valtech.png" width="60%"></td>
+    <td width="25" align="center"><img src="{{asset('template/')}}/dist/img/logo_valtech1.png" width="60%"></td>
     <td width="50" align="center">
-        <h1>CV. VAL TECH</h1><br>
-        <h5>Perumahan Palm Hills Cluster Turquise, Kelurahan Sepinggan, Balikpapan Selatan</h5></td>
+        <h1>CV. VAL TECH</h1>
+        <h3>Services, Manufacture, Development of Information Systems</h3>
+        <h6>Perumahan Palm Hills Cluster Turquise, Kelurahan Sepinggan, Balikpapan Selatan</h6></td>
     <td width="25" align="center"><img src="" width="100%"></td>
     </tr>
     </table>
@@ -35,11 +36,12 @@
     <div>
         <div class="card">
             <div class="card-body">
+
                 <div class="row justify-content-between">
-                    <div class="col-4">
+                    <div class="col-3">
                         <h3>{{ $item->Nama_Karyawan }}</h3>
                     </div>
-                    <div class="col-4">
+                    <div class="col-3">
                         <h3>{{ $date['start']->format('d-m-Y') }} sampai dengan {{ $date['end']->format('d-m-Y') }}</h3>
                     </div>
                 </div>

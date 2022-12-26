@@ -22,7 +22,7 @@
   <!-- /.login-logo -->
   <div class="card">
     <div class="card-body login-card-body" style="border-radius: 100px;">
-        <img src="{{asset('template/')}}/dist/img/logo_valtech.png" alt="Valtech Logo" class="img-fluid" style="opacity: .8">
+        <img src="{{asset('template/')}}/dist/img/logo_valtech1.png" alt="Valtech Logo" class="img-fluid" style="opacity: .8">
       <p class="login-box-msg pt-2">Register to start your session</p>
 
 
