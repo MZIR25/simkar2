@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('devisi', function (Blueprint $table) {
             $table->increments('devisi_id');
-            $table->string('Nama_Devisi')->nullable();
+            $table->string('Nama_Devisi',100)->nullable();
             $table->timestamps();
         });
     }

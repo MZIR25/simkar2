@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('karyawan', function (Blueprint $table) {
             $table->increments('karyawan_id');
-            $table->string('Nama_Karyawan')->nullable();
+            $table->string('Nama_Karyawan', 100)->nullable();
             $table->integer('jabatan_id')->unsigned()->nullable();
             $table->foreign('jabatan_id')->references('jabatan_id')->on('jabatan')->nullOnDelete('cascade');
             $table->integer('devisi_id')->unsigned()->nullable();

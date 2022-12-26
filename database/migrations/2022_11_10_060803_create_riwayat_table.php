@@ -17,9 +17,9 @@ return new class extends Migration
             $table->increments('riwayat_id');
             $table->integer('id')->unsigned()->nullable();
             $table->foreign('id')->references('id')->on('users')->nullOnDelete('cascade');
-            $table->string('nama')->nullable();
-            $table->string('level')->nullable();
-            $table->string('aktivitas')->nullable();
+            $table->string('nama', 60)->nullable();
+            $table->string('level', 10)->nullable();
+            $table->string('aktivitas', 100)->nullable();
             $table->timestamps();
         });
     }

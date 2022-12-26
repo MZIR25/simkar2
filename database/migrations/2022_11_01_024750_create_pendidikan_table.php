@@ -18,7 +18,7 @@ return new class extends Migration
             // $table->integer('karyawan_id')->unsigned();
             // $table->foreign('karyawan_id')->references('karyawan_id')->on('Karyawan')->onDelete('cascade');
             $table->string('Tingkat_Pendidikan')->nullable();
-            $table->string('Tahun_Lulus')->nullable();
+            $table->year('Tahun_Lulus')->nullable();
             $table->string('Nama_Sekolah')->nullable();
             $table->string('No_Ijazah')->nullable();
             $table->timestamps();

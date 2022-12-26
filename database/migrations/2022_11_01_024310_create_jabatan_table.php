@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('jabatan', function (Blueprint $table) {
             $table->increments('jabatan_id');
-            $table->string('Nama_Jabatan')->nullable();
+            $table->string('Nama_Jabatan', 100)->nullable();
             $table->timestamps();
             });
     }
