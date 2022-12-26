@@ -25,14 +25,15 @@ return new class extends Migration
             $table->string('Alamat_Karyawan')->nullable();
             $table->string('Tempat_Lahir')->nullable();
             $table->date('Tanggal_Lahir')->nullable();
-            $table->string('Agama')->nullable();
-            $table->string('Golongan_Darah')->nullable();
-            $table->string('Status_Pernikahan')->nullable();
+            $table->string('Agama', 15)->nullable();
+            $table->string('Jenis_Kelamin', 10)->nullable();
+            $table->string('Golongan_Darah', 5)->nullable();
+            $table->string('Status_Pernikahan', 20)->nullable();
             $table->integer('Jumlah_Anak')->nullable();
             $table->string('No_Hp')->nullable();
             $table->date('Mulai_Kerja')->nullable();
             $table->string('image')->nullable();
-            $table->string('STATUS')->nullable();
+            $table->string('STATUS', 10)->nullable();
             $table->timestamps();
         });
     }

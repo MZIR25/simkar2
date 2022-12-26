@@ -136,6 +136,17 @@
                         {{-- <x-validate-error-message name="Agama"/> --}}
                     </div>
                 </div>
+<!-- bagian Jenis Kelamin -->
+                <div class="form-group row">
+                    <label for="Jenis_Kelamin" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                    <div class="col-sm-10">
+                        <select name="Jenis_Kelamin" id="Jenis_Kelamin" class="form-control">
+                            <option >{{$karyawan->Jenis_Kelamin}}</option>
+                            <option >Laki-laki</option>
+                            <option >Perempuan</option>
+                    </select>
+                    </div>
+                </div>
 <!-- bagian Golongan_Darah -->
                 <div class="form-group row">
                     <label for="Golongan_Darah" class="col-sm-2 col-form-label">Golongan Darah</label>

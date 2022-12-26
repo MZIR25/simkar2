@@ -9,10 +9,11 @@
         <img src="{{asset('template/')}}/dist/img/logo_valtech1.png"  alt="Valtech Logo" class="rounded w-25 mx-auto d-block "  >
         <h1 class="display-4"><span class="font-weight-bold"> Sistem Informasi Manajemen Karyawan</span></h1>
         <hr class="my-4">
-        <p class="font-weight-light h2">SIMKAR</p>
+        {{-- <p class="font-weight-light h2">SIMKAR</p> --}}
         </div>
     </div>
-</div>
+
+@if (auth()->user()->level == "admin")
 <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -72,7 +73,7 @@
               <a href="/daftar_jobdesk" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-{{-- <div class="row">
+</div>
     <div class="col-md-12 p-5 pt-2">
         <div class="card">
             <div class="card-body">
@@ -104,8 +105,9 @@
             </div>
         </div>
     </div>
-</div>
-@if (auth()->user()->level == "admin")
+
+@endif
+
 <script>
     $(function () {
         $("#myTable").DataTable({
@@ -119,10 +121,6 @@
                 title: 'Daftar Riwayat',
                 text: '<i class="fa fa-file-excel "></i>Export Excel',
                 className: 'btn btn-default mb-3'
-
-
-
-
         }]
             }).buttons().remove().container().appendTo('#myTable_wrapper .fluid col-md-6:eq(0)');
             // $('#example2').DataTable({
@@ -136,6 +134,6 @@
             //   });
         });
 </script>
-@endif --}}
+
 
 @endsection

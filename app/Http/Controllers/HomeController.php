@@ -43,7 +43,8 @@ class HomeController extends Controller
         $jobdesk = Jobdesk::with(["Karyawan"])
         ->whereRelation("Karyawan", "STATUS", "Active")
         ->get();
-        return view('layouts.v_home',compact('karyawan','cuti','gaji','jobdesk'));
+        $riwayat = DB::table('riwayat')->latest()->paginate(100);
+        return view('layouts.v_home',compact('karyawan','cuti','gaji','jobdesk','riwayat'));
 
     }
 

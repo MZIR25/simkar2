@@ -46,9 +46,9 @@ class GajiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'Gaji_Pokok' => 'required',
-            'Pajak_Bpjs' => 'required',
-            'Jumlah_Gaji' => 'required'
+            'Gaji_Pokok' => 'required|numeric|min:0',
+            'Pajak_Bpjs' => 'required|numeric|min:0',
+            'Jumlah_Gaji' => 'required|numeric|min:0'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
