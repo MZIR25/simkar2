@@ -90,6 +90,13 @@
                         <p>Rekap Cuti</p>
                     </a>
                     </li>
+                </li>
+                <li class="nav-item">
+                <a href="{{route('form_rekap_cuti')}}" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>Form Rekap Cuti</p>
+                </a>
+                </li>
             </ul>
             </li>
             @if (auth()->user()->karyawan_id)

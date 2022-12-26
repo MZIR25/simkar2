@@ -27,15 +27,15 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label">Tanggal Mulai</label>
                         <div class="col-sm-10">
-                            <input type="date-own" id="star_date" name="star_date" class="form-control"/>
-                            {{-- <x-validate-error-message name="Tanggal_Mulai"/> --}}
+                            <input type="" id="" name="" class="form-control"/>
+
                         </div>
                 </div>
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label">Tanggal Selesai</label>
                         <div class="col-sm-10">
-                            <input type="date-own" id="end_date" name="end_date" class="form-control"/>
-                            {{-- <x-validate-error-message name="Tanggal_Selesai"/> --}}
+                            <input type="" id="" name="" class="form-control"/>
+
                         </div>
                 </div>
                 <div class="form-group row">
@@ -48,11 +48,5 @@
         </div>
     </div>
   </div>
-  <script>
-    $('.date-own').datepicker({
-         minViewMode: 2,
-         format: 'yyyy'
-       });
-    </script>
 
 @endsection

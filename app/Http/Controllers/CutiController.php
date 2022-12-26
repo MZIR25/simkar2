@@ -207,4 +207,8 @@ class CutiController extends Controller
 
         return $pdf->stream();
     }
+    public function form_rekap_cuti()
+    {
+        return view("Cuti.v_form_rekap_cuti");
+    }
 }
