@@ -78,9 +78,7 @@ class ManajemenUserController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'email' => 'required',
-
-
+            'email' => ['required', 'string', 'email', 'max:255'],
         ]);
 
         $users = User::findOrFail($id);

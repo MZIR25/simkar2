@@ -45,6 +45,7 @@
                     <label for="level" class="col-sm-2 col-form-label">Level User</label>
                     <div class="col-sm-10">
                         <select name="level" id="level" class="form-control">
+                            <option >{{$users->level}}</option>
                             <option >admin</option>
                             <option >karyawan</option>
 

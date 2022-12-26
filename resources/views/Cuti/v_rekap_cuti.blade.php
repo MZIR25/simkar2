@@ -34,7 +34,7 @@
                     </div>
                 </div>
 
-                <a href="" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i>Rekap Presensi</a>
+                {{-- <a href="" class="btn btn-primary mb-3"><i class="fas fa-plus-square mr-2"></i>Rekap Presensi</a> --}}
                 <table class="table table-striped table-bordered">
                     <thead>
                         <tr>
