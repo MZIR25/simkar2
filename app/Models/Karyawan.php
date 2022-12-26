@@ -77,4 +77,14 @@ class Karyawan extends Model
             return asset("image/karyawan.png");
         }
     }
+
+    public function cuti()
+    {
+        return $this->hasMany(Cuti::class, 'karyawan_id');
+    }
+
+    // public function scopeWithCutiBetween($query, $start, $end)
+    // {
+    //     return $query->
+    // }
 }
