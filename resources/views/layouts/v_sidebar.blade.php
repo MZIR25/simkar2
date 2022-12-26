@@ -73,7 +73,9 @@
                 <i class="nav-icon fas fa-edit"></i>
                 <p>
                 Cuti
+                <i class="fas fa-angle-left right"></i>
                 </p>
+
             </a>
             <ul class="nav nav-treeview">
                 <li class="nav-item">
@@ -82,7 +84,6 @@
                     <p>Permohonan Cuti</p>
                 </a>
                 </li>
-                <ul class="nav nav-treeview">
                     <li class="nav-item">
                     <a href="{{route('rekap_cuti')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>

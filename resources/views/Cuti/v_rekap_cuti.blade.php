@@ -30,7 +30,7 @@
                         <h3>{{ $item->Nama_Karyawan }}</h3>
                     </div>
                     <div class="col-4">
-                        {{-- <h3>{{ $date['start']->format('d-m-Y') }} sampai dengan {{ $date['end']->format('d-m-Y') }}</h3> --}}
+                        {{-- <h3>{{ $start->format('Y') }} sampai dengan {{ $end->format('Y') }}</h3> --}}
                     </div>
                 </div>
 
