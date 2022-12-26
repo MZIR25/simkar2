@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use App\Models\Jabatan;
 use App\Models\Devisi;
+use Dompdf\Dompdf;
 use Illuminate\Support\Carbon;
 
 class CutiController extends Controller
@@ -154,8 +155,7 @@ class CutiController extends Controller
     {
         $data = $request->validate([
             "start_date" => "nullable|date|before:today",
-            "end_date" =>
-                "nullable|date|after:start_date|before_or_equal:today",
+            "end_date" => "nullable|date|after:start_date|before_or_equal:today",
         ]);
 
         $start = Carbon::createFromFormat(
@@ -172,7 +172,7 @@ class CutiController extends Controller
 
         // dd(Cuti::whereBetween('Tanggal_Mulai', [$start->format("Y-m-d"), $end->format("Y-m-d")])->with("Karyawan")->get());
         $karyawan = Karyawan::with([
-            "cuti" => fn($query) => $query
+            "cuti" => fn ($query) => $query
                 ->whereBetween("Tanggal_Mulai", [
                     $start->format("Y-m-d"),
                     $end->format("Y-m-d"),
@@ -183,6 +183,13 @@ class CutiController extends Controller
             ->get()
             ->filter(fn ($k) => $k->cuti->isNotEmpty());
 
-        return view("Cuti.v_rekap_cuti", compact("karyawan"));
+        $html = view("Cuti.v_rekap_cuti", compact("karyawan"))->render();
+
+        $pdf = new Dompdf();
+        $pdf->setBasePath(public_path(""));
+        $pdf->loadHtml($html);
+        $pdf->render();
+
+        return $pdf->stream();
     }
 }
