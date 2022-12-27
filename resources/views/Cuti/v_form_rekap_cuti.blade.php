@@ -22,20 +22,12 @@
                 @endforeach
             </ul>
             @endif
-            <form action="{{route("rekap_presensi")}}" method="get" enctype="multipart/form-data">
+            <form action="{{route("rekap_cuti")}}" method="get" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label">Tanggal Mulai</label>
+                    <label for="" class="col-sm-2 col-form-label">Tahun</label>
                         <div class="col-sm-10">
-                            <input type="" id="" name="" class="form-control"/>
-
-                        </div>
-                </div>
-                <div class="form-group row">
-                    <label for="" class="col-sm-2 col-form-label">Tanggal Selesai</label>
-                        <div class="col-sm-10">
-                            <input type="" id="" name="" class="form-control"/>
-
+                            <input type="" id="" name="year" class="form-control"/>
                         </div>
                 </div>
                 <div class="form-group row">

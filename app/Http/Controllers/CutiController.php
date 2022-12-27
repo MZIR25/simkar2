@@ -169,28 +169,21 @@ class CutiController extends Controller
     public function rekap_cuti(Request $request)
     {
         $data = $request->validate([
-            "start_date" => "nullable|date|before:today",
-            "end_date" => "nullable|date|after:start_date|before_or_equal:today",
+            "year" => "nullable|numeric|min:1000|max:9999",
         ]);
 
         $start = Carbon::createFromFormat(
-            "Y-m-d",
-            $data["start_date"] ??
+            "Y",
+            $data["year"] ??
                 Carbon::now()
                     ->subMonth()
-                    ->format("Y-m-d")
-        );
-        $end = Carbon::createFromFormat(
-            "Y-m-d",
-            $data["end_date"] ?? Carbon::now()->format("Y-m-d")
+                    ->format("Y")
         );
 
-        // dd(Cuti::whereBetween('Tanggal_Mulai', [$start->format("Y-m-d"), $end->format("Y-m-d")])->with("Karyawan")->get());
         $karyawan = Karyawan::with([
             "cuti" => fn ($query) => $query
-                ->whereBetween("Tanggal_Mulai", [
-                    $start->format("Y-m-d"),
-                    $end->format("Y-m-d"),
+                ->whereYear("Tanggal_Mulai", [
+                    $start->format("Y"),
                 ])
                 ->where("Status", "Accept"),
         ])

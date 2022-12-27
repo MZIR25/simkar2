@@ -73,7 +73,7 @@
                     <ul class="list-unstyled">
                         <li>Jumlah Jatah Cuti = 12</li>
                         <li>Jumlah Cuti = {{ $item->cuti->map(fn ($c) => $c->jumlahHari)->sum() }}</li>
-                        <li>Sisa Cuti </li>
+                        <li>Sisa Cuti = {{ 12 - $item->cuti->map(fn ($c) => $c->jumlahHari)->sum() }}</li>
                     </ul>
                 </div>
             </div>
