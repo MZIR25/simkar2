@@ -203,8 +203,12 @@ class CutiController extends Controller
 
         return $pdf->stream();
     }
-    public function form_rekap_cuti()
+    public function form_rekap_cuti($request)
     {
+        $this->validate($request, [
+        "Tahun_Rekap" => "required|min:1000|max:9999",
+
+    ]);
         return view("Cuti.v_form_rekap_cuti");
     }
 }
