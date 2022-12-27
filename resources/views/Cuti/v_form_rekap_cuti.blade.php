@@ -27,7 +27,7 @@
                 <div class="form-group row">
                     <label for="" class="col-sm-2 col-form-label">Tahun</label>
                         <div class="col-sm-10">
-                            <input type="" id="" name="year" class="form-control"/>
+                            <input type="text" id="" name="year" class="form-control"/>
                         </div>
                 </div>
                 <div class="form-group row">
