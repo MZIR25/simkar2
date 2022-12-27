@@ -202,6 +202,9 @@ class CutiController extends Controller
 
         $pdf = new Dompdf();
         $pdf->setBasePath(public_path(""));
+        $options = new \Dompdf\Options([]);
+        $options->setChroot(public_path(""));
+        $pdf->setOptions($options);
         $pdf->loadHtml($html);
         $pdf->render();
 

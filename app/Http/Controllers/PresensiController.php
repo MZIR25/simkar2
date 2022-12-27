@@ -211,6 +211,9 @@ class PresensiController extends Controller
 
         $pdf = new Dompdf();
         $pdf->setBasePath(public_path(""));
+        $options = new \Dompdf\Options();
+        $options->setChroot(public_path(""));
+        $pdf->setOptions($options);
         $pdf->loadHtml($html);
         $pdf->render();
         // dd(public_path('template/dist/css/adminlte.min.css'), public_path());

@@ -22,7 +22,7 @@
 
     <table width="100%">
     <tr>
-    <td width="25" align="center"><img src="{{asset('template/')}}/dist/img/logo_valtech1.png" width="60%"></td>
+    <td width="25" align="center"><img src="file://template/dist/img/logo_valtech1.png" width="60%"></td>
     <td width="50" align="center">
         <h1>CV. VAL TECH</h1>
         <h3>Services, Manufacture, Development of Information Systems</h3>
