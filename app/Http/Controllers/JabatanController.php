@@ -44,7 +44,7 @@ class JabatanController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'Nama_Jabatan'=> 'required'
+            'Nama_Jabatan'=> 'required|max:100'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
@@ -93,7 +93,7 @@ class JabatanController extends Controller
     public function update(Request $request, $jabatan_id)
     {
         $this->validate($request, [
-            'Nama_Jabatan'=> 'required',
+            'Nama_Jabatan'=> 'required|max:100'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,

@@ -40,7 +40,7 @@ class DevisiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'Nama_Devisi'=> 'required'
+            'Nama_Devisi'=> 'required|max:100'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
@@ -87,7 +87,7 @@ class DevisiController extends Controller
     public function update(Request $request, $devisi_id)
     {
         $this->validate($request, [
-            'Nama_Devisi'=> 'required'
+            'Nama_Devisi'=> 'required|max:100'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,

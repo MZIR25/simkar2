@@ -140,12 +140,12 @@ class KaryawanController extends Controller
             'Alamat_Karyawan'=> 'required',
             'Tempat_Lahir'=> 'required',
             'Tahun_Lulus' => 'integer|min:1000|max:9999',
-            'Tanggal_Lahir'=> 'nullable',
+            'Tanggal_Lahir'=> 'required',
             'Agama'=> 'required',
             'Jenis_Kelamin'=> 'required',
             'Golongan_Darah'=> 'required',
             'Status_Pernikahan'=> 'required',
-            'Jumlah_Anak'=> 'required',
+            'Jumlah_Anak'=> 'required|min:0|max:20',
             'No_Hp'=> 'required',
             'Mulai_Kerja'=> 'required'
 

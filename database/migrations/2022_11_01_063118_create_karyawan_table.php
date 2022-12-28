@@ -30,9 +30,9 @@ return new class extends Migration
             $table->string('Golongan_Darah', 5)->nullable();
             $table->string('Status_Pernikahan', 20)->nullable();
             $table->integer('Jumlah_Anak')->nullable();
-            $table->string('No_Hp')->nullable();
+            $table->string('No_Hp',20)->nullable();
             $table->date('Mulai_Kerja')->nullable();
-            $table->string('image')->nullable();
+            $table->text('image')->nullable();
             $table->string('STATUS', 10)->nullable();
             $table->timestamps();
         });

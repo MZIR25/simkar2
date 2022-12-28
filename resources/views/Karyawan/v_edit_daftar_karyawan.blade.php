@@ -151,9 +151,21 @@
                 <div class="form-group row">
                     <label for="Golongan_Darah" class="col-sm-2 col-form-label">Golongan Darah</label>
                     <div class="col-sm-10">
-                        <input type="text" value="{{$karyawan->Golongan_Darah}}"  id="Golongan_Darah" name="Golongan_Darah" class="form-control" placeholder="Masukkan Golongan Darah">
+                        {{-- <input type="text" value="{{$karyawan->Golongan_Darah}}"  id="Golongan_Darah" name="Golongan_Darah" class="form-control" placeholder="Masukkan Golongan Darah"> --}}
                             {{-- <x-validate-error-message name="Golongan_Darah"/> --}}
-                    </div>
+                            <select name="Golongan_Darah" id="Golongan_Darah" class="form-control">
+                                <option >{{$karyawan->Golongan_Darah}}</option>
+                                <option >A+</option>
+                                <option >A-</option>
+                                <option >B+</option>
+                                <option >B-</option>
+                                <option >O+</option>
+                                <option >O-</option>
+                                <option >AB+</option>
+                                <option >AB-</option>
+                                <option >Tidak Tau</option>
+                        </select>
+                        </div>
                 </div>
 <!-- bagian Status_Pernikahan -->
                 <div class="form-group row">

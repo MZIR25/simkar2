@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Models\Karyawan;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
@@ -28,11 +29,12 @@ class Iterasi2Test extends TestCase
     }
     public function testTambahDaftarKaryawan()
     {
+
         $user = User::where('level', 'admin')->first();
         $response = $this->actingAs($user)
             ->post(route('simpan_karyawan'), [
-                'jabatan_id' => null,
-                'devisi_id' => null,
+                'jabatan_id' => 1,
+                'devisi_id' => 1,
                 'Tingkat_Pendidikan' => 'S3',
                 'Nama_Karyawan' => $this->faker->name,
                 'Tahun_Lulus' => $this->faker->year,
@@ -56,12 +58,13 @@ class Iterasi2Test extends TestCase
     }
     public function testEditDaftarKaryawan()
     {
+        $karyawan=Karyawan::get('karyawan_id')->first();
         $user = User::where('level', 'admin')->first();
         $response = $this->actingAs($user)
-            ->put(route('update_karyawan', '11'), [
-                'jabatan_id' => '1',
-                'devisi_id' => '1',
-                'pendidikan_id' => '11',
+            ->put(route('update_karyawan', '1'), [
+                'jabatan_id' => $karyawan->jabatan_id,
+                'devisi_id' => $karyawan->devisi_id,
+                'pendidikan_id' => '1',
                 'Alamat_Karyawan' => $this->faker->address,
                 'Tempat_Lahir' => $this->faker->city,
                 'Tanggal_Lahir' => $this->faker->date,

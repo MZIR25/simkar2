@@ -48,7 +48,7 @@ class CutiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            "Alasan_Cuti" => "required",
+            "Alasan_Cuti" => "required|min:5",
             "Tanggal_Mulai" => "required|date|before:Tanggal_Selesai",
             "Tanggal_Selesai" => "required|date|after:Tanggal_Mulai",
         ]);
@@ -122,7 +122,7 @@ class CutiController extends Controller
     {
         // dd($request->all());
         $this->validate($request, [
-            "Alasan_Cuti" => "required",
+            "Alasan_Cuti" => "required|min:5",
             "Tanggal_Mulai" => "nullable",
             "Tanggal_Selesai" => "nullable",
         ]);
