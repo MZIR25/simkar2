@@ -61,7 +61,7 @@
                         <select name="karyawan_id" id="karyawan_id" class="form-control">
                             @foreach ($karyawan as $k)
 
-                            <option value="{{$k->karyawan_id}}">{{$k->karyawan_id}}.{{$k->Nama_Karyawan}}</option>
+                            <option value="{{$k->karyawan_id}}">{{$k->karyawan_id}}.{{$k->Nama_Karyawan}} ({{$k->STATUS}})</option>
 
                             @endforeach
                         </select>

@@ -7,6 +7,7 @@ use App\Models\Riwayat;
 use App\Models\Pendidikan;
 use App\Models\Devisi;
 use App\Models\Gaji;
+use App\Models\Presensi;
 use App\Models\Jabatan;
 use App\Models\Jobdesk;
 use App\Models\Karyawan;
@@ -43,8 +44,12 @@ class HomeController extends Controller
         $jobdesk = Jobdesk::with(["Karyawan"])
         ->whereRelation("Karyawan", "STATUS", "Active")
         ->get();
+        // $presensi = Presensi::with(["Karyawan"])
+        // ->whereRelation("Karyawan", "STATUS", "Active")
+        // ->get();
+        $presensi = Presensi::with('Karyawan')->get();
         $riwayat = DB::table('riwayat')->latest()->paginate(100);
-        return view('layouts.v_home',compact('karyawan','cuti','gaji','jobdesk','riwayat'));
+        return view('layouts.v_home',compact('karyawan','cuti','gaji','jobdesk','riwayat','presensi'));
 
     }
 

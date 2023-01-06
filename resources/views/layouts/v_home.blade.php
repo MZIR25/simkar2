@@ -4,14 +4,14 @@
 @section('content')
 
 <div class="container-fluid p-5 m-">
-    <div class="container ">
+    {{-- <div class="container ">
         <div class="text-center">
         <img src="{{asset('template/')}}/dist/img/logo_valtech1.png"  alt="Valtech Logo" class="rounded w-25 mx-auto d-block "  >
         <h1 class="display-4"><span class="font-weight-bold"> Sistem Informasi Manajemen Karyawan</span></h1>
         <hr class="my-4">
-        {{-- <p class="font-weight-light h2">SIMKAR</p> --}}
+
         </div>
-    </div>
+    </div> --}}
 
 @if (auth()->user()->level == "admin")
 <div class="row">
@@ -46,16 +46,24 @@
           <!-- ./col -->
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>{{$gaji->count()}}</h3>
-
-                <p>Dafta Gaji</p>
+            <div class="small-box bg-warning" >
+              <div class="inner" >
+                <div class="row justify-content-between">
+                    <div class="col-4">
+                        <h5><small class="font-weight-bold">Terlambat</span></small>
+                            <span class="badge badge-danger ml-1">{{ $presensi->where("keterangan", "terlambat")->count()}}</span></h5>
+                    </div>
+                    <div class="col-4 ">
+                        <h5><small class="font-weight-bold">Tepat Waktu</span></small>
+                            <span class="badge badge-success ml-1">{{ $presensi->where("keterangan", "tepat waktu")->count()}}</span></h5>
+                    </div>
+                </div>
+                <p>Daftar Presensi</p>
               </div>
-              <div class="icon">
+              {{-- <div class="icon">
                 <i class="ion ion-document"></i>
-              </div>
-              <a href="/daftar_gaji" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              </div> --}}
+              <a href="/riwayat_presensi" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->

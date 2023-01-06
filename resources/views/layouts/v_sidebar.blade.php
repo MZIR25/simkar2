@@ -84,6 +84,7 @@
                     <p>Permohonan Cuti</p>
                 </a>
                 </li>
+                @if (auth()->user()->level == "admin")
                     <li class="nav-item">
                     <a href="{{route('rekap_cuti')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -99,6 +100,7 @@
                 </li>
             </ul>
             </li>
+            @endif
             @if (auth()->user()->karyawan_id)
             <li class="nav-item">
             <a href="#" class="nav-link">
@@ -121,6 +123,7 @@
                         <p>Riwayat</p>
                     </a>
                 </li>
+                @if (auth()->user()->level == "admin")
                 <li class="nav-item">
                     <a href="{{route('rekap_presensi')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
@@ -135,6 +138,7 @@
                 </li>
             </ul>
             </li>
+            @endif
             @endif
             <li class="nav-item">
             <a href="/daftar_gaji" class="nav-link">
