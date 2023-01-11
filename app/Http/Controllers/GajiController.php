@@ -46,9 +46,9 @@ class GajiController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'Gaji_Pokok' => 'required|numeric|min:0',
-            'Pajak_Bpjs' => 'required|numeric|min:0',
-            'Jumlah_Gaji' => 'required|numeric|min:0'
+            'Gaji_Pokok' => 'required|numeric|min:0|max:100000000',
+            'Pajak_Bpjs' => 'required|numeric|min:0|max:100000000',
+            'Jumlah_Gaji' => 'required|numeric|min:0|max:100000000'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,
@@ -101,9 +101,9 @@ class GajiController extends Controller
 
         $this->validate($request, [
 
-            'Gaji_Pokok' => 'required|numeric|min:0',
-            'Pajak_Bpjs' => 'required|numeric|min:0',
-            'Jumlah_Gaji' => 'required|numeric|min:0'
+            'Gaji_Pokok' => 'required|numeric|min:0|max:100000000',
+            'Pajak_Bpjs' => 'required|numeric|min:0|max:100000000',
+            'Jumlah_Gaji' => 'required|numeric|min:0|max:100000000'
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,

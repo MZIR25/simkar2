@@ -13,7 +13,7 @@
         </div>
     </div> --}}
 
-@if (auth()->user()->level == "admin")
+
 <div class="row">
           <div class="col-lg-3 col-6">
             <!-- small box -->
@@ -25,7 +25,12 @@
               <div class="icon">
                 <i class="ion ion-person"></i>
               </div>
+              @if (auth()->user()->level == "admin")
               <a href="/daftar_karyawan" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              @else
+              <a href="/data_diri_karyawan" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              @endif
+
             </div>
           </div>
           <!-- ./col -->
@@ -82,6 +87,7 @@
             </div>
           </div>
 </div>
+@if (auth()->user()->level == "admin")
     <div class="col-md-12 p-5 pt-2">
         <div class="card">
             <div class="card-body">
@@ -114,6 +120,46 @@
         </div>
     </div>
 
+@endif
+@if (auth()->user()->level == "karyawan")
+<div class="col-md-12 p-5 pt-2">
+    <div class="card">
+        <div class="card-body">
+            <h3><i class="fas fa-swatchbook"></i></i> DAFTAR JOBDESK</h3><hr>
+            {{-- @if (auth()->user()->level == "admin")
+                <a href="{{ route('unggah_jobdesk') }}" class="btn btn-primary mb-3 " ><i class="fas fa-plus-square mr-2"></i>Upload Jobdesk</a>
+            @endif --}}
+                {{-- <a href="daftar_jobdesk/export_excel" class="btn btn-success mb-3"><i class="fa fa-file-excel mr-2"></i>EXPORT EXCEL</a> --}}
+                <table id="myTable" class="table table-striped table-bordered" >
+                <thead>
+                    <tr>
+                    <th scope="col">No.</th>
+                    <th scope="col">Nama Karyawan</th>
+                    <th scope="col">Jabatan</th>
+                    <th scope="col">Tugas Karyawan</th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    @foreach ($jobdesk as $j )
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $j->Karyawan->Nama_Karyawan }}</td>
+                        <td>
+                            @if ($j->Jabatan === null )
+                            <span >Tidak Ada Jabatan</span>
+                            @else
+                            <span>{{ $j->Jabatan->Nama_Jabatan }}</span>
+                            @endif
+                        </td>
+                        <td>{{ $j->Tugas_Karyawan }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 @endif
 
 <script>

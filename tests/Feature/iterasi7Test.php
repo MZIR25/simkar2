@@ -14,11 +14,11 @@ use Illuminate\Auth\Events\Authenticated;
 
 // class iterasi7Test extends TestCase
 // {
-//     /**
-//      * A basic feature test example.
-//      *
-//      * @return void
-//      */
+// //     /**
+// //      * A basic feature test example.
+// //      *
+// //      * @return void
+// //      */
 
 
 //     use WithoutMiddleware;
@@ -45,15 +45,31 @@ use Illuminate\Auth\Events\Authenticated;
 
 //         $user = UserFactory::new()->createOne();
 
-        // $response = $this->actingAs($admin)
-        //     ->put(route('update_user', $user->id), [
-        //         'name' => $this->faker->name,
-        //         'email' => $this->faker->email,
-        //         'level' => 'admin',
-        //         'karyawan_id' => 2,
+//         $response = $this->actingAs($admin)
+//             ->put(route('update_user', $user->id), [
+//                 'name' => $this->faker->name,
+//                 'email' => $this->faker->email,
+//                 'level' => 'admin',
+//                 'karyawan_id' => 23,
 
 //             ]);
 
 //         $response->assertStatus(302);
 //     }
+//     public function testEditUserInputError()
+//     {
+//         $admin = User::where('level', 'admin')->first();
+
+//         $user = UserFactory::new()->createOne();
+
+//         $response = $this->actingAs($admin)
+//             ->put(route('update_user', $user->id), [
+//                 // 'name' => $this->faker->name,
+//                 'email' => $this->faker->email,
+//                 'level' => 'admin',
+//                 'karyawan_id' => 23,
+
+//             ]);
+//             $response->assertStatus(302);
+//         }
 // }

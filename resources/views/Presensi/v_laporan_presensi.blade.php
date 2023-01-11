@@ -6,6 +6,13 @@
     <div class="col-md-12 p-5 pt-2">
         <div class="card">
             <div class="card-body">
+                @if($errors->any())
+            <ul>
+                @foreach($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+            </ul>
+            @endif
                 <h3><i class="fa-lg fa-regular fa-clipboard"></i> Laporan Presensi</h3><hr>
                 <form action="{{route("create_laporan_presensi")}}" method="post" enctype="multipart/form-data">
                     @csrf

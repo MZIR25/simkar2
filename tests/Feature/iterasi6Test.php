@@ -68,7 +68,32 @@ use Illuminate\Auth\Events\Authenticated;
 //     {
 //         $user = User::where('level', 'admin')->first();
 //         $jobdesk = JobdeskFactory::new()->createOne();
-//         $response = $this->actingAs($user)->delete(route('delete_cuti', $jobdesk->jobdesk_id));
+//         $response = $this->actingAs($user)->delete(route('delete_jobdesk', $jobdesk->jobdesk_id));
+//         $response->assertStatus(302);
+//     }
+//     public function testTambahJobdeskInputError()
+//     {
+//         $user = User::where('level', 'admin')->first();
+//         $karyawan = KaryawanFactory::new()->createOne();
+//         $response = $this->actingAs($user)
+//             ->post(route('simpan_jobdesk'), [
+//                 'karyawan_id' => $karyawan->karyawan_id,
+//                 // 'Tugas_Karyawan' => $this->faker->word(),
+//             ]);
+//         $this->withoutExceptionHandling();
+//         $response->assertStatus(302);
+//     }
+
+//     public function testEditJobdeskInputError()
+//     {
+//         $user = User::where('level', 'admin')->first();
+//         $jobdesk = JobdeskFactory::new()->createOne();
+//         $response = $this->actingAs($user)
+//             ->put(route('update_jobdesk', $jobdesk->jobdesk_id), [
+//                 'karyawan_id' => $jobdesk->karyawan_id,
+//                 // 'Tugas_Karyawan' => $this->faker->word(),
+//             ]);
+//         $this->withoutExceptionHandling();
 //         $response->assertStatus(302);
 //     }
 // }

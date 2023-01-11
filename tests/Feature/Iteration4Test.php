@@ -39,10 +39,10 @@ use function PHPUnit\Framework\assertSame;
 //         $response->assertStatus(200);
 //     }
 
-    // public function test_presensi_masuk()
-    // {
-    //     DB::transaction(function () {
-    //         $user = User::where('level', 'karyawan')->first();
+//     public function test_presensi_masuk()
+//     {
+//         DB::transaction(function () {
+//             $user = User::where('level', 'karyawan')->first();
 
 //             Carbon::setTestNow(Carbon::create(null, null, null, 8, 0));
 
@@ -63,132 +63,132 @@ use function PHPUnit\Framework\assertSame;
 //             assertSame("terlambat", $presensi->keterangan);
 //             $presensi->delete();
 
-    //         $response->assertStatus(302);
-    //     });
-    // }
-    // public function test_presensi_keluar()
-    // {
-    //     DB::transaction(function () {
-    //         $user = User::where('level', 'karyawan')->first();
+//             $response->assertStatus(302);
+//         });
+//     }
+//     public function test_presensi_keluar()
+//     {
+//         DB::transaction(function () {
+//             $user = User::where('level', 'karyawan')->first();
 
-    //         Carbon::setTestNow(Carbon::create(null, null, null, 8, 0));
-    //         $jamMasuk = Carbon::now();
+//             Carbon::setTestNow(Carbon::create(null, null, null, 8, 0));
+//             $jamMasuk = Carbon::now();
 
 //             $response = $this->actingAs($user)->post("/presensi");
 
 //             $ids = Presensi::all()->all();
 
-            // $presensi = Presensi::whereNotIn("presensi_id", $ids)->first();
-            // $response->assertStatus(302);
-            // assertSame($jamMasuk->format("H:i:s"), $presensi->jam_masuk);
+//             $presensi = Presensi::whereNotIn("presensi_id", $ids)->first();
+//             $response->assertStatus(302);
+//             assertSame($jamMasuk->format("H:i:s"), $presensi->jam_masuk);
 
-            // Carbon::setTestNow(Carbon::create(null, null, null, 18, 0));
-            // $jamKeluar = Carbon::now();
+//             Carbon::setTestNow(Carbon::create(null, null, null, 18, 0));
+//             $jamKeluar = Carbon::now();
 
-            // $response = $this->actingAs($user)->post("/presensi", ['status' => 'pulang']);
-            // $presensi = Presensi::find($presensi->presensi_id);
-            // assertSame($jamMasuk->format("H:i:s"), $presensi->jam_masuk);
-            // assertSame($jamKeluar->format("H:i:s"), $presensi->jam_keluar);
+//             $response = $this->actingAs($user)->post("/presensi", ['status' => 'pulang']);
+//             $presensi = Presensi::find($presensi->presensi_id);
+//             assertSame($jamMasuk->format("H:i:s"), $presensi->jam_masuk);
+//             assertSame($jamKeluar->format("H:i:s"), $presensi->jam_keluar);
 
 //             $presensi->delete();
 
-    //         $response->assertStatus(302);
-    //     });
-    // }
-    // public function test_unggah_laporan_presensi()
-    // {
-    //     DB::transaction(function () {
-    //         $user = User::where('level', 'karyawan')->first();
-    //         $presensi_ids = Presensi::all()->all();
+//             $response->assertStatus(302);
+//         });
+//     }
+//     public function test_unggah_laporan_presensi()
+//     {
+//         DB::transaction(function () {
+//             $user = User::where('level', 'karyawan')->first();
+//             $presensi_ids = Presensi::all()->all();
 
 //             $ids = LaporanPresensi::all()->all();
 
 
-            // $jamMulai = Carbon::now()->second(0);
-            // $jamSelesai = Carbon::now()->second(0);
-            // $data = [
-            //     'jam_mulai' => $jamMulai->format("H:i"),
-            //     'jam_selesai' => $jamSelesai->format("H:i"),
-            //     'uraian_pekerjaan' => $this->faker->words(10, true),
-            //     'output_pekerjaan' => $this->faker->words(10, true),
-            //     'file' => UploadedFile::fake()->create("test")
-            // ];
+//             $jamMulai = Carbon::now()->second(0);
+//             $jamSelesai = Carbon::now()->second(0);
+//             $data = [
+//                 'jam_mulai' => $jamMulai->format("H:i"),
+//                 'jam_selesai' => $jamSelesai->format("H:i"),
+//                 'uraian_pekerjaan' => $this->faker->words(10, true),
+//                 'output_pekerjaan' => $this->faker->words(10, true),
+//                 'file' => UploadedFile::fake()->create("test")
+//             ];
 
 //             $response = $this->actingAs($user)->post(route("create_laporan_presensi"), $data);
 //             $response->assertStatus(302);
 
 //             $laporan = LaporanPresensi::whereNotIn("laporan_presensi_id", $ids)->first();
 
-    //         assertSame($jamMulai->format("H:i:s"), $laporan->jam_mulai);
-    //         assertSame($jamSelesai->format("H:i:s"), $laporan->jam_selesai);
-    //         assertSame($data['uraian_pekerjaan'], $laporan->uraian_pekerjaan);
-    //         assertSame($data['output_pekerjaan'], $laporan->output_pekerjaan);
+//             assertSame($jamMulai->format("H:i:s"), $laporan->jam_mulai);
+//             assertSame($jamSelesai->format("H:i:s"), $laporan->jam_selesai);
+//             assertSame($data['uraian_pekerjaan'], $laporan->uraian_pekerjaan);
+//             assertSame($data['output_pekerjaan'], $laporan->output_pekerjaan);
 
-    //         $laporan->delete();
-    //         Presensi::whereNotIn("presensi_id", $presensi_ids)->delete();
-    //     });
-    // }
-    // public function test_edit_laporan_presensi()
-    // {
-    //     DB::transaction(function () {
-    //         $user = User::where('level', 'karyawan')->first();
-    //         $presensi_ids = Presensi::all()->all();
+//             $laporan->delete();
+//             Presensi::whereNotIn("presensi_id", $presensi_ids)->delete();
+//         });
+//     }
+//     public function test_edit_laporan_presensi()
+//     {
+//         DB::transaction(function () {
+//             $user = User::where('level', 'karyawan')->first();
+//             $presensi_ids = Presensi::all()->all();
 
 //             $ids = LaporanPresensi::all()->all();
 
-            // $oldData = [
-            //     'jam_mulai' => Carbon::now()->format("H:i"),
-            //     'jam_selesai' => Carbon::now()->format("H:i"),
-            //     'uraian_pekerjaan' => $this->faker->words(10, true),
-            //     'output_pekerjaan' => $this->faker->words(10, true),
-            //     'file' => UploadedFile::fake()->create("test")
-            // ];
+//             $oldData = [
+//                 'jam_mulai' => Carbon::now()->format("H:i"),
+//                 'jam_selesai' => Carbon::now()->format("H:i"),
+//                 'uraian_pekerjaan' => $this->faker->words(10, true),
+//                 'output_pekerjaan' => $this->faker->words(10, true),
+//                 'file' => UploadedFile::fake()->create("test")
+//             ];
 
 //             $response = $this->actingAs($user)->post(route("create_laporan_presensi"), $oldData);
 //             $response->assertstatus(302);
 
 //             $laporan = LaporanPresensi::whereNotIn("laporan_presensi_id", $ids)->first();
 
-            // Carbon::setTestNow(Carbon::now()->addMinutes(10));
+//             Carbon::setTestNow(Carbon::now()->addMinutes(10));
 
-            // $jamMulai = Carbon::now()->second(0);
-            // $jamSelesai = Carbon::now()->second(0);
-            // $data = [
-            //     'jam_mulai' => $jamMulai->format("H:i"),
-            //     'jam_selesai' => $jamSelesai->format("H:i"),
-            //     'uraian_pekerjaan' => $this->faker->words(10, true),
-            //     'output_pekerjaan' => $this->faker->words(10, true),
-            // ];
-            // $laporan = LaporanPresensi::whereNotIn("laporan_presensi_id", $ids)->first();
-            // $response = $this->actingAs($user)->put(route("update_laporan_presensi", $laporan->laporan_presensi_id), $data);
-            // $response->assertStatus(302);
+//             $jamMulai = Carbon::now()->second(0);
+//             $jamSelesai = Carbon::now()->second(0);
+//             $data = [
+//                 'jam_mulai' => $jamMulai->format("H:i"),
+//                 'jam_selesai' => $jamSelesai->format("H:i"),
+//                 'uraian_pekerjaan' => $this->faker->words(10, true),
+//                 'output_pekerjaan' => $this->faker->words(10, true),
+//             ];
+//             $laporan = LaporanPresensi::whereNotIn("laporan_presensi_id", $ids)->first();
+//             $response = $this->actingAs($user)->put(route("update_laporan_presensi", $laporan->laporan_presensi_id), $data);
+//             $response->assertStatus(302);
 
 //             $laporan = LaporanPresensi::whereNotIn("laporan_presensi_id", $ids)->first();
 
-    //         assertSame($jamMulai->format("H:i:s"), $laporan->jam_mulai);
-    //         assertSame($jamSelesai->format("H:i:s"), $laporan->jam_selesai);
-    //         assertSame($data['uraian_pekerjaan'], $laporan->uraian_pekerjaan);
-    //         assertSame($data['output_pekerjaan'], $laporan->output_pekerjaan);
+//             assertSame($jamMulai->format("H:i:s"), $laporan->jam_mulai);
+//             assertSame($jamSelesai->format("H:i:s"), $laporan->jam_selesai);
+//             assertSame($data['uraian_pekerjaan'], $laporan->uraian_pekerjaan);
+//             assertSame($data['output_pekerjaan'], $laporan->output_pekerjaan);
 
-    //         $laporan->delete();
-    //         Presensi::whereNotIn("presensi_id", $presensi_ids)->delete();
-    //     });
-    // }
-    // public function test_hapus_laporan_presensi()
-    // {
-    //     DB::transaction(function () {
-    //         $user = User::where('level', 'karyawan')->first();
-    //         $presensi_ids = Presensi::all()->all();
+//             $laporan->delete();
+//             Presensi::whereNotIn("presensi_id", $presensi_ids)->delete();
+//         });
+//     }
+//     public function test_hapus_laporan_presensi()
+//     {
+//         DB::transaction(function () {
+//             $user = User::where('level', 'karyawan')->first();
+//             $presensi_ids = Presensi::all()->all();
 
 //             $ids = LaporanPresensi::all()->all();
 
-            // $oldData = [
-            //     'jam_mulai' => Carbon::now()->format("H:i"),
-            //     'jam_selesai' => Carbon::now()->format("H:i"),
-            //     'uraian_pekerjaan' => $this->faker->words(10, true),
-            //     'output_pekerjaan' => $this->faker->words(10, true),
-            //     'file' => UploadedFile::fake()->create("test")
-            // ];
+//             $oldData = [
+//                 'jam_mulai' => Carbon::now()->format("H:i"),
+//                 'jam_selesai' => Carbon::now()->format("H:i"),
+//                 'uraian_pekerjaan' => $this->faker->words(10, true),
+//                 'output_pekerjaan' => $this->faker->words(10, true),
+//                 'file' => UploadedFile::fake()->create("test")
+//             ];
 
 //             $response = $this->actingAs($user)->post(route("create_laporan_presensi"), $oldData);
 //             $response->assertstatus(302);

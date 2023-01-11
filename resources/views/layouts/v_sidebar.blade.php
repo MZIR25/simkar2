@@ -92,53 +92,56 @@
                     </a>
                     </li>
                 </li>
-                <li class="nav-item">
+                {{-- <li class="nav-item">
                 <a href="{{route('form_rekap_cuti')}}" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Form Rekap Cuti</p>
                 </a>
-                </li>
+                </li> --}}
+                @endif
             </ul>
-            </li>
-            @endif
+
+
             @if (auth()->user()->karyawan_id)
             <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                Presensi
-                <i class="fas fa-angle-left right"></i>
-                </p>
-            </a>
-            <ul class="nav nav-treeview">
-                <li class="nav-item">
-                <a href="{{route('presensi')}}" class="nav-link">
-                    <i class="far fa-circle nav-icon"></i>
-                    <p>Presensi</p>
+                <a href="#" class="nav-link">
+                    <i class="nav-icon far fa-calendar-alt"></i>
+                    <p>
+                    Presensi
+                    <i class="fas fa-angle-left right"></i>
+                    </p>
                 </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('riwayat_presensi')}}" class="nav-link">
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                    <a href="{{route('presensi')}}" class="nav-link">
                         <i class="far fa-circle nav-icon"></i>
-                        <p>Riwayat</p>
+                        <p>Presensi</p>
                     </a>
-                </li>
-                @if (auth()->user()->level == "admin")
-                <li class="nav-item">
-                    <a href="{{route('rekap_presensi')}}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Rekap Presensi</p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{route('form_rekap')}}" class="nav-link">
-                        <i class="far fa-circle nav-icon"></i>
-                        <p>Form Rekap</p>
-                    </a>
-                </li>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('riwayat_presensi')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Riwayat</p>
+                        </a>
+                    </li>
+
+                    @if (auth()->user()->level == "admin")
+                    <li class="nav-item">
+                        <a href="{{route('rekap_presensi')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Rekap Presensi</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('form_rekap')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Form Rekap</p>
+                        </a>
+                    </li>
+                    @endif
             </ul>
             </li>
-            @endif
+
             @endif
             <li class="nav-item">
             <a href="/daftar_gaji" class="nav-link">

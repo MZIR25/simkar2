@@ -18,7 +18,7 @@ class JobdeskFactory extends Factory
     {
         return [
             'karyawan_id' => KaryawanFactory::new(),
-            'Tugas_Karyawan' => $this->faker->words(5, true),
+            // 'Tugas_Karyawan' => $this->faker->words(5, true),
         ];
     }
 }

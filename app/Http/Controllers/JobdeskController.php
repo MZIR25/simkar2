@@ -17,13 +17,18 @@ class JobdeskController extends Controller
     public function index()
     {
         DB::enableQueryLog();
-        if (Auth::user()->level == "karyawan") {
-            $jobdesk = Jobdesk::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan');
-        } else {
-            $jobdesk = Jobdesk::with(['Karyawan'])->whereRelation("Karyawan", "STATUS","Active")->get();
-        }
+        // if (Auth::user()->level == "karyawan") {
+        //     $jobdesk = Jobdesk::where("karyawan_id", Auth::user()->karyawan_id)->with('Karyawan');
+        // } else {
+        //     $jobdesk = Jobdesk::with(['Karyawan'])->whereRelation("Karyawan", "STATUS","Active")->get();
+        // }
 
         // $jobdesk = $jobdesk->whereHas("Karyawan.Jabatan")->get();
+        $jobdesk = Jobdesk::with(['Karyawan'])->whereRelation("Karyawan", "STATUS","Active")
+            ->select("jobdesk_id",DB::raw("(GROUP_CONCAT(jobdesk.Tugas_Karyawan SEPARATOR ',')) as `Tugas_Karyawans`"))
+            ->groupBy('jobdesk_id')
+            ->get();
+
 
         return view('Jobdesk.v_daftar_jobdesk', compact('jobdesk'));
     }
@@ -35,7 +40,9 @@ class JobdeskController extends Controller
      */
     public function create()
     {
-        $karyawan = Karyawan::doesntHave("Jobdesk")->orderBy("Nama_Karyawan")->get();
+        // $karyawan = Karyawan::doesntHave("Jobdesk")->orderBy("Nama_Karyawan")->get();
+        $karyawan = Karyawan::orderBy("Nama_Karyawan")->get();
+
         return view('Jobdesk.v_unggah_jobdesk', compact('karyawan'));
     }
 
@@ -50,6 +57,8 @@ class JobdeskController extends Controller
         $this->validate($request, [
             'karyawan_id' => 'required',
             'Tugas_Karyawan' => 'required'
+
+
         ]);
         Riwayat::create([
             'id' => Auth::user()->id,

@@ -33,7 +33,7 @@
                                 <span>{{ $j->Jabatan->Nama_Jabatan }}</span>
                                 @endif
                             </td>
-                            <td>{{ $j->Tugas_Karyawan }}</td>
+                            <td>{{ $j->Tugas_Karyawans }}</td>
                             <td>
 
                             <div class="row">
